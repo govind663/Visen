@@ -109,7 +109,6 @@
                 <li>
                     <a href="{{ route('admin.dashboard') }}" class="dropdown-toggle no-arrow {{ ($currentRoute === 'admin.dashboard') ? 'active' : '' }}">
                         <span class="micon fa fa-desktop"></span>
-
                         <span class="mtext">Dashboard</span>
                     </a>
                 </li>
@@ -122,6 +121,24 @@
                     <ul class="submenu">
                         <li>
                             <a href="" >Banner</a>
+                        </li>
+                        <li>
+                            <a href="" >Industries</a>
+                        </li>
+                        <li>
+                            <a href="" >About Us</a>
+                        </li>
+                        <li>
+                            <a href="" >Counter</a>
+                        </li>
+                        <li>
+                            <a href="" >Sustainability</a>
+                        </li>
+                        <li>
+                            <a href="" >Innovations</a>
+                        </li>
+                        <li>
+                            <a href="" >Customer</a>
                         </li>
                     </ul>
                 </li>
