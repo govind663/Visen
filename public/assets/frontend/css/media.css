@@ -1,0 +1,449 @@
+@media only screen and (min-width: 1920px) {
+	.breadcrum_section{
+		height: 585px;
+	}
+}
+@media only screen and (max-width: 1499px) {}
+@media (max-width: 1200px) {}
+@media (max-width: 1190px){}
+@media (max-width: 991px) {
+	.hero-video .desc{
+		font-size: 15px;
+		line-height: 25px;
+	}
+	.hero-video h1 {
+    font-size: 30px;
+    line-height: 35px;
+  	}
+  	.header-item .btn-style-1{
+		display: none;
+	}
+	.topbar-info{
+		float: none;
+	}
+	.topbar-social-icons{
+		margin-bottom: 15px;
+	}
+	.topbar-section{
+		display: none;
+	}
+	.copyright-right{
+		float: none;
+	}
+	.main_menu .menu > ul > li > a {
+    text-align: left;
+	}
+	.video_text{
+		display: none;
+	}
+	.whyus-box{
+		height: auto;
+	}
+	.hero-video .callout{
+		z-index: 9;
+	}
+	.heading .big-title{
+		display: none;
+	}
+	.main_menu .logo{
+		position: relative;
+	    top: 0px;
+	    background: #fff;
+	    padding: 0px;
+	}
+	.heading h2 {
+    	font-size: 35px;
+	}
+	.about-image{
+		position: relative;
+		margin: 0px;
+	}
+	.about-image img{
+		width: 100%;
+	}
+	.testimonial-one-image{
+		position: relative;
+		width: 100%;
+		margin-left: 0px;
+	}
+	.testimonial-one-content{
+		margin-top: 0px;
+	}
+	.testimonial-one-thumb{
+		display: none;
+	}
+	.testimonial-one .testimonialone-text{
+		margin: 0px 0 30px;
+	}
+	.industries_serve_wrap{
+		padding: 60px 0px 60px;
+	}
+	.about-style-two{
+		padding-top: 0px;
+	}
+	.customers_wrap {
+    	/*padding: 0px 0px 60px;*/
+	}
+	.media_event_wrap{
+		padding: 60px 0px 60px;
+	}
+	.our_presence_wrap{
+		/*padding: 0px 0px 60px;*/
+	}
+	.testimonial-one-image{
+		position: relative;
+		width: 100%;
+		margin-left: 0px;
+	}
+	.testimonial-one-content{
+		margin-top: 0px;
+	}
+	.testimonial-one-thumb{
+		display: none;
+	}
+	.about-area{
+		padding: 50px 0px;
+	}
+	.sustainability_wrap{
+		padding: 50px 0px;
+	}
+	.about_wrap{
+		padding: 50px 0px;
+	}
+	.customers_wrap {
+    	padding: 50px 0px 50px;
+	}
+	.about_wrap .about-image{
+		display: none;
+	}
+	.sustainability_wrap:after{
+		width: 100%;
+	}
+	.about-style-two .thumb{
+		margin-bottom: 20px;
+	}
+	.about-style-two {
+    	height: 100%;
+	}
+	.about-section-content{
+		background-image: linear-gradient(#f7f7f799, #f7f7f7de), url(../img/innovation/print-lamination.jpg);
+	    background-position: center center;
+	    background-repeat: no-repeat;
+	    background-size: cover;
+	    height: auto;
+	}
+	.container-fluid{
+  		padding: 0px 30px;
+	}
+	.industry_dropdown .list-item ul{
+		columns: 1;
+    	-webkit-columns: 1;
+    	-moz-columns: 1;
+	}
+	.about-area .thumb img{
+		margin-bottom: 20px;
+	}
+	.counter strong{
+		font-size: 35px;
+	}
+	.counter h2 {
+	    font-size: 15px;
+	    line-height: 23px;
+	}
+	.counter_row{
+		/*display: flex;
+	    align-items: center;
+	    justify-content: space-around;*/
+	}
+	.footer-logo{
+		margin: inherit;
+    	padding-bottom: 20px;
+	}
+	.main_menu .row{
+		flex-direction: row-reverse;
+	}
+	.main_menu .item-right{
+		flex-direction: row-reverse;
+		gap: 31px;
+	}
+	.counter_row .counter_items{
+		max-width: 30%;
+    	flex: 0 1 30%;
+    	margin-bottom: 30px;
+	}
+	.industries-box .content{
+		height: auto;
+	}
+	.sustainability_wrap_one .carousel-inner .item:after{
+		width: 100%;
+	}
+	.sustainability_wrap_one .carousel-caption{
+		padding: 20px 0px;
+	}
+	.newsletter_title h3{
+		font-size: 25px;
+	}
+	.sustainability-content	h2{
+		font-size: 25px !important;
+	}
+	.sustainability-content	.heading{
+		margin-bottom: 10px;
+	}
+	.sustainability-content	p{
+		line-height: 25px;
+	}
+	.form-subscribe .btn{
+		padding: 10px 20px;
+	}
+	.form-subscribe .form-control{
+		padding-left: 15px;
+    	padding-right: 15px;
+	}
+}
+@media (max-width: 768px) {
+	.new_media_event_tabs .tab-content{
+		padding: 20px;
+	}
+	.meet_our_minds .single-team:hover .team-content {
+	    overflow-y: scroll;
+	    height: 100%;
+	}
+	.contact_page_breadcrum{
+		background-image:linear-gradient(#00000038, #00000038), url(../img/bg/contact-bg-mobile.jpg) !important;
+	}
+	.bannr_video{
+		height: 45vh;
+	}
+	.industry_dropdown button.course-accordion{
+		padding: 15px;
+	}
+	.togglefaq{
+		padding: 10px;
+	}
+	.ac-trigger{
+		padding: 15px;
+	}
+	.iti{
+		margin-bottom: 15px;
+	}
+	.contact_form_img:after{
+		width: 90%;
+	}
+	.locations_section .nav-tabs>li>a{
+		font-size: 20px;
+	}
+	.contact_details{
+		margin-bottom: 20px;
+	}
+	.contact_form {
+    	padding: 30px 20px;
+	}
+	.contact-us__info-item__icon {
+	    width: 50px;
+	    height: 50px;
+	}
+	.branch_details, .branch_details1, .plant_details{
+		height: auto;
+	}
+	.row_reverse{
+		display: -webkit-flex;
+		display: flex;
+		-webkit-flex-direction: column-reverse;
+		flex-direction: column-reverse;
+	}
+	.form-subscribe .btn{
+		padding: 10px 20px;
+	}
+	.form-subscribe .form-control{
+		padding-left: 15px;
+    	padding-right: 15px;
+	}
+	.newsletter_title h3{
+		font-size: 25px;
+	}
+	.sustainability-content	h2{
+		font-size: 25px !important;
+	}
+	.sustainability-content	.heading{
+		margin-bottom: 10px;
+	}
+	.sustainability-content	p{
+		line-height: 25px;
+	}
+	.industries-box .content{
+		height: auto;
+	}
+	.sustainability_wrap_one .carousel-inner .item:after{
+		width: 100%;
+	}
+	.sustainability_wrap_one .carousel-caption{
+		padding: 40px 0px;
+	}
+	.counter_row .counter_items{
+		max-width: 50%;
+    	flex: 0 1 50%;
+    	margin-bottom: 30px;
+	}
+	.main_menu .row{
+		flex-direction: row-reverse;
+	}
+	.main_menu .item-right{
+		flex-direction: row-reverse;
+		gap: 31px;
+	}
+	.footer-logo{
+		margin: inherit;
+    	padding-bottom: 20px;
+	}
+	.counter strong{
+		font-size: 35px;
+	}
+	.counter h2 {
+	    font-size: 15px;
+	    line-height: 23px;
+	}
+	.counter_row{
+		/*display: flex;
+	    align-items: center;
+	    justify-content: space-around;*/
+	}
+	.about-area .thumb img{
+		margin-bottom: 20px;
+	}
+	.industry_dropdown .list-item ul{
+		columns: 1;
+    	-webkit-columns: 1;
+    	-moz-columns: 1;
+	}
+	.container-fluid{
+  		padding: 0px 30px;
+	}
+	.about-section-content{
+		background-image: linear-gradient(#f7f7f799, #f7f7f7de), url(../img/innovations.jpg);
+	    background-position: center center;
+	    background-repeat: no-repeat;
+	    background-size: cover;
+	    height: auto;
+	}
+	.about-area{
+		padding: 50px 0px;
+	}
+	.sustainability_wrap{
+		padding: 50px 0px;
+	}
+	.about_wrap{
+		padding: 50px 0px;
+	}
+	.customers_wrap {
+    	padding: 50px 0px 50px;
+	}
+	.about_wrap .about-image{
+		display: none;
+	}
+	.sustainability_wrap:after{
+		width: 100%;
+	}
+	.about-style-two .thumb{
+		margin-bottom: 20px;
+	}
+	.about-style-two {
+    	height: 100%;
+	}
+	.industries_serve_wrap{
+		padding: 50px 0px 40px;
+	}
+	.about-style-two{
+		padding-top: 0px;
+	}
+	.customers_wrap {
+    	/*padding: 0px 0px 60px;*/
+	}
+	.media_event_wrap{
+		padding: 60px 0px 60px;
+	}
+	.our_presence_wrap{
+		/*padding: 0px 0px 60px;*/
+	}
+	.testimonial-one-image{
+		position: relative;
+		width: 100%;
+		margin-left: 0px;
+	}
+	.testimonial-one-content{
+		margin-top: 0px;
+	}
+	.testimonial-one-thumb{
+		display: none;
+	}
+	.testimonial-one .testimonialone-text{
+		margin: 0px 0 30px;
+	}
+	.about-image{
+		position: relative;
+		margin: 0px;
+	}
+	.about-image img{
+		width: 100%;
+	}
+	.main_menu .logo{
+		position: relative;
+	    top: 0px;
+	    background: #fff;
+	    padding: 0px;
+	}
+	.heading h2 {
+    	font-size: 35px;
+	}
+	.heading .big-title{
+		display: none;
+	}
+	.video_text{
+		display: none;
+	}
+	.header-item .btn-style-1{
+		display: none;
+	}
+	.topbar-info{
+		float: none;
+	}
+	.topbar-social-icons{
+		margin-bottom: 15px;
+	}
+	.topbar-section{
+		display: none;
+	}
+	.hero-video .desc{
+		font-size: 15px;
+		line-height: 25px;
+	}
+	.copyright-right{
+		float: none;
+	}
+	.main_menu .menu > ul > li > a {
+    text-align: left;
+	}
+	.whyus-box{
+		height: auto;
+	}
+	.hero-video .callout{
+		z-index: 9;
+	}
+}
+@media (max-width: 640px) {}
+@media (max-width: 480px) {
+	.hero-video h1 {
+    font-size: 20px;
+    line-height: 28px;
+	}
+	.hero-video .desc {
+    font-size: 13px;
+    line-height: 25px;
+	}
+	.whyus-box{
+		height: auto;
+	}
+	.hero-video .callout{
+		z-index: 9;
+	}
+}
+@media (max-width: 360px) {}
