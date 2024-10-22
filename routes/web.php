@@ -12,6 +12,7 @@ use App\Http\Controllers\backend\AboutUsController;
 use App\Http\Controllers\backend\CounterController;
 use App\Http\Controllers\backend\SustainabilityController;
 use App\Http\Controllers\backend\CustomerController;
+use App\Http\Controllers\backend\AnnualReportsController;
 
 // ===== Frontend
 use App\Http\Controllers\frontend\HomeController as FrontendHomeController;
@@ -56,6 +57,9 @@ Route::group(['prefix' => 'admin', 'middleware'=>['auth:web', PreventBackHistory
 
     // ==== Manage Customer
     Route::resource('customer', CustomerController::class);
+
+    // ==== Manage Annual Reports
+    Route::resource('annual-reports', AnnualReportsController::class);
 
 });
 

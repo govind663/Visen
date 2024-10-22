@@ -1,7 +1,7 @@
 @extends('backend.layouts.master')
 
 @section('title')
-Visen | Manaage Markets & Products
+Visen | Manaage Industry
 @endsection
 
 @push('styles')
@@ -19,7 +19,7 @@ Visen | Manaage Markets & Products
             <div class="row">
                 <div class="col-md-6 col-sm-12">
                     <div class="title">
-                        <h4>Manage Markets & Products</h4>
+                        <h4>Manage Industry</h4>
                     </div>
                     <nav aria-label="breadcrumb" role="navigation">
                         <ol class="breadcrumb">
@@ -27,7 +27,7 @@ Visen | Manaage Markets & Products
                                 <a href="{{ route('admin.dashboard') }}">Home</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                Manage Markets & Products
+                                Manage Industry
                             </li>
                         </ol>
                     </nav>
@@ -36,7 +36,7 @@ Visen | Manaage Markets & Products
                 <div class="col-md-6 col-sm-12 text-right">
                     <div class="dropdown">
                         <a class="btn btn-primary" href="{{ route('industry.create') }}">
-                            <i class="fa fa-plus" aria-hidden="true"> </i> Markets & Products
+                            <i class="fa fa-plus" aria-hidden="true"> </i> Industry
                         </a>
 
                     </div>
@@ -47,7 +47,7 @@ Visen | Manaage Markets & Products
         <!-- Export Datatable start -->
         <div class="card-box mb-30">
             <div class="pd-20">
-                <h4 class="text-blue h4">All Markets & Products List</h4>
+                <h4 class="text-blue h4">All Industry List</h4>
             </div>
             <div class="pb-20">
                 <table class="table hover multiple-select-row data-table-export1 nowrap p-3">
@@ -162,7 +162,7 @@ Visen | Manaage Markets & Products
                     columns: ':not(.no-export)',
                 },
                header: true,
-               title: 'All Markets & Products List',
+               title: 'All Industry List',
                orientation: 'landscape',
                pageSize: 'A4',
                customize: function(doc) {

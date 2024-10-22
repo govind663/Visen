@@ -1,7 +1,7 @@
 @extends('backend.layouts.master')
 
 @section('title')
-Visen | Manaage Introduction
+Visen | Manaage Annual Reports
 @endsection
 
 @push('styles')
@@ -19,7 +19,7 @@ Visen | Manaage Introduction
             <div class="row">
                 <div class="col-md-6 col-sm-12">
                     <div class="title">
-                        <h4>Manage Introduction</h4>
+                        <h4>Manage Annual Reports</h4>
                     </div>
                     <nav aria-label="breadcrumb" role="navigation">
                         <ol class="breadcrumb">
@@ -27,7 +27,7 @@ Visen | Manaage Introduction
                                 <a href="{{ route('admin.dashboard') }}">Home</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                Manage Introduction
+                                Manage Annual Reports
                             </li>
                         </ol>
                     </nav>
@@ -35,8 +35,8 @@ Visen | Manaage Introduction
 
                 <div class="col-md-6 col-sm-12 text-right">
                     <div class="dropdown">
-                        <a class="btn btn-primary" href="{{ route('about-us.create') }}">
-                            <i class="fa fa-plus" aria-hidden="true"> </i> Introduction
+                        <a class="btn btn-primary" href="{{ route('annual-reports.create') }}">
+                            <i class="fa fa-plus" aria-hidden="true"> </i> Annual Report
                         </a>
 
                     </div>
@@ -47,41 +47,34 @@ Visen | Manaage Introduction
         <!-- Export Datatable start -->
         <div class="card-box mb-30">
             <div class="pd-20">
-                <h4 class="text-blue h4">All Introduction List</h4>
+                <h4 class="text-blue h4">All Annual Reports List</h4>
             </div>
             <div class="pb-20">
                 <table class="table hover multiple-select-row data-table-export1 nowrap p-3">
                     <thead>
                         <tr>
                             <th>Sr. No.</th>
-                            <th>Image</th>
                             <th>Description</th>
                             <th class="no-export">Edit</th>
                             <th class="no-export">Delete</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($aboutUs as $key => $value)
+                        @foreach ($annualReports as $key => $value)
                         <tr>
                             <td>{{ ++$key }}</td>
-
-                            <td>
-                                @if($value->image)
-                                    <img src="{{ asset('/visen/about_us/image/' . $value->image) }}" alt="Industry Image" style="width: 100px; height: auto;">
-                                @endif
-                            </td>
 
                             <td class="text-wrap text-justify">{!! $value->description !!}</td>
 
                             <td class="no-export">
-                                <a href="{{ route('about-us.edit', $value->id) }}">
+                                <a href="{{ route('annual-reports.edit', $value->id) }}">
                                     <button class="btn btn-warning btn-sm">
                                         <i class="micon dw dw-pencil-1"></i> Edit
                                     </button>
                                 </a>
                             </td>
                             <td class="no-export">
-                                <form action="{{ route('about-us.destroy', $value->id) }}" method="post">
+                                <form action="{{ route('annual-reports.destroy', $value->id) }}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <input name="_method" type="hidden" value="DELETE">
@@ -150,7 +143,7 @@ Visen | Manaage Introduction
                     columns: ':not(.no-export)',
                 },
                header: true,
-               title: 'All Introduction List',
+               title: 'All Annual Reports List',
                orientation: 'landscape',
                pageSize: 'A4',
                customize: function(doc) {

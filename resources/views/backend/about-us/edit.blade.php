@@ -1,7 +1,7 @@
 @extends('backend.layouts.master')
 
 @section('title')
-Visen | Edit About Us
+Visen | Edit Introduction
 @endsection
 
 @push('styles')
@@ -19,7 +19,7 @@ Visen | Edit About Us
             <div class="row">
                 <div class="col-md-6 col-sm-12">
                     <div class="title">
-                        <h4>Edit About Us</h4>
+                        <h4>Edit Introduction</h4>
                     </div>
                     <nav aria-label="breadcrumb" role="navigation">
                         <ol class="breadcrumb">
@@ -27,10 +27,10 @@ Visen | Edit About Us
                                 <a href="{{ route('admin.dashboard') }}">Home</a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="{{ route('about-us.index') }}">Manage About Us</a>
+                                <a href="{{ route('about-us.index') }}">Manage Introduction</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                Edit About Us
+                                Edit Introduction
                             </li>
                         </ol>
                     </nav>
@@ -67,7 +67,7 @@ Visen | Edit About Us
                         </div>
                         <br>
                         @if (!empty($aboutUs->image))
-                            <img src="{{ asset('/visen/about_us/image/' . $aboutUs->image) }}" alt="About Us Image" style="width: 100%; height: 50%;">
+                            <img src="{{ asset('/visen/about_us/image/' . $aboutUs->image) }}" alt="Introduction Image" style="width: 100%; height: 50%;">
                         @endif
                     </div>
                 </div>

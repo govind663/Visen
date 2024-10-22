@@ -120,8 +120,6 @@
                     </a>
                     <ul class="submenu
                     {{ ($currentRoute === 'banner.index') || ($currentRoute === 'banner.create') || ($currentRoute === 'banner.edit')
-                    || ($currentRoute === 'industry.index') || ($currentRoute === 'industry.create') || ($currentRoute === 'industry.edit')
-                    || ($currentRoute === 'about-us.index') || ($currentRoute === 'about-us.create') || ($currentRoute === 'about-us.edit')
                     || ($currentRoute === 'counter.index') || ($currentRoute === 'counter.create') || ($currentRoute === 'counter.edit')
                     || ($currentRoute === 'service.index') || ($currentRoute === 'service.create') || ($currentRoute === 'service.edit')
                     || ($currentRoute === 'sustainability.index') || ($currentRoute === 'sustainability.create') || ($currentRoute === 'sustainability.edit')
@@ -131,12 +129,6 @@
                             <a href="{{ route('banner.index') }}" class="{{ ($currentRoute === 'banner.index') || ($currentRoute === 'banner.create') || ($currentRoute === 'banner.edit') ? 'active' : '' }}">
                                 Banner
                             </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('industry.index') }}" class="{{ ($currentRoute === 'industry.index') || ($currentRoute === 'industry.create') || ($currentRoute === 'industry.edit') ? 'active' : '' }}">Markets & Products</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('about-us.index') }}" class="{{ ($currentRoute === 'about-us.index') || ($currentRoute === 'about-us.create') || ($currentRoute === 'about-us.edit') ? 'active' : '' }}">About Us</a>
                         </li>
                         <li>
                             <a href="{{ route('counter.index') }}" class="{{ ($currentRoute === 'counter.index') || ($currentRoute === 'counter.create') || ($currentRoute === 'counter.edit') ? 'active' : '' }}">Counter</a>
@@ -153,6 +145,71 @@
                     </ul>
                 </li>
 
+                <li class="dropdown">
+                    <a href="javascript:;" class="dropdown-toggle">
+                        <span class="micon bi bi-info-circle"></span>
+                        <span class="mtext">About Visen</span>
+                    </a>
+                    <ul class="submenu {{ ($currentRoute === 'about-us.index') || ($currentRoute === 'about-us.create') || ($currentRoute === 'about-us.edit') ? 'show' : '' }} ">
+                        <li>
+                            <a href="{{ route('about-us.index') }}" class="{{ ($currentRoute === 'about-us.index') || ($currentRoute === 'about-us.create') || ($currentRoute === 'about-us.edit') ? 'active' : '' }}">Introduction</a>
+                        </li>
+                        <li>
+                            <a href="#" >Who we are</a>
+                        </li>
+                        <li>
+                            <a href="#" >What we do</a>
+                        </li>
+                        <li>
+                            <a href="#" >Where we are</a>
+                        </li>
+                        <li>
+                            <a href="#" >Our Vision</a>
+                        </li>
+                        <li>
+                            <a href="#" >Our Values</a>
+                        </li>
+                        <li>
+                            <a href="#" >Our History</a>
+                        </li>
+                        <li>
+                            <a href="#" >About our MD</a>
+                        </li>
+                        <li>
+                            <a href="#" >Meet our Minds</a>
+                        </li>
+                        <li>
+                            <a href="#" >Our Brands</a>
+                        </li>
+                        <li>
+                            <a href="#" >Our Brands</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="javascript:;" class="dropdown-toggle">
+                        <span class="micon bi bi-bag-check"></span>
+                        <span class="mtext">Markets and Products</span>
+                    </a>
+                    <ul class="submenu {{ ($currentRoute === 'industry.index') || ($currentRoute === 'industry.create') || ($currentRoute === 'industry.edit') ? 'show' : '' }} ">
+                        <li>
+                            <a href="{{ route('industry.index') }}" class="{{ ($currentRoute === 'industry.index') || ($currentRoute === 'industry.create') || ($currentRoute === 'industry.edit') ? 'active' : '' }}">Industry</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="javascript:;" class="dropdown-toggle">
+                        <span class="micon bi bi-file-earmark-text"></span>
+                        <span class="mtext">Investor Relations</span>
+                    </a>
+                    <ul class="submenu {{ ($currentRoute === 'annual-reports.index') || ($currentRoute === 'annual-reports.create') || ($currentRoute === 'annual-reports.edit') ? 'show' : '' }}">
+                        <li>
+                            <a href="{{ route('annual-reports.index') }}" class="{{ ($currentRoute === 'annual-reports.index') ? 'active' : '' }}">Annual Reports</a>
+                        </li>
+                    </ul>
+                </li>
 
             </ul>
         </div>

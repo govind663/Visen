@@ -1,7 +1,7 @@
 @extends('backend.layouts.master')
 
 @section('title')
-Visen | Add About Us
+Visen | Add Introduction
 @endsection
 
 @push('styles')
@@ -19,7 +19,7 @@ Visen | Add About Us
             <div class="row">
                 <div class="col-md-6 col-sm-12">
                     <div class="title">
-                        <h4>Add About Us</h4>
+                        <h4>Add Introduction</h4>
                     </div>
                     <nav aria-label="breadcrumb" role="navigation">
                         <ol class="breadcrumb">
@@ -27,10 +27,10 @@ Visen | Add About Us
                                 <a href="{{ route('admin.dashboard') }}">Home</a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="{{ route('about-us.index') }}">Manage About Us</a>
+                                <a href="{{ route('about-us.index') }}">Manage Introduction</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                Add About Us
+                                Add Introduction
                             </li>
                         </ol>
                     </nav>

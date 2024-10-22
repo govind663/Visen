@@ -1,7 +1,7 @@
 @extends('backend.layouts.master')
 
 @section('title')
-Visen | Edit Markets & Products
+Visen | Edit Industry
 @endsection
 
 @push('styles')
@@ -19,7 +19,7 @@ Visen | Edit Markets & Products
             <div class="row">
                 <div class="col-md-6 col-sm-12">
                     <div class="title">
-                        <h4>Edit Markets & Products</h4>
+                        <h4>Edit Industry</h4>
                     </div>
                     <nav aria-label="breadcrumb" role="navigation">
                         <ol class="breadcrumb">
@@ -27,10 +27,10 @@ Visen | Edit Markets & Products
                                 <a href="{{ route('admin.dashboard') }}">Home</a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="{{ route('industry.index') }}">Manage Markets & Products</a>
+                                <a href="{{ route('industry.index') }}">Manage Industry</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                Edit Markets & Products
+                                Edit Industry
                             </li>
                         </ol>
                     </nav>
