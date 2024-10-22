@@ -118,12 +118,17 @@
                         <span class="micon bi bi-house"></span>
                         <span class="mtext">Home</span>
                     </a>
-                    <ul class="submenu">
+                    <ul class="submenu
+                    {{ ($currentRoute === 'banner.index') || ($currentRoute === 'banner.create') || ($currentRoute === 'banner.edit')
+                    || ($currentRoute === 'industry.index') || ($currentRoute === 'industry.create') || ($currentRoute === 'industry.edit')
+                    ? 'show' : '' }} ">
                         <li>
-                            <a href="" >Banner</a>
+                            <a href="{{ route('banner.index') }}" class="{{ ($currentRoute === 'banner.index') || ($currentRoute === 'banner.create') || ($currentRoute === 'banner.edit') ? 'active' : '' }}">
+                                Banner
+                            </a>
                         </li>
                         <li>
-                            <a href="" >Industries</a>
+                            <a href="{{ route('industry.index') }}" class="{{ ($currentRoute === 'industry.index') || ($currentRoute === 'industry.create') || ($currentRoute === 'industry.edit') ? 'active' : '' }}">Industry</a>
                         </li>
                         <li>
                             <a href="" >About Us</a>

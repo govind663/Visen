@@ -6,6 +6,8 @@ use App\Http\Middleware\PreventBackHistoryMiddleware;
 // ===== Backend
 use App\Http\Controllers\backend\Auth\LoginController;
 use App\Http\Controllers\backend\HomeController as BackendHomeController;
+use App\Http\Controllers\backend\BannerController;
+use App\Http\Controllers\backend\IndustryController;
 
 
 // ===== Frontend
@@ -32,6 +34,11 @@ Route::group(['prefix' => 'admin', 'middleware'=>['auth:web', PreventBackHistory
     Route::get('/change-password', [BackendHomeController::class, 'changePassword'])->name('change-password');
     Route::post('/change-password', [BackendHomeController::class, 'updatePassword'])->name('update-password');
 
+    // ==== Manage Banner
+    Route::resource('banner', BannerController::class);
+
+    // ==== Manage Industry
+    Route::resource('industry', IndustryController::class);
 
 });
 
