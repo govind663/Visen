@@ -11,6 +11,7 @@ use App\Http\Controllers\backend\IndustryController;
 use App\Http\Controllers\backend\AboutUsController;
 use App\Http\Controllers\backend\CounterController;
 use App\Http\Controllers\backend\SustainabilityController;
+use App\Http\Controllers\backend\CustomerController;
 
 // ===== Frontend
 use App\Http\Controllers\frontend\HomeController as FrontendHomeController;
@@ -50,6 +51,11 @@ Route::group(['prefix' => 'admin', 'middleware'=>['auth:web', PreventBackHistory
 
     // ==== Manage Sustainability
     Route::resource('sustainability', SustainabilityController::class);
+
+    // ==== Manage Innovation
+
+    // ==== Manage Customer
+    Route::resource('customer', CustomerController::class);
 
 });
 
