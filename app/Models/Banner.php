@@ -23,5 +23,9 @@ class Banner extends Model
         'deleted_at',
     ];
 
-    protected $dates = ['deleted_at'];
+    protected $dates = [
+        'inserted_at',
+        'modified_at',
+        'deleted_at',
+    ];
 }

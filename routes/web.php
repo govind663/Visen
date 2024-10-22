@@ -8,7 +8,8 @@ use App\Http\Controllers\backend\Auth\LoginController;
 use App\Http\Controllers\backend\HomeController as BackendHomeController;
 use App\Http\Controllers\backend\BannerController;
 use App\Http\Controllers\backend\IndustryController;
-
+use App\Http\Controllers\backend\AboutUsController;
+use App\Http\Controllers\backend\CounterController;
 
 // ===== Frontend
 use App\Http\Controllers\frontend\HomeController as FrontendHomeController;
@@ -37,8 +38,14 @@ Route::group(['prefix' => 'admin', 'middleware'=>['auth:web', PreventBackHistory
     // ==== Manage Banner
     Route::resource('banner', BannerController::class);
 
-    // ==== Manage Industry
+    // ==== Manage Industry (Markets and Products)
     Route::resource('industry', IndustryController::class);
+
+    // ==== Manage About Us
+    Route::resource('about-us', AboutUsController::class);
+
+    // ==== Manage Counter
+    Route::resource('counter', CounterController::class);
 
 });
 

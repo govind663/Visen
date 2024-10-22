@@ -23,18 +23,16 @@ class IndustryRequest extends FormRequest
     {
         if ($this->id){
             $rule = [
-                'title' => 'required|string|max:255',
-                'industries_image.*' => 'required|mimes:jpeg,png,jpg|max:2048',
-                'industries_name.*' => 'required|string|max:255',
-                'description.*' => 'required|string',
+                'industries_image' => 'image|mimes:jpeg,png,jpg|max:2048',
+                'industries_name' => 'required|string|max:255',
+                'description' => 'required|string',
                 'status' => 'required|numeric',
             ];
         }else{
             $rule = [
-                'title' => 'required|string|max:255',
-                'industries_image.*' => 'required|mimes:jpeg,png,jpg|max:2048',
-                'industries_name.*' => 'required|string|max:255',
-                'description.*' => 'required|string',
+                'industries_image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+                'industries_name' => 'required|string|max:255',
+                'description' => 'required|string',
                 'status' => 'required|numeric',
             ];
         }
@@ -44,18 +42,16 @@ class IndustryRequest extends FormRequest
     public function messages(){
 
         return [
+            'industries_image.required' => __('Industry Image is required'),
+            'industries_image.mimes' => __('Industry Image must be a file of type: jpeg, png, jpg'),
+            'industries_image.max' => __('Industry Image must not be greater than 2MB'),
 
-            'title.required' => __('Title is required'),
-            'title.string' => __('Title must be a string'),
+            'industries_name.required' => __('Industry Name is required'),
+            'industries_name.string' => __('Industry Name must be a string'),
+            'industries_name.max' => __('Industry Name must not be greater than 255 characters'),
 
-            'industries_image.*.required' => __('Image is required'),
-            'industries_image.*.mimes' => __('Image must be a file of type: jpeg, png, jpg'),
-
-            'industries_name.*.required' => __('Name is required'),
-            'industries_name.*.string' => __('Name must be a string'),
-
-            'description.*.required' => __('Description is required'),
-            'description.*.string' => __('Description must be a string'),
+            'description.required' => __('Description is required'),
+            'description.string' => __('Description must be a string'),
 
             'status.required' => __('Status is required'),
             'status.numeric' => __('Status must be a number'),

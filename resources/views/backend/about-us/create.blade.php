@@ -1,7 +1,7 @@
 @extends('backend.layouts.master')
 
 @section('title')
-Visen | Add Markets & Products
+Visen | Add About Us
 @endsection
 
 @push('styles')
@@ -19,7 +19,7 @@ Visen | Add Markets & Products
             <div class="row">
                 <div class="col-md-6 col-sm-12">
                     <div class="title">
-                        <h4>Add Markets & Products</h4>
+                        <h4>Add About Us</h4>
                     </div>
                     <nav aria-label="breadcrumb" role="navigation">
                         <ol class="breadcrumb">
@@ -27,10 +27,10 @@ Visen | Add Markets & Products
                                 <a href="{{ route('admin.dashboard') }}">Home</a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="{{ route('industry.index') }}">Manage Markets & Products</a>
+                                <a href="{{ route('about-us.index') }}">Manage About Us</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                Add Markets & Products
+                                Add About Us
                             </li>
                         </ol>
                     </nav>
@@ -40,63 +40,35 @@ Visen | Add Markets & Products
         </div>
 
 
-        <form method="POST" action="{{ route('industry.store') }}" class="form-horizontal" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('about-us.store') }}" class="form-horizontal" enctype="multipart/form-data">
             @csrf
 
             <div class="pd-20 card-box mb-30">
 
                 <div class="form-group row mt-3">
-                    <label class="col-sm-2"><b>Industry Name : <span class="text-danger">*</span></b></label>
-                    <div class="col-sm-4 col-md-4">
-                        <input type="text"  id="industries_name" name="industries_name" class="form-control @error('industries_name') is-invalid @enderror" value="{{ old('industries_name') }}" placeholder="Enter Industry Name">
-                        @error('industries_name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-
-                    <label class="col-sm-2"><b>Status : <span class="text-danger">*</span></b></label>
-                    <div class="col-sm-4 col-md-4">
-                        <select name="status" id="status" class="custom-select2 form-control @error('status') is-invalid @enderror">
-                            <option value=" " >Select Status</option>
-                            <optgroup label="Status">
-                                <option value="1" {{ old('status') == '1' ? 'selected' : '' }}>Active</option>
-                                <option value="2" {{ old('status') == '2' ? 'selected' : '' }}>Inactive</option>
-                            </optgroup>
-                        </select>
-                        @error('status')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                </div>
-
-                <div class="form-group row mt-3">
-                    <label class="col-sm-3"><b>Upload Industry Image : <span class="text-danger">*</span></b></b></label>
+                    <label class="col-sm-3"><b>Upload Image : <span class="text-danger">*</span></b></b></label>
                     <div class="col-sm-6 col-md-6">
-                        <input type="file" onchange="agentPreviewFile()" accept=".png, .jpg, .jpeg" name="industries_image" id="industries_image" class="form-control @error('industries_image') is-invalid @enderror" value="{{old('industries_image')}}" placeholder="Upload Industry Image.">
+                        <input type="file" onchange="agentPreviewFile()" accept=".png, .jpg, .jpeg" name="image" id="image" class="form-control @error('image') is-invalid @enderror" value="{{old('image')}}" placeholder="Upload Image.">
                         <small class="text-secondary"><b>Note : The file size  should be less than 2MB .</b></small>
                         <br>
                         <small class="text-secondary"><b>Note : Only files in .jpg, .jpeg, .png format can be uploaded .</b></small>
                         <br>
-                        @error('industries_image')
+                        @error('image')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                         <br>
-                        <div id="preview-industries-image-container">
-                            <div id="file-preview-industries-image"></div>
+                        <div id="preview-image-container">
+                            <div id="file-preview-image"></div>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group row mt-3">
-                    <label class="col-sm-2"><b>Industry Description : <span class="text-danger">*</span></b></b></label>
+                    <label class="col-sm-2"><b>Description : <span class="text-danger">*</span></b></b></label>
                     <div class="col-sm-10 col-md-10">
-                        <textarea name="description" id="description" class="textarea_editor form-control border-radius-0 @error('description') is-invalid @enderror" placeholder="Enter Industry Description" value="{{ old('description') }}">{{ old('description') }}</textarea>
+                        <textarea name="description" id="description" class="textarea_editor form-control border-radius-0 @error('description') is-invalid @enderror" placeholder="Enter Description" value="{{ old('description') }}">{{ old('description') }}</textarea>
                         @error('description')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -108,7 +80,7 @@ Visen | Add Markets & Products
                 <div class="form-group row mt-4">
                     <label class="col-md-3"></label>
                     <div class="col-md-9" style="display: flex; justify-content: flex-end;">
-                        <a href="{{ route('industry.index') }}" class="btn btn-danger">Cancel</a>&nbsp;&nbsp;
+                        <a href="{{ route('about-us.index') }}" class="btn btn-danger">Cancel</a>&nbsp;&nbsp;
                         <button type="submit" class="btn btn-success">Submit</button>
                     </div>
                 </div>
@@ -126,13 +98,12 @@ Visen | Add Markets & Products
 @endsection
 
 @push('scripts')
-{{-- Add More Industry or View both Image and PDF --}}
 <script>
     // Existing function for agent image/PDF preview (if needed)
     function agentPreviewFile() {
-        const fileInput = document.getElementById('industries_image');
-        const previewContainer = document.getElementById('preview-industries-image-container');
-        const filePreview = document.getElementById('file-preview-industries-image');
+        const fileInput = document.getElementById('image');
+        const previewContainer = document.getElementById('preview-image-container');
+        const filePreview = document.getElementById('file-preview-image');
         const file = fileInput.files[0];
 
         if (file) {

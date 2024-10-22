@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('industries', function (Blueprint $table) {
+        Schema::create('counters', function (Blueprint $table) {
             $table->id();
-            $table->string('industries_image')->nullable();
-            $table->string('industries_name')->nullable();
+            $table->string('title')->nullable();
             $table->text('description')->nullable();
-            $table->string('status')->nullable()->comment('1 => Active, 2 => Inactive');
             $table->integer('inserted_by')->nullable();
             $table->timestamp('inserted_at')->nullable();
             $table->integer('modified_by')->nullable();
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('industries');
+        Schema::dropIfExists('counters');
     }
 };

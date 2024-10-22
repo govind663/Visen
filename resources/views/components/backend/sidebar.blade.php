@@ -121,6 +121,8 @@
                     <ul class="submenu
                     {{ ($currentRoute === 'banner.index') || ($currentRoute === 'banner.create') || ($currentRoute === 'banner.edit')
                     || ($currentRoute === 'industry.index') || ($currentRoute === 'industry.create') || ($currentRoute === 'industry.edit')
+                    || ($currentRoute === 'about-us.index') || ($currentRoute === 'about-us.create') || ($currentRoute === 'about-us.edit')
+                    || ($currentRoute === 'counter.index') || ($currentRoute === 'counter.create') || ($currentRoute === 'counter.edit')
                     ? 'show' : '' }} ">
                         <li>
                             <a href="{{ route('banner.index') }}" class="{{ ($currentRoute === 'banner.index') || ($currentRoute === 'banner.create') || ($currentRoute === 'banner.edit') ? 'active' : '' }}">
@@ -128,13 +130,13 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('industry.index') }}" class="{{ ($currentRoute === 'industry.index') || ($currentRoute === 'industry.create') || ($currentRoute === 'industry.edit') ? 'active' : '' }}">Industry</a>
+                            <a href="{{ route('industry.index') }}" class="{{ ($currentRoute === 'industry.index') || ($currentRoute === 'industry.create') || ($currentRoute === 'industry.edit') ? 'active' : '' }}">Markets & Products</a>
                         </li>
                         <li>
-                            <a href="" >About Us</a>
+                            <a href="{{ route('about-us.index') }}" class="{{ ($currentRoute === 'about-us.index') || ($currentRoute === 'about-us.create') || ($currentRoute === 'about-us.edit') ? 'active' : '' }}">About Us</a>
                         </li>
                         <li>
-                            <a href="" >Counter</a>
+                            <a href="{{ route('counter.index') }}" class="{{ ($currentRoute === 'counter.index') || ($currentRoute === 'counter.create') || ($currentRoute === 'counter.edit') ? 'active' : '' }}">Counter</a>
                         </li>
                         <li>
                             <a href="" >Sustainability</a>

@@ -6,16 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Industry extends Model
+class About extends Model
 {
     use HasFactory, SoftDeletes;
     public $timestamps = false;
     protected $fillable = [
         'id',
-        'industries_image',
-        'industries_name',
+        'image',
         'description',
-        'status',
         'inserted_by',
         'inserted_at',
         'modified_by',

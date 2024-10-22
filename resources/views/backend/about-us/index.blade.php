@@ -1,7 +1,7 @@
 @extends('backend.layouts.master')
 
 @section('title')
-Visen | Manaage Markets & Products
+Visen | Manaage About Us
 @endsection
 
 @push('styles')
@@ -19,7 +19,7 @@ Visen | Manaage Markets & Products
             <div class="row">
                 <div class="col-md-6 col-sm-12">
                     <div class="title">
-                        <h4>Manage Markets & Products</h4>
+                        <h4>Manage About Us</h4>
                     </div>
                     <nav aria-label="breadcrumb" role="navigation">
                         <ol class="breadcrumb">
@@ -27,7 +27,7 @@ Visen | Manaage Markets & Products
                                 <a href="{{ route('admin.dashboard') }}">Home</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                Manage Markets & Products
+                                Manage About Us
                             </li>
                         </ol>
                     </nav>
@@ -35,8 +35,8 @@ Visen | Manaage Markets & Products
 
                 <div class="col-md-6 col-sm-12 text-right">
                     <div class="dropdown">
-                        <a class="btn btn-primary" href="{{ route('industry.create') }}">
-                            <i class="fa fa-plus" aria-hidden="true"> </i> Markets & Products
+                        <a class="btn btn-primary" href="{{ route('about-us.create') }}">
+                            <i class="fa fa-plus" aria-hidden="true"> </i> About Us
                         </a>
 
                     </div>
@@ -47,53 +47,41 @@ Visen | Manaage Markets & Products
         <!-- Export Datatable start -->
         <div class="card-box mb-30">
             <div class="pd-20">
-                <h4 class="text-blue h4">All Markets & Products List</h4>
+                <h4 class="text-blue h4">All About Us List</h4>
             </div>
             <div class="pb-20">
                 <table class="table hover multiple-select-row data-table-export1 nowrap p-3">
                     <thead>
                         <tr>
                             <th>Sr. No.</th>
-                            <th>Industry Name</th>
-                            <th>Industry Image</th>
-                            <th>Industry Description</th>
-                            <th>Status</th>
+                            <th>Image</th>
+                            <th>Description</th>
                             <th class="no-export">Edit</th>
                             <th class="no-export">Delete</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($industries as $key => $value)
+                        @foreach ($aboutUs as $key => $value)
                         <tr>
                             <td>{{ ++$key }}</td>
 
-                            <td class="text-wrap text-justify">{{ $value->industries_name }}</td>
-
                             <td>
-                                @if($value->industries_image)
-                                    <img src="{{ asset('/visen/industries/industries_image/' . $value->industries_image) }}" alt="Industry Image" style="width: 100px; height: auto;">
+                                @if($value->image)
+                                    <img src="{{ asset('/visen/about_us/image/' . $value->image) }}" alt="Industry Image" style="width: 100px; height: auto;">
                                 @endif
                             </td>
 
                             <td class="text-wrap text-justify">{!! $value->description !!}</td>
 
-                            <td class="text-wrap text-justify">
-                                @if ($value->status == 1)
-                                    <span class="badge badge-success">Active</span>
-                                @elseif ($value->status == 2)
-                                    <span class="badge badge-danger">Inactive</span>
-                                @endif
-                            </td>
-
                             <td class="no-export">
-                                <a href="{{ route('industry.edit', $value->id) }}">
+                                <a href="{{ route('about-us.edit', $value->id) }}">
                                     <button class="btn btn-warning btn-sm">
                                         <i class="micon dw dw-pencil-1"></i> Edit
                                     </button>
                                 </a>
                             </td>
                             <td class="no-export">
-                                <form action="{{ route('industry.destroy', $value->id) }}" method="post">
+                                <form action="{{ route('about-us.destroy', $value->id) }}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <input name="_method" type="hidden" value="DELETE">
@@ -162,7 +150,7 @@ Visen | Manaage Markets & Products
                     columns: ':not(.no-export)',
                 },
                header: true,
-               title: 'All Markets & Products List',
+               title: 'All About Us List',
                orientation: 'landscape',
                pageSize: 'A4',
                customize: function(doc) {

@@ -36,37 +36,34 @@ class IndustryController extends Controller
     public function store(IndustryRequest $request)
     {
         $request->validated();
+
         try {
-            // Create a new Industry instance
-            $industries = new Industry();
-            $industries->title = $request->title;
-            $industries->status = $request->status;
+            // === check if exist or not
+            $industries = Industry::where('industries_name', $request->industries_name)->first();
 
-            // Collect industry details dynamically
-            $industryDetails = [];
-            if ($request->has('industries_name') && $request->has('industries_description')) {
-                foreach ($request->industries_name as $index => $industryName) {
-                    if (!empty($industryName) && !empty($request->industries_description[$index])) {
-                        $detail = [
-                            'name' => $industryName,
-                            'description' => $request->industries_description[$index]
-                        ];
-
-                        // Handle file upload if present
-                        if ($request->hasFile('industries_image.' . $index)) {
-                            $image = $request->file('industries_image.' . $index);
-                            $newName = time() . rand(10, 999) . '.' . $image->getClientOriginalExtension();
-                            $image->move(public_path('/industries/images'), $newName);
-                            $detail['image'] = $newName;
-                        }
-
-                        $industryDetails[] = $detail;
-                    }
-                }
+            if ($industries) {
+                return redirect()->back()->with('error', 'Industry already exists.');
             }
 
-            // Save details as JSON in the 'industry_details' column
-            $industries->industry_details = json_encode($industryDetails);
+            // Create a new Industry instance
+            $industries = new Industry();
+
+            // ==== Store industries_image
+            if ($request->hasFile('industries_image')) {
+                $image = $request->file('industries_image');
+                $extension = $image->getClientOriginalExtension();
+                $new_name = time() . rand(10, 999) . '.' . $extension;
+                $image->move(public_path('/visen/industries/industries_image'), $new_name);
+
+                $image_path = "/visen/industries/industries_image/" . $new_name;
+                $industries->industries_image = $new_name;
+            }
+
+            $industries->industries_name = $request->industries_name;
+            $industries->description = $request->description;
+            $industries->status = $request->status;
+            $industries->inserted_at = Carbon::now();
+            $industries->inserted_by = Auth::user()->id;
             $industries->save();
 
             return redirect()->route('industry.index')->with('message', 'Industry has been successfully created.');
@@ -102,51 +99,26 @@ class IndustryController extends Controller
     {
         $request->validated();
         try {
+
             // Find the existing Industry record
             $industries = Industry::findOrFail($id);
-            $industries->title = $request->title;
-            $industries->status = $request->status;
 
-            // Fetch existing industry details
-            $existingIndustryDetails = json_decode($industries->industry_details, true);
+           // ==== Store industries_image
+            if ($request->hasFile('industries_image')) {
+                $image = $request->file('industries_image');
+                $extension = $image->getClientOriginalExtension();
+                $new_name = time() . rand(10, 999) . '.' . $extension;
+                $image->move(public_path('/visen/industries/industries_image'), $new_name);
 
-            // Prepare updated industry details
-            $updatedIndustryDetails = [];
-            if ($request->has('industries_name') && $request->has('industries_description')) {
-                foreach ($request->industries_name as $index => $industryName) {
-                    if (!empty($industryName) && !empty($request->industries_description[$index])) {
-                        $detail = [
-                            'name' => $industryName,
-                            'description' => $request->industries_description[$index]
-                        ];
-
-                        // Check if a new image file is uploaded for this index
-                        if ($request->hasFile('industries_image.' . $index)) {
-                            // Upload the new image
-                            $image = $request->file('industries_image.' . $index);
-                            $newName = time() . rand(10, 999) . '.' . $image->getClientOriginalExtension();
-                            $image->move(public_path('/industries/images'), $newName);
-
-                            // If an old image exists, delete it
-                            if (isset($existingIndustryDetails[$index]['image']) && file_exists(public_path('/industries/images/' . $existingIndustryDetails[$index]['image']))) {
-                                unlink(public_path('/industries/images/' . $existingIndustryDetails[$index]['image']));
-                            }
-
-                            $detail['image'] = $newName;
-                        } else {
-                            // If no new image, keep the existing image if available
-                            if (isset($existingIndustryDetails[$index]['image'])) {
-                                $detail['image'] = $existingIndustryDetails[$index]['image'];
-                            }
-                        }
-
-                        $updatedIndustryDetails[] = $detail;
-                    }
-                }
+                $image_path = "/visen/industries/industries_image/" . $new_name;
+                $industries->industries_image = $new_name;
             }
 
-            // Save updated details as JSON in the 'industry_details' column
-            $industries->industry_details = json_encode($updatedIndustryDetails);
+            $industries->industries_name = $request->industries_name;
+            $industries->description = $request->description;
+            $industries->status = $request->status;
+            $industries->modified_at = Carbon::now();
+            $industries->modified_by = Auth::user()->id;
             $industries->save();
 
             return redirect()->route('industry.index')->with('message', 'Industry has been successfully updated.');
