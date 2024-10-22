@@ -123,6 +123,7 @@
                     || ($currentRoute === 'industry.index') || ($currentRoute === 'industry.create') || ($currentRoute === 'industry.edit')
                     || ($currentRoute === 'about-us.index') || ($currentRoute === 'about-us.create') || ($currentRoute === 'about-us.edit')
                     || ($currentRoute === 'counter.index') || ($currentRoute === 'counter.create') || ($currentRoute === 'counter.edit')
+                    || ($currentRoute === 'service.index') || ($currentRoute === 'service.create') || ($currentRoute === 'service.edit')
                     ? 'show' : '' }} ">
                         <li>
                             <a href="{{ route('banner.index') }}" class="{{ ($currentRoute === 'banner.index') || ($currentRoute === 'banner.create') || ($currentRoute === 'banner.edit') ? 'active' : '' }}">
@@ -139,7 +140,7 @@
                             <a href="{{ route('counter.index') }}" class="{{ ($currentRoute === 'counter.index') || ($currentRoute === 'counter.create') || ($currentRoute === 'counter.edit') ? 'active' : '' }}">Counter</a>
                         </li>
                         <li>
-                            <a href="" >Sustainability</a>
+                            <a href="{{ route('sustainability.index') }}" class="{{ ($currentRoute === 'sustainability.index') || ($currentRoute === 'sustainability.create') || ($currentRoute === 'sustainability.edit') ? 'active' : '' }}">Sustainability</a>
                         </li>
                         <li>
                             <a href="" >Innovations</a>

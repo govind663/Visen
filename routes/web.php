@@ -10,6 +10,7 @@ use App\Http\Controllers\backend\BannerController;
 use App\Http\Controllers\backend\IndustryController;
 use App\Http\Controllers\backend\AboutUsController;
 use App\Http\Controllers\backend\CounterController;
+use App\Http\Controllers\backend\SustainabilityController;
 
 // ===== Frontend
 use App\Http\Controllers\frontend\HomeController as FrontendHomeController;
@@ -46,6 +47,9 @@ Route::group(['prefix' => 'admin', 'middleware'=>['auth:web', PreventBackHistory
 
     // ==== Manage Counter
     Route::resource('counter', CounterController::class);
+
+    // ==== Manage Sustainability
+    Route::resource('sustainability', SustainabilityController::class);
 
 });
 

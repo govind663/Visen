@@ -1,7 +1,7 @@
 @extends('backend.layouts.master')
 
 @section('title')
-Visen | Edit About Us
+Visen | Add Sustainability
 @endsection
 
 @push('styles')
@@ -19,7 +19,7 @@ Visen | Edit About Us
             <div class="row">
                 <div class="col-md-6 col-sm-12">
                     <div class="title">
-                        <h4>Edit About Us</h4>
+                        <h4>Add Sustainability</h4>
                     </div>
                     <nav aria-label="breadcrumb" role="navigation">
                         <ol class="breadcrumb">
@@ -27,10 +27,10 @@ Visen | Edit About Us
                                 <a href="{{ route('admin.dashboard') }}">Home</a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="{{ route('about-us.index') }}">Manage About Us</a>
+                                <a href="{{ route('sustainability.index') }}">Manage Sustainability</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                Edit About Us
+                                Add Sustainability
                             </li>
                         </ol>
                     </nav>
@@ -40,18 +40,24 @@ Visen | Edit About Us
         </div>
 
 
-        <form method="POST" action="{{ route('about-us.update', $aboutUs->id) }}" class="form-horizontal" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('sustainability.store') }}" class="form-horizontal" enctype="multipart/form-data">
             @csrf
-            @method('PATCH')
-
-            <input type="text" id="id" name="id" hidden  value="{{ $aboutUs->id }}">
 
             <div class="pd-20 card-box mb-30">
-
                 <div class="form-group row mt-3">
-                    <label class="col-sm-3"><b>Upload Image : <span class="text-danger">*</span></b></label>
-                    <div class="col-sm-6 col-md-6">
-                        <input type="file" onchange="agentPreviewFile()" accept=".png, .jpg, .jpeg" name="image" id="image" class="form-control @error('image') is-invalid @enderror" value="{{ $aboutUs->image }}" placeholder="Upload Image.">
+                    <label class="col-sm-2"><b>Title : <span class="text-danger">*</span></b></label>
+                    <div class="col-sm-4 col-md-4">
+                        <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" placeholder="Enter Title.">
+                        @error('title')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <label class="col-sm-2"><b>Upload Image : <span class="text-danger">*</span></b></label>
+                    <div class="col-sm-4 col-md-4">
+                        <input type="file" onchange="agentPreviewFile()" accept=".png, .jpg, .jpeg" name="image" id="image" class="form-control @error('image') is-invalid @enderror" value="{{old('image')}}" placeholder="Upload Image.">
                         <small class="text-secondary"><b>Note : The file size  should be less than 2MB .</b></small>
                         <br>
                         <small class="text-secondary"><b>Note : Only files in .jpg, .jpeg, .png format can be uploaded .</b></small>
@@ -65,17 +71,13 @@ Visen | Edit About Us
                         <div id="preview-image-container">
                             <div id="file-preview-image"></div>
                         </div>
-                        <br>
-                        @if (!empty($aboutUs->image))
-                            <img src="{{ asset('/visen/about_us/image/' . $aboutUs->image) }}" alt="About Us Image" style="width: 100%; height: 50%;">
-                        @endif
                     </div>
                 </div>
 
                 <div class="form-group row mt-3">
                     <label class="col-sm-2"><b>Description : <span class="text-danger">*</span></b></label>
                     <div class="col-sm-10 col-md-10">
-                        <textarea name="description" id="description" class="textarea_editor form-control border-radius-0 @error('description') is-invalid @enderror" placeholder="Enter Description" value="{{ $aboutUs->description }}">{{ $aboutUs->description }}</textarea>
+                        <textarea name="description" id="description" class="textarea_editor form-control border-radius-0 @error('description') is-invalid @enderror" placeholder="Enter Description" value="{{ old('description') }}">{{ old('description') }}</textarea>
                         @error('description')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -87,7 +89,7 @@ Visen | Edit About Us
                 <div class="form-group row mt-4">
                     <label class="col-md-3"></label>
                     <div class="col-md-9" style="display: flex; justify-content: flex-end;">
-                        <a href="{{ route('about-us.index') }}" class="btn btn-danger">Cancel</a>&nbsp;&nbsp;
+                        <a href="{{ route('sustainability.index') }}" class="btn btn-danger">Cancel</a>&nbsp;&nbsp;
                         <button type="submit" class="btn btn-success">Submit</button>
                     </div>
                 </div>
