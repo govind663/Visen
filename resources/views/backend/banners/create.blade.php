@@ -87,7 +87,7 @@ Visen | Add Banner
                             <option value=" " >Select Status</option>
                             <optgroup label="Status">
                                 <option value="1" {{ old('status') == '1' ? 'selected' : '' }}>Active</option>
-                                <option value="0" {{ old('status') == '0' ? 'selected' : '' }}>Inactive</option>
+                                <option value="2" {{ old('status') == '2' ? 'selected' : '' }}>Inactive</option>
                             </optgroup>
                         </select>
                         @error('status')

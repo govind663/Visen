@@ -104,7 +104,7 @@ Visen | Edit Banner
                             <option value=" " >Select Status</option>
                             <optgroup label="Status">
                                 <option value="1" {{ $banner->status == '1' ? 'selected' : '' }}>Active</option>
-                                <option value="0" {{ $banner->status == '0' ? 'selected' : '' }}>Inactive</option>
+                                <option value="2" {{ $banner->status == '2' ? 'selected' : '' }}>Inactive</option>
                             </optgroup>
                         </select>
                         @error('status')

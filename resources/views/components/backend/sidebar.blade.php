@@ -204,9 +204,15 @@
                         <span class="micon bi bi-file-earmark-text"></span>
                         <span class="mtext">Investor Relations</span>
                     </a>
-                    <ul class="submenu {{ ($currentRoute === 'annual-reports.index') || ($currentRoute === 'annual-reports.create') || ($currentRoute === 'annual-reports.edit') ? 'show' : '' }}">
+                    <ul class="submenu {{
+                        ($currentRoute === 'annual-reports.index') || ($currentRoute === 'annual-reports.create') || ($currentRoute === 'annual-reports.edit')
+                        || ($currentRoute === 'investors-contacts.index') || ($currentRoute === 'investors-contacts.create') || ($currentRoute === 'investors-contacts.edit')
+                        ? 'show' : '' }}">
                         <li>
-                            <a href="{{ route('annual-reports.index') }}" class="{{ ($currentRoute === 'annual-reports.index') ? 'active' : '' }}">Annual Reports</a>
+                            <a href="{{ route('annual-reports.index') }}" class="{{ ($currentRoute === 'annual-reports.index') || ($currentRoute === 'annual-reports.create') || ($currentRoute === 'annual-reports.edit') ? 'active' : '' }}">Annual Reports</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('investors-contacts.index') }}" class="{{ ($currentRoute === 'investors-contacts.index') || ($currentRoute === 'investors-contacts.create') || ($currentRoute === 'investors-contacts.edit') ? 'active' : '' }}">Investors Contacts</a>
                         </li>
                     </ul>
                 </li>

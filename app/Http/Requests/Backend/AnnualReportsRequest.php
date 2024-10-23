@@ -23,13 +23,13 @@ class AnnualReportsRequest extends FormRequest
     {
         if ($this->id){
             $rule = [
-                'report_doc.*' => 'image|mimes:pdf|max:2048',
+                'report_doc.*' => 'file|mimes:pdf|max:2048',
                 'report_name.*' => 'required|string|max:255',
                 'description' => 'required|string',
             ];
         }else{
             $rule = [
-                'report_doc.*' => 'required|image|mimes:pdf|max:2048',
+                'report_doc.*' => 'required|file|mimes:pdf|max:2048',
                 'report_name.*' => 'required|string|max:255',
                 'description' => 'required|string',
             ];
