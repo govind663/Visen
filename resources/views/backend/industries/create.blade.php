@@ -56,7 +56,7 @@ Visen | Add Industry
                         @enderror
                     </div>
 
-                    <label class="col-sm-2"><b>Status : <span class="text-danger">*</span></b></label>
+                    <label class="col-sm-1"><b>Status : <span class="text-danger">*</span></b></label>
                     <div class="col-sm-4 col-md-4">
                         <select name="status" id="status" class="custom-select2 form-control @error('status') is-invalid @enderror">
                             <option value=" " >Select Status</option>
@@ -105,6 +105,32 @@ Visen | Add Industry
                     </div>
                 </div>
 
+                <table class="table table-bordered p-3"  id="dynamicTable">
+                    <thead>
+                        <tr>
+                            <th>Industry Category : <span class="text-danger">*</span></th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="col-sm-12 col-md-12">
+                                    <input type="text" name="hallmarks[]" id="hallmarks" class="form-control @error('hallmarks.*') is-invalid @enderror" value="{{ old('hallmarks.0') }}" placeholder="Enter Industry Category">
+                                    @error('hallmarks.*')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-primary" id="addRow">Add More</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
                 <div class="form-group row mt-4">
                     <label class="col-md-3"></label>
                     <div class="col-md-9" style="display: flex; justify-content: flex-end;">
@@ -126,7 +152,7 @@ Visen | Add Industry
 @endsection
 
 @push('scripts')
-{{-- Add More Industry or View both Image and PDF --}}
+{{-- Industry both Image and PDF --}}
 <script>
     // Existing function for agent image/PDF preview (if needed)
     function agentPreviewFile() {
@@ -163,4 +189,33 @@ Visen | Add Industry
         }
     }
 </script>
+
+{{-- Add More Industry Category --}}
+<script>
+    $(document).ready(function () {
+        // Add a new row with validation
+        $('#addRow').click(function () {
+            var newRow = `<tr>
+                <td>
+                    <div class="col-sm-12 col-md-12">
+                        <input type="text" name="hallmarks[]" id="hallmarks" class="form-control @error('hallmarks.*') is-invalid @enderror" value="{{ old('hallmarks.0') }}" placeholder="Enter Project Hallmarks">
+                        @error('hallmarks.*')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </td>
+                <td><button type="button" class="btn btn-danger removeRow">Remove</button></td>
+            </tr>`;
+            $('#dynamicTable tbody').append(newRow);
+        });
+
+        // Remove a row
+        $(document).on('click', '.removeRow', function () {
+            $(this).closest('tr').remove();
+        });
+    });
+</script>
+
 @endpush

@@ -17,6 +17,7 @@ use App\Http\Controllers\backend\InvestorsContactsController;
 use App\Http\Controllers\backend\NewsController;
 use App\Http\Controllers\backend\MediaController;
 use App\Http\Controllers\backend\EventsController;
+use App\Http\Controllers\backend\GroupPoliciesController;
 
 // ===== Frontend
 use App\Http\Controllers\frontend\HomeController as FrontendHomeController;
@@ -76,6 +77,9 @@ Route::group(['prefix' => 'admin', 'middleware'=>['auth:web', PreventBackHistory
 
     // ==== Manage Events
     Route::resource('events', EventsController::class);
+
+    // ==== Manage Group Policies
+    Route::resource('group-policies', GroupPoliciesController::class);
 
 });
 

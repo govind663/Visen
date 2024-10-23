@@ -150,7 +150,10 @@
                         <span class="micon bi bi-info-circle"></span>
                         <span class="mtext">About Visen</span>
                     </a>
-                    <ul class="submenu {{ ($currentRoute === 'about-us.index') || ($currentRoute === 'about-us.create') || ($currentRoute === 'about-us.edit') ? 'show' : '' }} ">
+                    <ul class="submenu {{
+                        ($currentRoute === 'about-us.index') || ($currentRoute === 'about-us.create') || ($currentRoute === 'about-us.edit')
+                        || ($currentRoute === 'group-policies.index') || ($currentRoute === 'group-policies.create') || ($currentRoute === 'group-policies.edit')
+                        ? 'show' : '' }} ">
                         <li>
                             <a href="{{ route('about-us.index') }}" class="{{ ($currentRoute === 'about-us.index') || ($currentRoute === 'about-us.create') || ($currentRoute === 'about-us.edit') ? 'active' : '' }}">Introduction</a>
                         </li>
@@ -182,7 +185,7 @@
                             <a href="#" >Our Brands</a>
                         </li>
                         <li>
-                            <a href="#" >Our Brands</a>
+                            <a href="{{ route('group-policies.index') }}" class="{{ ($currentRoute === 'group-policies.index') || ($currentRoute === 'group-policies.create') || ($currentRoute === 'group-policies.edit') ? 'active' : '' }}">Group Policies</a>
                         </li>
                     </ul>
                 </li>
@@ -190,7 +193,7 @@
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
                         <span class="micon bi bi-bag-check"></span>
-                        <span class="mtext">Markets and Products</span>
+                        <span class="mtext">Markets & Products</span>
                     </a>
                     <ul class="submenu {{ ($currentRoute === 'industry.index') || ($currentRoute === 'industry.create') || ($currentRoute === 'industry.edit') ? 'show' : '' }} ">
                         <li>
@@ -220,7 +223,7 @@
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
                         <span class="micon bi bi-newspaper"></span>
-                        <span class="mtext"> News, Media & Events </span>
+                        <span class="mtext">News, Media & Events</span>
                     </a>
                     <ul class="submenu {{
                         ($currentRoute === 'news.index') || ($currentRoute === 'news.create') || ($currentRoute === 'news.edit')
