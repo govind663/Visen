@@ -16,6 +16,7 @@ use App\Http\Controllers\backend\AnnualReportsController;
 use App\Http\Controllers\backend\InvestorsContactsController;
 use App\Http\Controllers\backend\NewsController;
 use App\Http\Controllers\backend\MediaController;
+use App\Http\Controllers\backend\EventsController;
 
 // ===== Frontend
 use App\Http\Controllers\frontend\HomeController as FrontendHomeController;
@@ -72,6 +73,9 @@ Route::group(['prefix' => 'admin', 'middleware'=>['auth:web', PreventBackHistory
 
     // ==== Manage Media
     Route::resource('media', MediaController::class);
+
+    // ==== Manage Events
+    Route::resource('events', EventsController::class);
 
 });
 

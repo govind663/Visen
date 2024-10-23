@@ -225,6 +225,7 @@
                     <ul class="submenu {{
                         ($currentRoute === 'news.index') || ($currentRoute === 'news.create') || ($currentRoute === 'news.edit')
                         || ($currentRoute === 'media.index') || ($currentRoute === 'media.create') || ($currentRoute === 'media.edit')
+                        || ($currentRoute === 'events.index') || ($currentRoute === 'events.create') || ($currentRoute === 'events.edit')
                         ? 'show' : '' }}">
                         <li>
                             <a href="{{ route('news.index') }}" class="{{ ($currentRoute === 'news.index') || ($currentRoute === 'news.create') || ($currentRoute === 'news.edit') ? 'active' : '' }}">News</a>
@@ -233,7 +234,7 @@
                             <a href="{{ route('media.index') }}" class="{{ ($currentRoute === 'media.index') || ($currentRoute === 'media.create') || ($currentRoute === 'media.edit') ? 'active' : '' }}">Media</a>
                         </li>
                         <li>
-                            <a href="#" >Events</a>
+                            <a href="{{ route('events.index') }}" class="{{ ($currentRoute === 'events.index') || ($currentRoute === 'events.create') || ($currentRoute === 'events.edit') ? 'active' : '' }}">Events</a>
                         </li>
                     </ul>
                 </li>
