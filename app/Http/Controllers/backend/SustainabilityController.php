@@ -39,7 +39,7 @@ class SustainabilityController extends Controller
 
         try {
 
-            $sustainability = Sustainability::where('description', $request->description)->first();
+            $sustainability = Sustainability::where('title', $request->title)->first();
 
             if ($sustainability) {
                 return redirect()->back()->with('error', 'Sustainability already exists.');
@@ -100,19 +100,28 @@ class SustainabilityController extends Controller
         $request->validated();
 
         try {
-
             $sustainability = Sustainability::findOrFail($id);
 
-            if ($request->hasFile('image')) {
+            // Check if the request contains an image file
+            if ($request->hasFile('image') && $request->file('image')->isValid()) {
+                // Delete the old image if it exists
+                if ($sustainability->image) {
+                    $oldImagePath = public_path($sustainability->image);
+                    if (file_exists($oldImagePath)) {
+                        unlink($oldImagePath); // Delete the old image file
+                    }
+                }
+
                 $image = $request->file('image');
                 $extension = $image->getClientOriginalExtension();
                 $new_name = time() . rand(10, 999) . '.' . $extension;
                 $image->move(public_path('/visen/sustainability/image'), $new_name);
 
-                $image_path = "/visen/sustainability/image/" . $new_name;
-                $sustainability->image = $new_name;
+                // Update the sustainability object with the new image path
+                $sustainability->image = "/visen/sustainability/image/" . $new_name; // Update the path for the database
             }
 
+            // Update other fields
             $sustainability->title = $request->title;
             $sustainability->description = $request->description;
             $sustainability->modified_by = Auth::user()->id;
@@ -122,7 +131,6 @@ class SustainabilityController extends Controller
             return redirect()->route('sustainability.index')->with('message', 'Sustainability has been successfully updated.');
 
         } catch (\Exception $ex) {
-
             return redirect()->back()->with('error', 'Something Went Wrong - ' . $ex->getMessage());
         }
     }

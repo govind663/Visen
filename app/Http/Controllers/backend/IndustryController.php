@@ -99,27 +99,36 @@ class IndustryController extends Controller
     {
         $request->validated();
         try {
-
             // Find the existing Industry record
-            $industries = Industry::findOrFail($id);
+            $industry = Industry::findOrFail($id);
 
-           // ==== Store industries_image
-            if ($request->hasFile('industries_image')) {
+            // Check if the request contains an industries_image file
+            if ($request->hasFile('industries_image') && $request->file('industries_image')->isValid()) {
+                // Delete the old image if it exists
+                if ($industry->industries_image) {
+                    $oldImagePath = public_path($industry->industries_image);
+                    if (file_exists($oldImagePath)) {
+                        unlink($oldImagePath); // Delete the old image file
+                    }
+                }
+
+                // Process the new image
                 $image = $request->file('industries_image');
                 $extension = $image->getClientOriginalExtension();
                 $new_name = time() . rand(10, 999) . '.' . $extension;
                 $image->move(public_path('/visen/industries/industries_image'), $new_name);
 
-                $image_path = "/visen/industries/industries_image/" . $new_name;
-                $industries->industries_image = $new_name;
+                // Update the industry object with the new image path
+                $industry->industries_image = "/visen/industries/industries_image/" . $new_name; // Store the new image path
             }
 
-            $industries->industries_name = $request->industries_name;
-            $industries->description = $request->description;
-            $industries->status = $request->status;
-            $industries->modified_at = Carbon::now();
-            $industries->modified_by = Auth::user()->id;
-            $industries->save();
+            // Update other fields
+            $industry->industries_name = $request->industries_name;
+            $industry->description = $request->description;
+            $industry->status = $request->status;
+            $industry->modified_at = Carbon::now();
+            $industry->modified_by = Auth::user()->id;
+            $industry->save();
 
             return redirect()->route('industry.index')->with('message', 'Industry has been successfully updated.');
         } catch (\Exception $ex) {

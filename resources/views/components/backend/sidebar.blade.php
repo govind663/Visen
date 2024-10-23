@@ -217,6 +217,26 @@
                     </ul>
                 </li>
 
+                <li class="dropdown">
+                    <a href="javascript:;" class="dropdown-toggle">
+                        <span class="micon bi bi-newspaper"></span>
+                        <span class="mtext"> News, Media & Events </span>
+                    </a>
+                    <ul class="submenu {{
+                        ($currentRoute === 'news.index') || ($currentRoute === 'news.create') || ($currentRoute === 'news.edit')
+                        || ($currentRoute === 'media.index') || ($currentRoute === 'media.create') || ($currentRoute === 'media.edit')
+                        ? 'show' : '' }}">
+                        <li>
+                            <a href="{{ route('news.index') }}" class="{{ ($currentRoute === 'news.index') || ($currentRoute === 'news.create') || ($currentRoute === 'news.edit') ? 'active' : '' }}">News</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('media.index') }}" class="{{ ($currentRoute === 'media.index') || ($currentRoute === 'media.create') || ($currentRoute === 'media.edit') ? 'active' : '' }}">Media</a>
+                        </li>
+                        <li>
+                            <a href="#" >Events</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>

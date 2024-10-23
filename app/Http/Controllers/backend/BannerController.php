@@ -103,42 +103,61 @@ class BannerController extends Controller
     {
         $request->validated();
         try {
-
+            // Find the existing Banner record
             $banner = Banner::findOrFail($id);
 
-            // ==== Upload (banner_image or banner_video)
+            // Check and upload the banner image
             if ($request->hasFile('banner_image')) {
+                // Delete the old image if it exists
+                if ($banner->banner_image) {
+                    $oldImagePath = public_path('/visen/banner/banner_image/' . $banner->banner_image);
+                    if (file_exists($oldImagePath)) {
+                        unlink($oldImagePath); // Delete the old image file
+                    }
+                }
+
+                // Process the new image
                 $image = $request->file('banner_image');
                 $extension = $image->getClientOriginalExtension();
                 $new_name = time() . rand(10, 999) . '.' . $extension;
                 $image->move(public_path('/visen/banner/banner_image'), $new_name);
 
-                $image_path = "/visen/banner/banner_image/" . $new_name;
+                // Update the banner object with the new image path
                 $banner->banner_image = $new_name;
                 $banner->banner_video = null; // Clear the video if an image is uploaded
             }
 
+            // Check and upload the banner video
             if ($request->hasFile('banner_video')) {
+                // Delete the old video if it exists
+                if ($banner->banner_video) {
+                    $oldVideoPath = public_path('/visen/banner/banner_video/' . $banner->banner_video);
+                    if (file_exists($oldVideoPath)) {
+                        unlink($oldVideoPath); // Delete the old video file
+                    }
+                }
+
+                // Process the new video
                 $video = $request->file('banner_video');
                 $extension = $video->getClientOriginalExtension();
                 $new_name = time() . rand(10, 999) . '.' . $extension;
                 $video->move(public_path('/visen/banner/banner_video'), $new_name);
 
-                $video_path = "/visen/banner/banner_video/" . $new_name;
+                // Update the banner object with the new video path
                 $banner->banner_video = $new_name;
                 $banner->banner_image = null; // Clear the image if a video is uploaded
             }
 
+            // Update other banner details
             $banner->status = $request->status;
             $banner->modified_at = Carbon::now();
             $banner->modified_by = Auth::user()->id;
             $banner->save();
 
-            return redirect()->route('banner.index')->with('message','Banner has been successfully updated.');
+            return redirect()->route('banner.index')->with('message', 'Banner has been successfully updated.');
 
-        } catch(\Exception $ex){
-
-            return redirect()->back()->with('error','Something went wrong while updating the banner. Please try again.');
+        } catch (\Exception $ex) {
+            return redirect()->back()->with('error', 'Something went wrong while updating the banner. Please try again.');
         }
     }
 

@@ -106,19 +106,28 @@ class InvestorsContactsController extends Controller
     {
         $request->validated();
         try {
-
             $investorsContact = InvestorsContacts::findOrFail($id);
 
-            if ($request->hasFile('investor_image')) {
+            // Check if the request contains an investor_image file
+            if ($request->hasFile('investor_image') && $request->file('investor_image')->isValid()) {
+                // Delete the old image if it exists
+                if ($investorsContact->investor_image) {
+                    $oldImagePath = public_path($investorsContact->investor_image);
+                    if (file_exists($oldImagePath)) {
+                        unlink($oldImagePath); // Delete the old image file
+                    }
+                }
+
                 $image = $request->file('investor_image');
                 $extension = $image->getClientOriginalExtension();
                 $new_name = time() . rand(10, 999) . '.' . $extension;
                 $image->move(public_path('/visen/annual_report/investor_image'), $new_name);
 
-                $image_path = "/visen/annual_report/investor_image/" . $new_name;
-                $investorsContact->investor_image = $new_name;
+                // Update the investor_contact object with the new image path
+                $investorsContact->investor_image = "/visen/annual_report/investor_image/" . $new_name; // Update the path for the database
             }
 
+            // Update other fields
             $investorsContact->investor_designation = $request->investor_designation;
             $investorsContact->investor_address = $request->investor_address;
             $investorsContact->investor_name = $request->investor_name;
@@ -134,7 +143,6 @@ class InvestorsContactsController extends Controller
             return redirect()->route('investors-contacts.index')->with('message', 'Investors Contact has been successfully updated.');
 
         } catch (\Exception $ex) {
-
             return redirect()->back()->with('error', 'Something Went Wrong - ' . $ex->getMessage());
         }
     }

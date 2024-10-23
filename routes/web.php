@@ -14,6 +14,8 @@ use App\Http\Controllers\backend\SustainabilityController;
 use App\Http\Controllers\backend\CustomerController;
 use App\Http\Controllers\backend\AnnualReportsController;
 use App\Http\Controllers\backend\InvestorsContactsController;
+use App\Http\Controllers\backend\NewsController;
+use App\Http\Controllers\backend\MediaController;
 
 // ===== Frontend
 use App\Http\Controllers\frontend\HomeController as FrontendHomeController;
@@ -64,6 +66,12 @@ Route::group(['prefix' => 'admin', 'middleware'=>['auth:web', PreventBackHistory
 
     // ==== Manage Investors Contacts
     Route::resource('investors-contacts', InvestorsContactsController::class);
+
+    // ==== Manage News
+    Route::resource('news', NewsController::class);
+
+    // ==== Manage Media
+    Route::resource('media', MediaController::class);
 
 });
 

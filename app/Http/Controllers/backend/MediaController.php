@@ -3,22 +3,23 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Backend\CustomerRequest;
-use App\Models\Customer;
+use App\Http\Requests\Backend\MediaRequest;
+use App\Models\Media;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
-class CustomerController extends Controller
+class MediaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $customers = Customer::orderBy("id","desc")->whereNull('deleted_at')->get();
-        return view('backend.customer.index', [
-            'customers' => $customers
+        $media = Media::orderBy("id","desc")->whereNull('deleted_at')->get();
+
+        return view('backend.media.index', [
+            'media' => $media
         ]);
     }
 
@@ -27,35 +28,44 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return view('backend.customer.create');
+        return view('backend.media.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CustomerRequest $request)
+    public function store(MediaRequest $request)
     {
         $request->validated();
 
         try {
 
-            $customer = new Customer();
+            $media = Media::where('title', $request->title)->first();
+
+            if ($media) {
+                return redirect()->back()->with('error', 'Media already exists.');
+            }
+
+            // Create a new Media instance
+            $media = new Media();
 
             if ($request->hasFile('image')) {
                 $image = $request->file('image');
                 $extension = $image->getClientOriginalExtension();
                 $new_name = time() . rand(10, 999) . '.' . $extension;
-                $image->move(public_path('/visen/customer/image'), $new_name);
+                $image->move(public_path('/visen/media/image/'), $new_name);
 
-                $image_path = "/visen/customer/image/" . $new_name;
-                $customer->image = $new_name;
+                $image_path = "/visen/media/image/" . $new_name;
+                $media->image = $new_name;
             }
 
-            $customer->inserted_at = Carbon::now();
-            $customer->inserted_by = Auth::user()->id;
-            $customer->save();
+            $media->title = $request->title;
+            $media->description = $request->description;
+            $media->inserted_at = Carbon::now();
+            $media->inserted_by = Auth::user()->id;
+            $media->save();
 
-            return redirect()->route('customer.index')->with('message', 'Customer has been successfully added.');
+            return redirect()->route('media.index')->with('message', 'Media has been successfully added.');
 
         } catch (\Exception $ex) {
 
@@ -76,53 +86,53 @@ class CustomerController extends Controller
      */
     public function edit(string $id)
     {
-        $customer = Customer::findOrFail($id);
-
-        return view('backend.customer.edit', [
-            'customer' => $customer
+        $media = Media::findOrFail($id);
+        return view('backend.media.edit', [
+            'media' => $media
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(CustomerRequest $request, string $id)
+    public function update(MediaRequest $request, string $id)
     {
         $request->validated();
-
         try {
-            // Find the existing Customer record
-            $customer = Customer::findOrFail($id);
+            $media = Media::findOrFail($id);
 
             // Check if the request contains an image file
             if ($request->hasFile('image') && $request->file('image')->isValid()) {
                 // Delete the old image if it exists
-                if ($customer->image) {
-                    $oldImagePath = public_path($customer->image);
+                if ($media->image) {
+                    $oldImagePath = public_path($media->image);
                     if (file_exists($oldImagePath)) {
                         unlink($oldImagePath); // Delete the old image file
                     }
                 }
 
-                // Process the new image
                 $image = $request->file('image');
                 $extension = $image->getClientOriginalExtension();
                 $new_name = time() . rand(10, 999) . '.' . $extension;
-                $image->move(public_path('/visen/customer/image'), $new_name);
+                $image->move(public_path('/visen/media/image/'), $new_name);
 
-                // Update the customer object with the new image path
-                $customer->image = "/visen/customer/image/" . $new_name; // Store the new image path
+                // Update the media object with the new image path
+                $media->image = "/visen/media/image/" . $new_name; // Update the path for the database
             }
 
-            // Update other customer details
-            $customer->modified_by = Auth::user()->id;
-            $customer->modified_at = Carbon::now();
-            $customer->save();
+            // Update other fields
+            $media->title = $request->title;
+            $media->description = $request->description;
+            $media->modified_by = Auth::user()->id;
+            $media->modified_at = Carbon::now();
+            $media->save();
 
-            return redirect()->route('customer.index')->with('message', 'Customer has been successfully updated.');
+            return redirect()->route('media.index')->with('message', 'Media has been successfully updated.');
 
         } catch (\Exception $ex) {
+
             return redirect()->back()->with('error', 'Something Went Wrong - ' . $ex->getMessage());
+
         }
     }
 
@@ -134,12 +144,9 @@ class CustomerController extends Controller
         $data['deleted_by'] =  Auth::user()->id;
         $data['deleted_at'] =  Carbon::now();
         try {
-            $customer = Customer::findOrFail($id);
-            $customer->update($data);
-
-            return redirect()->route('customer.index')->with('success', 'Customer has been successfully deleted');
+            Media::where('id', $id)->update($data);
+            return redirect()->route('media.index')->with('message', 'Media has been successfully deleted.');
         } catch (\Exception $ex) {
-
             return redirect()->back()->with('error', 'Something Went Wrong - ' . $ex->getMessage());
         }
     }

@@ -96,19 +96,30 @@ class AboutUsController extends Controller
     {
         $request->validated();
         try {
-
+            // Find the existing About record
             $aboutUs = About::findOrFail($id);
 
+            // Check if the request contains an image file
             if ($request->hasFile('image')) {
+                // Delete the old image if it exists
+                if ($aboutUs->image) {
+                    $oldImagePath = public_path('/visen/about_us/image/' . $aboutUs->image);
+                    if (file_exists($oldImagePath)) {
+                        unlink($oldImagePath); // Delete the old image file
+                    }
+                }
+
+                // Process the new image
                 $image = $request->file('image');
                 $extension = $image->getClientOriginalExtension();
                 $new_name = time() . rand(10, 999) . '.' . $extension;
                 $image->move(public_path('/visen/about_us/image'), $new_name);
 
-                $image_path = "/visen/about_us/image/" . $new_name;
+                // Update the aboutUs object with the new image path
                 $aboutUs->image = $new_name;
             }
 
+            // Update other About Us details
             $aboutUs->description = $request->description;
             $aboutUs->modified_by = Auth::user()->id;
             $aboutUs->modified_at = Carbon::now();
@@ -117,8 +128,7 @@ class AboutUsController extends Controller
             return redirect()->route('about-us.index')->with('message', 'About Us has been successfully updated.');
 
         } catch (\Exception $ex) {
-
-            return redirect()->back()->with('error', 'Something Went Wrong - ' . $ex->getMessage());
+            return redirect()->back()->with('error', 'Something went wrong - ' . $ex->getMessage());
         }
     }
 
