@@ -196,9 +196,13 @@
                         <span class="mtext">Markets & Products</span>
                     </a>
                     <ul class="submenu {{
-                        ($currentRoute === 'industry.index') || ($currentRoute === 'industry.create') || ($currentRoute === 'industry.edit')
+                        ($currentRoute === 'market-introduction.index') || ($currentRoute === 'market-introduction.create') || ($currentRoute === 'market-introduction.edit')
+                        || ($currentRoute === 'industry.index') || ($currentRoute === 'industry.create') || ($currentRoute === 'industry.edit')
                         || ($currentRoute === 'product-filter.index') || ($currentRoute === 'product-filter.create') || ($currentRoute === 'product-filter.edit')
                         ? 'show' : '' }} ">
+                        <li>
+                            <a href="{{ route('market-introduction.index') }}" class="{{ ($currentRoute === 'market-introduction.index') || ($currentRoute === 'market-introduction.create') || ($currentRoute === 'market-introduction.edit') ? 'active' : '' }}" >Market Introduction</a>
+                        </li>
                         <li>
                             <a href="{{ route('industry.index') }}" class="{{ ($currentRoute === 'industry.index') || ($currentRoute === 'industry.create') || ($currentRoute === 'industry.edit') ? 'active' : '' }}">Industry</a>
                         </li>

@@ -7,6 +7,7 @@ use App\Http\Middleware\PreventBackHistoryMiddleware;
 use App\Http\Controllers\backend\Auth\LoginController;
 use App\Http\Controllers\backend\HomeController as BackendHomeController;
 use App\Http\Controllers\backend\BannerController;
+use App\Http\Controllers\backend\MarketIntroductionController;
 use App\Http\Controllers\backend\IndustryController;
 use App\Http\Controllers\backend\AboutUsController;
 use App\Http\Controllers\backend\CounterController;
