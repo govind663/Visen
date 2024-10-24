@@ -6,17 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Industry extends Model
+class ProductFilter extends Model
 {
     use HasFactory, SoftDeletes;
     public $timestamps = false;
     protected $fillable = [
         'id',
-        'industries_image',
-        'industries_name',
-        'description',
-        'industry_category',
-        'status',
+        'industry_id',
+        'category_id',
+        'filter_name',
         'inserted_by',
         'inserted_at',
         'modified_by',
@@ -30,4 +28,9 @@ class Industry extends Model
         'modified_at',
         'deleted_at',
     ];
+
+    // ===== Relationship with Industry
+    public function industry(){
+        return $this->belongsTo(Industry::class, 'industry_id', 'id');
+    }
 }

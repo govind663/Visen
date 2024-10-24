@@ -18,6 +18,7 @@ use App\Http\Controllers\backend\NewsController;
 use App\Http\Controllers\backend\MediaController;
 use App\Http\Controllers\backend\EventsController;
 use App\Http\Controllers\backend\GroupPoliciesController;
+use App\Http\Controllers\backend\ProductFilterController;
 
 // ===== Frontend
 use App\Http\Controllers\frontend\HomeController as FrontendHomeController;
@@ -45,6 +46,9 @@ Route::group(['prefix' => 'admin', 'middleware'=>['auth:web', PreventBackHistory
 
     // ==== Manage Banner
     Route::resource('banner', BannerController::class);
+
+    // ==== Manage Market Introduction
+    Route::resource('market-introduction', MarketIntroductionController::class);
 
     // ==== Manage Industry (Markets and Products)
     Route::resource('industry', IndustryController::class);
@@ -80,6 +84,10 @@ Route::group(['prefix' => 'admin', 'middleware'=>['auth:web', PreventBackHistory
 
     // ==== Manage Group Policies
     Route::resource('group-policies', GroupPoliciesController::class);
+
+    // ==== Manage Product Filter
+    Route::resource('product-filter', ProductFilterController::class);
+    Route::post('/fetchCategoryNname', [ProductFilterController::class, 'fetchCategoryNname'])->name('fetchCategoryNname');
 
 });
 

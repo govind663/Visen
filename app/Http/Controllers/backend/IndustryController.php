@@ -61,6 +61,7 @@ class IndustryController extends Controller
 
             $industries->industries_name = $request->industries_name;
             $industries->description = $request->description;
+            $industries->industry_category = json_encode($request->industry_category);
             $industries->status = $request->status;
             $industries->inserted_at = Carbon::now();
             $industries->inserted_by = Auth::user()->id;
@@ -87,8 +88,11 @@ class IndustryController extends Controller
     {
         $industries = Industry::findOrFail($id);
 
+        $industryCategory = json_decode($industries->industry_category, true);
+
         return view('backend.industries.edit', [
-            'industries' => $industries
+            'industries' => $industries,
+            'industryCategory' => $industryCategory
         ]);
     }
 
@@ -125,6 +129,7 @@ class IndustryController extends Controller
             // Update other fields
             $industry->industries_name = $request->industries_name;
             $industry->description = $request->description;
+            $industry->industry_category = json_encode($request->industry_category);
             $industry->status = $request->status;
             $industry->modified_at = Carbon::now();
             $industry->modified_by = Auth::user()->id;

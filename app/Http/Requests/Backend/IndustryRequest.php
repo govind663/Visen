@@ -26,6 +26,7 @@ class IndustryRequest extends FormRequest
                 'industries_image' => 'image|mimes:jpeg,png,jpg|max:2048',
                 'industries_name' => 'required|string|max:255',
                 'description' => 'required|string',
+                'industry_category.*' => 'required|string',
                 'status' => 'required|numeric',
             ];
         }else{
@@ -33,6 +34,7 @@ class IndustryRequest extends FormRequest
                 'industries_image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
                 'industries_name' => 'required|string|max:255',
                 'description' => 'required|string',
+                'industry_category.*' => 'required|string',
                 'status' => 'required|numeric',
             ];
         }
@@ -52,6 +54,9 @@ class IndustryRequest extends FormRequest
 
             'description.required' => __('Description is required'),
             'description.string' => __('Description must be a string'),
+
+            'industry_category.*.required' => __('Industry Category is required'),
+            'industry_category.*.string' => __('Industry Category must be a string'),
 
             'status.required' => __('Status is required'),
             'status.numeric' => __('Status must be a number'),

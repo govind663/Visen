@@ -195,9 +195,15 @@
                         <span class="micon bi bi-bag-check"></span>
                         <span class="mtext">Markets & Products</span>
                     </a>
-                    <ul class="submenu {{ ($currentRoute === 'industry.index') || ($currentRoute === 'industry.create') || ($currentRoute === 'industry.edit') ? 'show' : '' }} ">
+                    <ul class="submenu {{
+                        ($currentRoute === 'industry.index') || ($currentRoute === 'industry.create') || ($currentRoute === 'industry.edit')
+                        || ($currentRoute === 'product-filter.index') || ($currentRoute === 'product-filter.create') || ($currentRoute === 'product-filter.edit')
+                        ? 'show' : '' }} ">
                         <li>
                             <a href="{{ route('industry.index') }}" class="{{ ($currentRoute === 'industry.index') || ($currentRoute === 'industry.create') || ($currentRoute === 'industry.edit') ? 'active' : '' }}">Industry</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('product-filter.index') }}" class="{{ ($currentRoute === 'product-filter.index') || ($currentRoute === 'product-filter.create') || ($currentRoute === 'product-filter.edit') ? 'active' : '' }}">Product Filter</a>
                         </li>
                     </ul>
                 </li>

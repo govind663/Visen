@@ -112,6 +112,56 @@ Visen | Edit Industry
                     </div>
                 </div>
 
+                <table class="table table-bordered p-3" id="dynamicIndustryTable">
+                    <thead>
+                        <tr>
+                            <th>Industry Category : <span class="text-danger">*</span></th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (!empty($industryCategory))
+                            @foreach ($industryCategory as $index => $category)
+                            <tr>
+                                <td>
+                                    <div class="col-sm-12 col-md-12">
+                                        <input type="text" name="industry_category[]" value="{{ old('industry_category.' . $index, $category) }}" class="form-control @error('industry_category.*') is-invalid @enderror" placeholder="Enter Industry Category">
+                                        @error('industry_category.*')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </td>
+                                <td>
+                                    @if($loop->first)
+                                        <button type="button" class="btn btn-primary" id="addIndustryRow">Add More</button>
+                                    @else
+                                        <button type="button" class="btn btn-danger removeIndustryRow">Remove</button>
+                                    @endif
+                                </td>
+                            </tr>
+                            @endforeach
+                        @else
+                            <tr>
+                                <td>
+                                    <div class="col-sm-12 col-md-12">
+                                        <input type="text" name="industry_category[]" class="form-control @error('industry_category.*') is-invalid @enderror" value="{{ old('industry_category.0') }}" placeholder="Enter Industry Category">
+                                        @error('industry_category.*')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" id="addIndustryRow">Add More</button>
+                                </td>
+                            </tr>
+                        @endif
+                    </tbody>
+                </table>
+
                 <div class="form-group row mt-4">
                     <label class="col-md-3"></label>
                     <div class="col-md-9" style="display: flex; justify-content: flex-end;">
@@ -227,5 +277,33 @@ Visen | Edit Industry
             previewContainer.style.display = 'none';
         }
     }
+</script>
+
+{{-- Add More Industry Category --}}
+<script>
+    $(document).ready(function () {
+        // Add new row
+        $('#addIndustryRow').click(function () {
+            var newRow = `<tr>
+                <td>
+                    <div class="col-sm-12 col-md-12">
+                        <input type="text" name="industry_category[]" class="form-control @error('industry_category.*') is-invalid @enderror" value="{{ old('industry_category.0') }}" placeholder="Enter Industry Category">
+                        @error('industry_category.*')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </td>
+                <td><button type="button" class="btn btn-danger removeIndustryRow">Remove</button></td>
+            </tr>`;
+            $('#dynamicIndustryTable tbody').append(newRow);
+        });
+
+        // Remove a row
+        $(document).on('click', '.removeIndustryRow', function () {
+            $(this).closest('tr').remove();
+        });
+    });
 </script>
 @endpush

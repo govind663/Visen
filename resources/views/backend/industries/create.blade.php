@@ -116,8 +116,8 @@ Visen | Add Industry
                         <tr>
                             <td>
                                 <div class="col-sm-12 col-md-12">
-                                    <input type="text" name="hallmarks[]" id="hallmarks" class="form-control @error('hallmarks.*') is-invalid @enderror" value="{{ old('hallmarks.0') }}" placeholder="Enter Industry Category">
-                                    @error('hallmarks.*')
+                                    <input type="text" name="industry_category[]" id="industry_category" class="form-control @error('industry_category.*') is-invalid @enderror" value="{{ old('industry_category.0') }}" placeholder="Enter Industry Category">
+                                    @error('industry_category.*')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -198,8 +198,8 @@ Visen | Add Industry
             var newRow = `<tr>
                 <td>
                     <div class="col-sm-12 col-md-12">
-                        <input type="text" name="hallmarks[]" id="hallmarks" class="form-control @error('hallmarks.*') is-invalid @enderror" value="{{ old('hallmarks.0') }}" placeholder="Enter Project Hallmarks">
-                        @error('hallmarks.*')
+                        <input type="text" name="industry_category[]" id="industry_category" class="form-control @error('industry_category.*') is-invalid @enderror" value="{{ old('industry_category.0') }}" placeholder="Enter Project industry_category">
+                        @error('industry_category.*')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
