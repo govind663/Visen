@@ -217,6 +217,11 @@
                         <li>
                             <a href="{{ route('industryDetails.index') }}" class="{{ ($currentRoute === 'industryDetails.index') || ($currentRoute === 'industryDetails.create') || ($currentRoute === 'industryDetails.edit') ? 'active' : '' }}">Product Details</a>
                         </li>
+                        <li>
+                            <a href="#">
+                                Product Category
+                            </a>
+                        </li>
                     </ul>
                 </li>
 
