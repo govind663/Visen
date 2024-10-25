@@ -20,6 +20,8 @@ use App\Http\Controllers\backend\MediaController;
 use App\Http\Controllers\backend\EventsController;
 use App\Http\Controllers\backend\GroupPoliciesController;
 use App\Http\Controllers\backend\ProductFilterController;
+use App\Http\Controllers\backend\ProductController;
+use App\Http\Controllers\backend\IndustryDetailsController;
 
 // ===== Frontend
 use App\Http\Controllers\frontend\HomeController as FrontendHomeController;
@@ -88,7 +90,18 @@ Route::group(['prefix' => 'admin', 'middleware'=>['auth:web', PreventBackHistory
 
     // ==== Manage Product Filter
     Route::resource('product-filter', ProductFilterController::class);
+
+    // ==== fetch Category Name
     Route::post('/fetchCategoryNname', [ProductFilterController::class, 'fetchCategoryNname'])->name('fetchCategoryNname');
+
+    // ==== fetch Filter Name
+    Route::post('/fetchFilterName', [ProductFilterController::class, 'fetchFilterName'])->name('fetchFilterName');
+
+    // ==== Manage Product
+    Route::resource('product', ProductController::class);
+
+    // ==== Manage Industry Details
+    Route::resource('industryDetails', IndustryDetailsController::class);
 
 });
 

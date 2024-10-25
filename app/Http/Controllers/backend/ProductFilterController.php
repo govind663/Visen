@@ -189,4 +189,27 @@ class ProductFilterController extends Controller
         return response()->json([]);
     }
 
+    public function fetchFilterName(Request $request)
+    {
+        $categoryId = $request->categoryName;
+
+        // Fetch the entries based on category_id
+        $filters = ProductFilter::where('category_id', $categoryId)->get();
+
+        $decodedFilters = [];
+
+        // Loop through each entry and decode the filter_name JSON
+        foreach ($filters as $filter) {
+            $filterNames = json_decode($filter->filter_name, true);
+
+            // Ensure the result is an array and merge it
+            if (is_array($filterNames)) {
+                $decodedFilters = array_merge($decodedFilters, $filterNames);
+            }
+        }
+
+        // Return a proper JSON response
+        return response()->json($decodedFilters);
+    }
+
 }
