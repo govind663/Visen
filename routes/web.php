@@ -31,6 +31,7 @@ Route::get('/', function () {
 })->name('/');
 
 // ======================= Admin Login/Logout
+Route::get('/admin/login', [LoginController::class, 'login'])->name('login');
 Route::get('/admin/login', [LoginController::class, 'login'])->name('admin.login');
 Route::post('/admin/login/store', [LoginController::class, 'authenticate'])->name('admin.login.store');
 
