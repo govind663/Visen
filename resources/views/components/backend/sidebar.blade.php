@@ -201,6 +201,7 @@
                         || ($currentRoute === 'product-filter.index') || ($currentRoute === 'product-filter.create') || ($currentRoute === 'product-filter.edit')
                         || ($currentRoute === 'product.index') || ($currentRoute === 'product.create') || ($currentRoute === 'product.edit')
                         || ($currentRoute === 'industryDetails.index') || ($currentRoute === 'industryDetails.create') || ($currentRoute === 'industryDetails.edit')
+                        || ($currentRoute === 'product-details.index') || ($currentRoute === 'product-details.create') || ($currentRoute === 'product-details.edit')
                         ? 'show' : '' }} ">
                         <li>
                             <a href="{{ route('market-introduction.index') }}" class="{{ ($currentRoute === 'market-introduction.index') || ($currentRoute === 'market-introduction.create') || ($currentRoute === 'market-introduction.edit') ? 'active' : '' }}" >Market Introduction</a>
@@ -218,7 +219,7 @@
                             <a href="{{ route('industryDetails.index') }}" class="{{ ($currentRoute === 'industryDetails.index') || ($currentRoute === 'industryDetails.create') || ($currentRoute === 'industryDetails.edit') ? 'active' : '' }}">Product Details</a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="{{ route('product-category.index') }}" class="{{ ($currentRoute === 'product-category.index') || ($currentRoute === 'product-category.create') || ($currentRoute === 'product-category.edit') ? 'active' : '' }}">
                                 Product Category
                             </a>
                         </li>

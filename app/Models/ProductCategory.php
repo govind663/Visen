@@ -6,18 +6,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Product extends Model
+class ProductCategory extends Model
 {
     use HasFactory, SoftDeletes;
     public $timestamps = false;
     protected $fillable = [
         'id',
-        'industry_id',
-        'categoryName',
-        'filterName',
-        'productName',
+        'product_id',
         'productCategoryName',
-        'status',
+        'name',
+        'solidContentInPercentage',
+        'viscosity',
+        'mfet',
+        'description',
+        'resource_doc',
         'inserted_by',
         'inserted_at',
         'modified_by',
@@ -32,8 +34,9 @@ class Product extends Model
         'deleted_at',
     ];
 
-    // ==== Relationship between Industry
-    public function industry() {
-        return $this->belongsTo(Industry::class, 'industry_id', 'id');
+    // === Relationship between Product
+
+    public function product(){
+        return $this->belongsTo(Product::class, 'product_id', 'id');
     }
 }

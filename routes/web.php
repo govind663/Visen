@@ -22,6 +22,7 @@ use App\Http\Controllers\backend\GroupPoliciesController;
 use App\Http\Controllers\backend\ProductFilterController;
 use App\Http\Controllers\backend\ProductController;
 use App\Http\Controllers\backend\IndustryDetailsController;
+use App\Http\Controllers\backend\ProductCategoryController;
 
 // ===== Frontend
 use App\Http\Controllers\frontend\HomeController as FrontendHomeController;
@@ -103,6 +104,12 @@ Route::group(['prefix' => 'admin', 'middleware'=>['auth:web', PreventBackHistory
 
     // ==== Manage Industry Details
     Route::resource('industryDetails', IndustryDetailsController::class);
+
+    // ===== Manage Product Category
+    Route::resource('product-category', ProductCategoryController::class);
+
+    // ===== getProductCategoryName
+    Route::post('/getProductCategoryName', [ProductCategoryController::class, 'getProductCategoryName'])->name('getProductCategoryName');
 
 });
 
