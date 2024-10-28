@@ -118,6 +118,7 @@ class NewsController extends Controller
 
                 // Update the news object with the new image path
                 $news->image = "/visen/news/image/" . $new_name; // Update the path for the database
+                $news->image = $new_name;
             }
 
             // Update other fields

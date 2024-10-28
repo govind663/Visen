@@ -152,6 +152,8 @@
                     </a>
                     <ul class="submenu {{
                         ($currentRoute === 'about-us.index') || ($currentRoute === 'about-us.create') || ($currentRoute === 'about-us.edit')
+                        || ($currentRoute === 'meet-our-minds.index') || ($currentRoute === 'meet-our-minds.create') || ($currentRoute === 'meet-our-minds.edit')
+                        || ($currentRoute === 'members.index') || ($currentRoute === 'members.create') || ($currentRoute === 'members.edit')
                         || ($currentRoute === 'group-policies.index') || ($currentRoute === 'group-policies.create') || ($currentRoute === 'group-policies.edit')
                         ? 'show' : '' }} ">
                         <li>
@@ -179,7 +181,10 @@
                             <a href="#" >About our MD</a>
                         </li>
                         <li>
-                            <a href="#" >Meet our Minds</a>
+                            <a href="{{ route('meet-our-minds.index') }}" class="{{ ($currentRoute === 'meet-our-minds.index') || ($currentRoute === 'meet-our-minds.create') || ($currentRoute === 'meet-our-minds.edit') ? 'active' : '' }}">Team</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('members.index') }}" class="{{ ($currentRoute === 'members.index') || ($currentRoute === 'members.create') || ($currentRoute === 'members.edit') ? 'active' : '' }}">Members</a>
                         </li>
                         <li>
                             <a href="#" >Our Brands</a>
@@ -262,6 +267,21 @@
                         </li>
                         <li>
                             <a href="{{ route('events.index') }}" class="{{ ($currentRoute === 'events.index') || ($currentRoute === 'events.create') || ($currentRoute === 'events.edit') ? 'active' : '' }}">Events</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="javascript:;" class="dropdown-toggle">
+                        <span class="micon bi bi-telephone"></span>
+                        <span class="mtext">Contact Us</span>
+                    </a>
+                    <ul class="submenu">
+                        <li>
+                            <a href="#">Corporate Head Office</a>
+                        </li>
+                        <li>
+                            <a href="#">Factory Details</a>
                         </li>
                     </ul>
                 </li>

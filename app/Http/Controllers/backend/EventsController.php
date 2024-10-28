@@ -119,6 +119,7 @@ class EventsController extends Controller
 
                 // Update the events object with the new image path
                 $events->image = "/visen/events/image/" . $new_name; // Update the path for the database
+                $events->image = $new_name;
             }
 
             // Update other fields

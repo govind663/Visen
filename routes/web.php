@@ -18,6 +18,8 @@ use App\Http\Controllers\backend\InvestorsContactsController;
 use App\Http\Controllers\backend\NewsController;
 use App\Http\Controllers\backend\MediaController;
 use App\Http\Controllers\backend\EventsController;
+use App\Http\Controllers\backend\MeetOurMindsController;
+use App\Http\Controllers\backend\MembersController;
 use App\Http\Controllers\backend\GroupPoliciesController;
 use App\Http\Controllers\backend\ProductFilterController;
 use App\Http\Controllers\backend\ProductController;
@@ -86,6 +88,12 @@ Route::group(['prefix' => 'admin', 'middleware'=>['auth:web', PreventBackHistory
 
     // ==== Manage Events
     Route::resource('events', EventsController::class);
+
+    // === Manage Meet Our Minds
+    Route::resource('meet-our-minds', MeetOurMindsController::class);
+
+    // ==== Manage Members
+    Route::resource('members', MembersController::class);
 
     // ==== Manage Group Policies
     Route::resource('group-policies', GroupPoliciesController::class);

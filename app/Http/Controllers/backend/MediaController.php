@@ -118,6 +118,7 @@ class MediaController extends Controller
 
                 // Update the media object with the new image path
                 $media->image = "/visen/media/image/" . $new_name; // Update the path for the database
+                $media->image = $new_name;
             }
 
             // Update other fields
