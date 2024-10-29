@@ -236,9 +236,11 @@
                         <span class="micon bi bi-lightbulb"></span>
                         <span class="mtext">Innovation</span>
                     </a>
-                    <ul class="submenu">
+                    <ul class="submenu {{
+                        ($currentRoute === 'innovation-details.index') || ($currentRoute === 'innovation-details.create') || ($currentRoute === 'innovation-details.edit')
+                        ? 'show' : '' }}">
                         <li>
-                            <a href="#">Innovation Details</a>
+                            <a href="{{ route('innovation-details.index') }}" class="{{ ($currentRoute === 'innovation-details.index') || ($currentRoute === 'innovation-details.create') || ($currentRoute === 'innovation-details.edit') ? 'active' : '' }}">Innovation Details</a>
                         </li>
                         <li>
                             <a href="#">Features</a>
