@@ -276,12 +276,14 @@
                         <span class="micon bi bi-telephone"></span>
                         <span class="mtext">Contact Us</span>
                     </a>
-                    <ul class="submenu">
+                    <ul class="submenu {{
+                        ($currentRoute === 'factory-details.index') || ($currentRoute === 'factory-details.create') || ($currentRoute === 'factory-details.edit')
+                        ? 'show' : '' }}">
                         <li>
                             <a href="#">Corporate Head Office</a>
                         </li>
                         <li>
-                            <a href="#">Factory Details</a>
+                            <a href="{{ route('factory-details.index') }}" class="{{ ($currentRoute === 'factory-details.index') || ($currentRoute === 'factory-details.create') || ($currentRoute === 'factory-details.edit') ? 'active' : '' }}">Factory Details</a>
                         </li>
                     </ul>
                 </li>

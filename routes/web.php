@@ -25,6 +25,7 @@ use App\Http\Controllers\backend\ProductFilterController;
 use App\Http\Controllers\backend\ProductController;
 use App\Http\Controllers\backend\IndustryDetailsController;
 use App\Http\Controllers\backend\ProductCategoryController;
+use App\Http\Controllers\backend\FactoryDetailsController;
 
 // ===== Frontend
 use App\Http\Controllers\frontend\HomeController as FrontendHomeController;
@@ -119,6 +120,8 @@ Route::group(['prefix' => 'admin', 'middleware'=>['auth:web', PreventBackHistory
     // ===== getProductCategoryName
     Route::post('/getProductCategoryName', [ProductCategoryController::class, 'getProductCategoryName'])->name('getProductCategoryName');
 
+    // ===== Manage Factory Details
+    Route::resource('factory-details', FactoryDetailsController::class);
 });
 
 // ======================= Frontend
