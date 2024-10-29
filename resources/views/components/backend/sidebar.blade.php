@@ -277,10 +277,11 @@
                         <span class="mtext">Contact Us</span>
                     </a>
                     <ul class="submenu {{
-                        ($currentRoute === 'factory-details.index') || ($currentRoute === 'factory-details.create') || ($currentRoute === 'factory-details.edit')
+                        ($currentRoute === 'corporate-head-office.index') || ($currentRoute === 'corporate-head-office.create') || ($currentRoute === 'corporate-head-office.edit')
+                        || ($currentRoute === 'factory-details.index') || ($currentRoute === 'factory-details.create') || ($currentRoute === 'factory-details.edit')
                         ? 'show' : '' }}">
                         <li>
-                            <a href="#">Corporate Head Office</a>
+                            <a href="{{ route('corporate-head-office.index') }}" class="{{ ($currentRoute === 'corporate-head-office.index') || ($currentRoute === 'corporate-head-office.create') || ($currentRoute === 'corporate-head-office.edit') ? 'active' : '' }}">Corporate Head Office</a>
                         </li>
                         <li>
                             <a href="{{ route('factory-details.index') }}" class="{{ ($currentRoute === 'factory-details.index') || ($currentRoute === 'factory-details.create') || ($currentRoute === 'factory-details.edit') ? 'active' : '' }}">Factory Details</a>

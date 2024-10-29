@@ -26,6 +26,7 @@ use App\Http\Controllers\backend\ProductController;
 use App\Http\Controllers\backend\IndustryDetailsController;
 use App\Http\Controllers\backend\ProductCategoryController;
 use App\Http\Controllers\backend\FactoryDetailsController;
+use App\Http\Controllers\backend\CorporateHeadOfficeController;
 
 // ===== Frontend
 use App\Http\Controllers\frontend\HomeController as FrontendHomeController;
@@ -122,6 +123,9 @@ Route::group(['prefix' => 'admin', 'middleware'=>['auth:web', PreventBackHistory
 
     // ===== Manage Factory Details
     Route::resource('factory-details', FactoryDetailsController::class);
+
+    // ===== manage Corporate Head Office
+    Route::resource('corporate-head-office', CorporateHeadOfficeController::class);
 });
 
 // ======================= Frontend
