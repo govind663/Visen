@@ -233,6 +233,24 @@
 
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
+                        <span class="micon bi bi-lightbulb"></span>
+                        <span class="mtext">Innovation</span>
+                    </a>
+                    <ul class="submenu">
+                        <li>
+                            <a href="#">Innovation Details</a>
+                        </li>
+                        <li>
+                            <a href="#">Features</a>
+                        </li>
+                        <li>
+                            <a href="#">Feature Details</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="javascript:;" class="dropdown-toggle">
                         <span class="micon bi bi-file-earmark-text"></span>
                         <span class="mtext">Investor Relations</span>
                     </a>
@@ -277,9 +295,13 @@
                         <span class="mtext">Contact Us</span>
                     </a>
                     <ul class="submenu {{
-                        ($currentRoute === 'corporate-head-office.index') || ($currentRoute === 'corporate-head-office.create') || ($currentRoute === 'corporate-head-office.edit')
+                        ($currentRoute === 'contact-information.index') || ($currentRoute === 'contact-information.create') || ($currentRoute === 'contact-information.edit')
+                        || ($currentRoute === 'corporate-head-office.index') || ($currentRoute === 'corporate-head-office.create') || ($currentRoute === 'corporate-head-office.edit')
                         || ($currentRoute === 'factory-details.index') || ($currentRoute === 'factory-details.create') || ($currentRoute === 'factory-details.edit')
                         ? 'show' : '' }}">
+                        <li>
+                            <a href="{{ route('contact-information.index') }}" class="{{ ($currentRoute === 'contact-information.index') || ($currentRoute === 'contact-information.create') || ($currentRoute === 'contact-information.edit') ? 'active' : '' }}">Contact Information</a>
+                        </li>
                         <li>
                             <a href="{{ route('corporate-head-office.index') }}" class="{{ ($currentRoute === 'corporate-head-office.index') || ($currentRoute === 'corporate-head-office.create') || ($currentRoute === 'corporate-head-office.edit') ? 'active' : '' }}">Corporate Head Office</a>
                         </li>

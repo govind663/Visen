@@ -27,6 +27,7 @@ use App\Http\Controllers\backend\IndustryDetailsController;
 use App\Http\Controllers\backend\ProductCategoryController;
 use App\Http\Controllers\backend\FactoryDetailsController;
 use App\Http\Controllers\backend\CorporateHeadOfficeController;
+use App\Http\Controllers\backend\ContactInformationController;
 
 // ===== Frontend
 use App\Http\Controllers\frontend\HomeController as FrontendHomeController;
@@ -126,6 +127,10 @@ Route::group(['prefix' => 'admin', 'middleware'=>['auth:web', PreventBackHistory
 
     // ===== manage Corporate Head Office
     Route::resource('corporate-head-office', CorporateHeadOfficeController::class);
+
+    // ===== manage Contact Information
+    Route::resource('contact-information', ContactInformationController::class);
+
 });
 
 // ======================= Frontend
