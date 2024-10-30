@@ -30,6 +30,7 @@ use App\Http\Controllers\backend\CorporateHeadOfficeController;
 use App\Http\Controllers\backend\ContactInformationController;
 use App\Http\Controllers\backend\InnovationDetailsController;
 use App\Http\Controllers\backend\FeaturesController;
+use App\Http\Controllers\backend\FeaturesDetailsController;
 
 // ===== Frontend
 use App\Http\Controllers\frontend\HomeController as FrontendHomeController;
@@ -138,6 +139,9 @@ Route::group(['prefix' => 'admin', 'middleware'=>['auth:web', PreventBackHistory
 
     // ===== Manage Features
     Route::resource('features', FeaturesController::class);
+
+    // ===== Manage Feature Details
+    Route::resource('features-details', FeaturesDetailsController::class);
 
 });
 

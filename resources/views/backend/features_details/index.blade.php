@@ -1,7 +1,7 @@
 @extends('backend.layouts.master')
 
 @section('title')
-Visen | Manaage Features
+Visen | Manaage Feature Details
 @endsection
 
 @push('styles')
@@ -19,7 +19,7 @@ Visen | Manaage Features
             <div class="row">
                 <div class="col-md-6 col-sm-12">
                     <div class="title">
-                        <h4>Manage Features</h4>
+                        <h4>Manage Feature Details</h4>
                     </div>
                     <nav aria-label="breadcrumb" role="navigation">
                         <ol class="breadcrumb">
@@ -27,7 +27,7 @@ Visen | Manaage Features
                                 <a href="{{ route('admin.dashboard') }}">Home</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                Manage Features
+                                Manage Feature Details
                             </li>
                         </ol>
                     </nav>
@@ -35,8 +35,8 @@ Visen | Manaage Features
 
                 <div class="col-md-6 col-sm-12 text-right">
                     <div class="dropdown">
-                        <a class="btn btn-primary" href="{{ route('features.create') }}">
-                            <i class="fa fa-plus" aria-hidden="true"> </i> Feature
+                        <a class="btn btn-primary" href="{{ route('features-details.create') }}">
+                            <i class="fa fa-plus" aria-hidden="true"> </i> Feature Details
                         </a>
 
                     </div>
@@ -47,34 +47,47 @@ Visen | Manaage Features
         <!-- Export Datatable start -->
         <div class="card-box mb-30">
             <div class="pd-20">
-                <h4 class="text-blue h4">All Features List</h4>
+                <h4 class="text-blue h4">All Feature Details List</h4>
             </div>
             <div class="pb-20">
                 <table class="table data-table-export1 nowrap p-3">
                     <thead>
                         <tr>
                             <th>Sr. No.</th>
+                            <th>Feature Name</th>
                             <th>Title</th>
+                            <th>Image</th>
+                            <th>Description</th>
                             <th class="no-export">Edit</th>
                             <th class="no-export">Delete</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($features as $key => $value)
+                        @foreach ($features_details as $key => $value)
                         <tr>
                             <td>{{ ++$key }}</td>
 
+                            <td class="text-wrap text-justify">{{ $value->features?->title }}</td>
+
                             <td class="text-wrap text-justify">{{ $value->title }}</td>
 
+                            <td class="text-wrap text-justify">
+                                @if($value->featureImage)
+                                    <img src="{{ asset('/visen/features_details/featureImage/' . $value->featureImage) }}" alt="{{ $value->featureImage }}" style="width: 100px; height: auto;">
+                                @endif
+                            </td>
+
+                            <td class="text-wrap text-justify">{!! $value->description !!}</td>
+
                             <td class="no-export">
-                                <a href="{{ route('features.edit', $value->id) }}">
+                                <a href="{{ route('features-details.edit', $value->id) }}">
                                     <button class="btn btn-warning btn-sm">
                                         <i class="micon dw dw-pencil-1"></i> Edit
                                     </button>
                                 </a>
                             </td>
                             <td class="no-export">
-                                <form action="{{ route('features.destroy', $value->id) }}" method="post">
+                                <form action="{{ route('features-details.destroy', $value->id) }}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <input name="_method" type="hidden" value="DELETE">
@@ -143,7 +156,7 @@ Visen | Manaage Features
                     columns: ':not(.no-export)',
                 },
                header: true,
-               title: 'All Features List',
+               title: 'All Feature Details List',
                orientation: 'landscape',
                pageSize: 'A4',
                customize: function(doc) {

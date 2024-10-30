@@ -239,6 +239,7 @@
                     <ul class="submenu {{
                         ($currentRoute === 'innovation-details.index') || ($currentRoute === 'innovation-details.create') || ($currentRoute === 'innovation-details.edit')
                         || ($currentRoute === 'features.index') || ($currentRoute === 'features.create') || ($currentRoute === 'features.edit')
+                        || ($currentRoute === 'features-details.index') || ($currentRoute === 'features-details.create') || ($currentRoute === 'features-details.edit')
                         ? 'show' : '' }}">
                         <li>
                             <a href="{{ route('innovation-details.index') }}" class="{{ ($currentRoute === 'innovation-details.index') || ($currentRoute === 'innovation-details.create') || ($currentRoute === 'innovation-details.edit') ? 'active' : '' }}">Innovation Details</a>
@@ -247,7 +248,10 @@
                             <a href="{{ route('features.index') }}" class="{{ ($currentRoute === 'features.index') || ($currentRoute === 'features.create') || ($currentRoute === 'features.edit') ? 'active' : '' }}">Features</a>
                         </li>
                         <li>
-                            <a href="#">Feature Details</a>
+                            <a href="{{ route('features-details.index') }}" class="{{ ($currentRoute === 'features-details.index') || ($currentRoute === 'features-details.create') || ($currentRoute === 'features-details.edit') ? 'active' : '' }}">Feature Details</a>
+                        </li>
+                        <li>
+                            <a href="#">Statistics</a>
                         </li>
                     </ul>
                 </li>

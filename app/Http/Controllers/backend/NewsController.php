@@ -144,6 +144,7 @@ class NewsController extends Controller
     {
         $data['deleted_by'] =  Auth::user()->id;
         $data['deleted_at'] =  Carbon::now();
+
         try {
             $news = News::findOrFail($id);
             $news->update($data);
