@@ -240,6 +240,7 @@
                         ($currentRoute === 'innovation-details.index') || ($currentRoute === 'innovation-details.create') || ($currentRoute === 'innovation-details.edit')
                         || ($currentRoute === 'features.index') || ($currentRoute === 'features.create') || ($currentRoute === 'features.edit')
                         || ($currentRoute === 'features-details.index') || ($currentRoute === 'features-details.create') || ($currentRoute === 'features-details.edit')
+                        || ($currentRoute === 'statistics.index') || ($currentRoute === 'statistics.create') || ($currentRoute === 'statistics.edit')
                         ? 'show' : '' }}">
                         <li>
                             <a href="{{ route('innovation-details.index') }}" class="{{ ($currentRoute === 'innovation-details.index') || ($currentRoute === 'innovation-details.create') || ($currentRoute === 'innovation-details.edit') ? 'active' : '' }}">Innovation Details</a>
@@ -251,7 +252,7 @@
                             <a href="{{ route('features-details.index') }}" class="{{ ($currentRoute === 'features-details.index') || ($currentRoute === 'features-details.create') || ($currentRoute === 'features-details.edit') ? 'active' : '' }}">Feature Details</a>
                         </li>
                         <li>
-                            <a href="#">Statistics</a>
+                            <a href="{{ route('statistics.index') }}" class="{{ ($currentRoute === 'statistics.index') || ($currentRoute === 'statistics.create') || ($currentRoute === 'statistics.edit') ? 'active' : '' }}">Statistics</a>
                         </li>
                     </ul>
                 </li>

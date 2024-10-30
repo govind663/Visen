@@ -31,6 +31,7 @@ use App\Http\Controllers\backend\ContactInformationController;
 use App\Http\Controllers\backend\InnovationDetailsController;
 use App\Http\Controllers\backend\FeaturesController;
 use App\Http\Controllers\backend\FeaturesDetailsController;
+use App\Http\Controllers\backend\StatisticsController;
 
 // ===== Frontend
 use App\Http\Controllers\frontend\HomeController as FrontendHomeController;
@@ -142,6 +143,9 @@ Route::group(['prefix' => 'admin', 'middleware'=>['auth:web', PreventBackHistory
 
     // ===== Manage Feature Details
     Route::resource('features-details', FeaturesDetailsController::class);
+
+    // ===== Manage Statistics
+    Route::resource('statistics', StatisticsController::class);
 
 });
 
