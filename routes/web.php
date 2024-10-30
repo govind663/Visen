@@ -155,5 +155,10 @@ Route::group(['prefix'=> '', 'middleware'=>[PreventBackHistoryMiddleware::class]
     // ==== Home
     Route::get('/', [FrontendHomeController::class, 'home'])->name('frontend.home');
 
+    // ==== Innovation
+    Route::get('/innovation', [FrontendHomeController::class, 'innovation'])->name('frontend.innovation');
+
+    // ==== Contact Us
+    Route::get('/contact-us', [FrontendHomeController::class, 'contactUs'])->name('frontend.contact-us');
 });
 

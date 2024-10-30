@@ -92,7 +92,7 @@
                             <a href="mailto:info@visen.net">info@visen.net</a>
                             <!-- / <a href="mailto:marketing@visen.net">marketing@visen.net --></a>
                         </li>
-                        <li><a href="contact-us.html"><b>Our Locations</b></a></li>
+                        <li><a href="{{ route('frontend.contact-us') }}"><b>Our Locations</b></a></li>
                     </ul>
                     <ul class="footer-social-links">
                         <!-- <li>Follow Us:</li> -->
