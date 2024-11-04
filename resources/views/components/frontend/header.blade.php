@@ -165,7 +165,7 @@
                             <a href="{{ route('frontend.innovation') }}">Innovation</a>
                         </li>
                         <li>
-                            <a href="investor-relations.html">Investor Relations</a>
+                            <a href="{{ route('frontend.investor-relations') }}">Investor Relations</a>
                         </li>
                         <li>
                             <a href="#">Careers</a>

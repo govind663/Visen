@@ -160,5 +160,14 @@ Route::group(['prefix'=> '', 'middleware'=>[PreventBackHistoryMiddleware::class]
 
     // ==== Contact Us
     Route::get('/contact-us', [FrontendHomeController::class, 'contactUs'])->name('frontend.contact-us');
-});
 
+    // ===== Investor Relations
+    Route::get('/investor-relations', [FrontendHomeController::class, 'investorRelations'])->name('frontend.investor-relations');
+
+    // ==== News, Media & Events
+    Route::get('/news-media-events', [FrontendHomeController::class, 'newsMediaEvents'])->name('frontend.news-media-events');
+
+    // ==== Download Brochure
+    Route::get('/download-brochure', [FrontendHomeController::class, 'downloadBrochure'])->name('frontend.download-brochure');
+
+});

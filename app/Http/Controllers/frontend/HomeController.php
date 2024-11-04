@@ -22,4 +22,19 @@ class HomeController extends Controller
     public function contactUs(Request $request){
         return view("frontend.contact-us");
     }
+
+    // ==== Investor Relations
+    public function investorRelations(Request $request){
+        return view("frontend.investor-relations");
+    }
+
+    // ==== News, Media & Events
+    public function newsMediaEvents(Request $request){
+        return view("frontend.news-media-events");
+    }
+
+    // ==== Download Brochure
+    public function downloadBrochure(Request $request){
+        return view("frontend.download-brochure");
+    }
 }

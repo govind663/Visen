@@ -46,10 +46,10 @@
                                 <li><a href="#">About</a></li>
                                 <li><a href="#">Sustainability</a></li>
                                 <li><a href="#">CSR</a></li>
-                                <li><a href="#">Innovation</a></li>
+                                <li><a href="{{ route('frontend.innovation') }}">Innovation</a></li>
                                 <li><a href="our-certifications.html">Our Certifications</a></li>
-                                <li><a href="news-media-and-events.html">News, Media & Events</a></li>
-                                <li><a href="investor-relations.html">Investor Relations</a></li>
+                                <li><a href="{{ route('frontend.news-media-events') }}">News, Media & Events</a></li>
+                                <li><a href="{{ route('frontend.investor-relations') }}">Investor Relations</a></li>
                                 <li><a href="#">Careers</a></li>
                             </ul>
                         </div>
@@ -73,7 +73,7 @@
                             <ul class="footer-links">
                                 <li><a href="#">Find Product</a></li>
                                 <li><a href="#">Download TDS / MSDS</a></li>
-                                <li><a href="download-brochure.html">Download Brochure</a></li>
+                                <li><a href="{{ route('frontend.download-brochure') }}">Download Brochure</a></li>
                             </ul>
                         </div>
                     </div>
