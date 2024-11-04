@@ -1,4 +1,5 @@
- <!-- header start -->
+
+<!-- header start -->
  <section class="main_menu" id="header-sticky">
     <div class="container-fluid">
         <div class="row v-center">
@@ -65,14 +66,12 @@
                         </li>
                         <li class="menu-item-has-children">
                             <a href="javascript:;">Markets & Products <i class="fa fa-angle-down"></i></a>
-                            <div class="sub-menu mega-menu mega-menu-column-3 industry_dropdown">
+                            <div class="sub-menu mega-menu mega-menu-column-3 industry_dropdown" style="flex-wrap: nowrap;">
                                 <div class="list-item">
                                     <div class="megamenu_content">
                                         <h2>Market and Products</h2>
                                         <p class="text-justify">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                            sed do eiusmod tempor incididunt ut labore et dolore
-                                            magna aliqua.
+                                            {!! $market_introduction->introduction !!}
                                         </p>
                                         <a href="#" type="button" class="btn2">
                                             <span class="button__text">Read More</span>
@@ -91,75 +90,48 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class="list-item industry-col">
-                                    <!-- the button holds the title of the accordion-->
-                                    <button class="course-accordion">Paints & Coatings</button>
-                                    <!-- This div holds the content to be displayed-->
-                                    <div class="course-panel">
-                                        <ul class="industry-listing">
-                                            <li><a href="product-details.html">Interior & Exterior paint</a></li>
-                                            <!-- <li><a href="#">Exterior paint</a></li> -->
-                                            <li><a href="#">High gloss</a></li>
-                                            <li><a href="#">Textured finishes</a></li>
-                                            <li><a href="#">Low VOC / low odour</a></li>
-                                            <li><a href="#">Penetrating primer</a></li>
-                                            <li><a href="#">Floor coat</a></li>
-                                            <li><a href="#">DTM</a></li>
-                                            <li><a href="#">Elastomeric Coating</a></li>
-                                            <li><a href="#">Roof coating</a></li>
-                                            <li><a href="#">Wood & clear coats</a></li>
-                                        </ul>
+
+                                @if(!empty($industry))
+                                    <div class="industry-container col-sm-12">
+                                        @foreach($industry as $index => $value)
+                                            <!-- Start a new row div for every three items -->
+                                            @if($index % 3 == 0)
+                                                <div class="list-item industry-col col-sm-6 ">
+                                            @endif
+
+                                            <!-- Accordion for each industry -->
+                                            <button class="course-accordion" >{{ $value->industries_name }}</button>
+
+                                            <!-- Accordion content -->
+                                            <div class="course-panel">
+                                                <ul class="industry-listing">
+                                                    @if(!empty($value->industry_category))
+                                                        @foreach($value->industry_category as $category)
+                                                            <li>
+                                                                <a href="{{ route('frontend.product-details', ['industry' => urlencode($value->industries_name), 'category' => urlencode($category)]) }}">
+                                                                    {{ $category }}
+                                                                </a>
+                                                            </li>
+                                                        @endforeach
+                                                    @else
+                                                        <li><a href="#">No categories available</a></li>
+                                                    @endif
+                                                </ul>
+                                            </div>
+                                            <!-- End of Accordion -->
+
+                                            <!-- End of new row div for every three items append in Side by Side -->
+                                            @if(($index + 1) % 3 == 0)
+                                                </div>
+                                            @endif
+                                        @endforeach
+
+                                        <!-- Close any remaining open row div if items are not a multiple of 3 -->
+                                        @if(count($industry) % 3 != 0)
+                                            </div>
+                                        @endif
                                     </div>
-                                    <button class="course-accordion">Construction Chemicals</button>
-                                    <div class="course-panel">
-                                        <ul class="industry-listing">
-                                            <li><a href="#">Waterproofing</a></li>
-                                            <li><a href="#">Roof coating</a></li>
-                                            <li><a href="#">Penetrating primer</a></li>
-                                        </ul>
-                                    </div>
-                                    <button class="course-accordion">Textile & Non-Wovens</button>
-                                    <div class="course-panel">
-                                        <ul class="industry-listing">
-                                            <li><a href="#">Pigment printing</a></li>
-                                            <li><a href="#">Screen printing table gum</a></li>
-                                            <li><a href="#">Khadi printing</a></li>
-                                            <li><a href="#">Textile finishing</a></li>
-                                            <li><a href="#">Khadi binder</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="list-item industry-col">
-                                    <button class="course-accordion">Adhesives</button>
-                                    <!-- This div holds the content to be displayed-->
-                                    <div class="course-panel">
-                                        <ul class="industry-listing">
-                                            <!-- <li><a href="#">Print lamination</a></li> -->
-                                            <li><a href="#">Wet Lamination</a></li>
-                                            <li><a href="#">BOPP/lamination adhesive</a></li>
-                                            <!-- <li><a href="#">Dry/auto  adhesive</a></li> -->
-                                            <li><a href="#">PVC lamination adhesive</a></li>
-                                            <li><a href="#">Pencil & stationery adhesives</a></li>
-                                            <li><a href="#">Sticker adhesive for label stock & bindi</a></li>
-                                            <li><a href="#">Wood adhesive</a></li>
-                                            <li><a href="#">Textile adhesive & fabric glue</a></li>
-                                        </ul>
-                                    </div>
-                                    <button class="course-accordion">Packaging</button>
-                                    <div class="course-panel">
-                                        <ul class="industry-listing">
-                                            <li><a href="#">BOPP tape/PSA</a></li>
-                                        </ul>
-                                    </div>
-                                    <button class="course-accordion">Additives</button>
-                                    <div class="course-panel">
-                                        <ul class="industry-listing">
-                                            <li><a href="#">Acrylic Thickeners</a></li>
-                                            <li><a href="#">Acrylic Dispersing Agents</a></li>
-                                            <li><a href="#">Opaque Polymer</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                @endif
                             </div>
                         </li>
                         <li>

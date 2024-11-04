@@ -179,4 +179,7 @@ Route::group(['prefix'=> '', 'middleware'=>[PreventBackHistoryMiddleware::class]
     // ==== My list
     Route::get('/my-list', [FrontendHomeController::class, 'myList'])->name('frontend.my-list');
 
+    // ==== Product Details Page With Slug
+    Route::get('/product-details/{industry?}/{category?}', [FrontendHomeController::class, 'productDetails'])->name('frontend.product-details');
+
 });

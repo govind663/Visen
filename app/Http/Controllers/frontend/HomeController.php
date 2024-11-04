@@ -52,4 +52,16 @@ class HomeController extends Controller
     public function myList(Request $request){
         return view("frontend.my-list");
     }
+
+    // ==== Product Details Page With Slug
+    public function productDetails(Request $request, string $industry, string $category){
+
+        $industryName = $industry;
+        $categoryName = $category;
+
+        return view("frontend.product-details", [
+            'industryName' => $industryName,
+            'categoryName' => $categoryName,
+        ]);
+    }
 }
