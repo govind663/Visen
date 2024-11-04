@@ -47,4 +47,9 @@ class HomeController extends Controller
     public function groupPolicies(Request $request){
         return view("frontend.group-policies");
     }
+
+    // ==== My list
+    public function myList(Request $request){
+        return view("frontend.my-list");
+    }
 }

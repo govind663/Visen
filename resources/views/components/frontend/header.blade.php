@@ -18,21 +18,21 @@
                     </div>
                     <ul class="menu-main">
                         <li class="menu-item-has-children">
-                            <a href="#">About <i class="fa fa-angle-down"></i></a>
+                            <a href="javascript:;">About <i class="fa fa-angle-down"></i></a>
                             <div class="sub-menu mega-menu mega-menu-column-3 about_dropdown">
                                 <div class="list-item">
                                     <div class="megamenu_content">
                                         <h2>About</h2>
                                         <p class="text-justify">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                                            sed do eiusmod tempor incididunt ut labore et dolore magna 
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                            sed do eiusmod tempor incididunt ut labore et dolore magna
                                             aliqua.
                                         </p>
                                         <a href="#" type="button" class="btn2">
                                             <span class="button__text">Read More</span>
                                             <span class="button__icon">
                                                 <svg fill="#fff" height="18" width="18" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 330 330" xml:space="preserve">
-                                                    <path 
+                                                    <path
                                                         id="XMLID_222_" d="M250.606,154.389l-150-149.996c-5.857-5.858-15.355-5.858-21.213,0.001
                                                         c-5.857,5.858-5.857,15.355,0.001,21.213l139.393,139.39L79.393,304.394c-5.857,5.858-5.857,15.355,0.001,21.213
                                                         C82.322,328.536,86.161,330,90,330s7.678-1.464,10.607-4.394l149.999-150.004c2.814-2.813,4.394-6.628,4.394-10.606
@@ -64,14 +64,14 @@
                             </div>
                         </li>
                         <li class="menu-item-has-children">
-                            <a href="#">Markets & Products <i class="fa fa-angle-down"></i></a>
+                            <a href="javascript:;">Markets & Products <i class="fa fa-angle-down"></i></a>
                             <div class="sub-menu mega-menu mega-menu-column-3 industry_dropdown">
                                 <div class="list-item">
                                     <div class="megamenu_content">
                                         <h2>Market and Products</h2>
                                         <p class="text-justify">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                                            sed do eiusmod tempor incididunt ut labore et dolore 
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                            sed do eiusmod tempor incididunt ut labore et dolore
                                             magna aliqua.
                                         </p>
                                         <a href="#" type="button" class="btn2">
@@ -210,17 +210,20 @@
                         </label>
                     </li>
                     <li>
-                        <a href="my-lists.html">
-                            <div class="wishlist_icon"><img src="{{ asset('assets/frontend/img/icon/heart.png') }}"><span
-                                    id="favorites-counter">0</span></div>
+                        <a href="{{ route('frontend.my-list') }}">
+                            <div class="wishlist_icon">
+                                <img src="{{ asset('assets/frontend/img/icon/heart.png') }}">
+                                <span id="favorites-counter">0</span>
+                            </div>
                         </a>
                     <li>
-                        <a href="#search"><img src="{{ asset('assets/frontend/img/icon/search-dark.png') }}"></a>
+                        <a href="#search">
+                            <img src="{{ asset('assets/frontend/img/icon/search-dark.png') }}">
+                        </a>
                         <div id="search">
                             <span class="close">&#x2715;</span>
                             <form role="search" id="searchform" action="/search" method="get">
-                                <input value="" name="q" type="search"
-                                    placeholder="Type to search" />
+                                <input value="" name="q" type="search" placeholder="Type to search" />
                             </form>
                         </div>
                     </li>

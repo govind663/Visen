@@ -176,4 +176,7 @@ Route::group(['prefix'=> '', 'middleware'=>[PreventBackHistoryMiddleware::class]
     // ===== Group Policies
     Route::get('/group-policies', [FrontendHomeController::class, 'groupPolicies'])->name('frontend.group-policies');
 
+    // ==== My list
+    Route::get('/my-list', [FrontendHomeController::class, 'myList'])->name('frontend.my-list');
+
 });
