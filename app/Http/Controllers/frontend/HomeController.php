@@ -37,4 +37,14 @@ class HomeController extends Controller
     public function downloadBrochure(Request $request){
         return view("frontend.download-brochure");
     }
+
+    // ==== Meet our Minds
+    public function meetOurMinds(Request $request){
+        return view("frontend.meet-our-minds");
+    }
+
+    // ===== Group Policies
+    public function groupPolicies(Request $request){
+        return view("frontend.group-policies");
+    }
 }

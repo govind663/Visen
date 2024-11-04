@@ -170,4 +170,10 @@ Route::group(['prefix'=> '', 'middleware'=>[PreventBackHistoryMiddleware::class]
     // ==== Download Brochure
     Route::get('/download-brochure', [FrontendHomeController::class, 'downloadBrochure'])->name('frontend.download-brochure');
 
+    // ==== Meet our Minds
+    Route::get('/meet-our-minds', [FrontendHomeController::class, 'meetOurMinds'])->name('frontend.meet-our-minds');
+
+    // ===== Group Policies
+    Route::get('/group-policies', [FrontendHomeController::class, 'groupPolicies'])->name('frontend.group-policies');
+
 });

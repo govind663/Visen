@@ -23,16 +23,17 @@
                                 <div class="list-item">
                                     <div class="megamenu_content">
                                         <h2>About</h2>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua.</p>
+                                        <p class="text-justify">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                                            sed do eiusmod tempor incididunt ut labore et dolore magna 
+                                            aliqua.
+                                        </p>
                                         <a href="#" type="button" class="btn2">
                                             <span class="button__text">Read More</span>
                                             <span class="button__icon">
-                                                <svg fill="#fff" height="18" width="18" version="1.1"
-                                                    id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                                                    xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                    viewBox="0 0 330 330" xml:space="preserve">
-                                                    <path id="XMLID_222_" d="M250.606,154.389l-150-149.996c-5.857-5.858-15.355-5.858-21.213,0.001
+                                                <svg fill="#fff" height="18" width="18" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 330 330" xml:space="preserve">
+                                                    <path 
+                                                        id="XMLID_222_" d="M250.606,154.389l-150-149.996c-5.857-5.858-15.355-5.858-21.213,0.001
                                                         c-5.857,5.858-5.857,15.355,0.001,21.213l139.393,139.39L79.393,304.394c-5.857,5.858-5.857,15.355,0.001,21.213
                                                         C82.322,328.536,86.161,330,90,330s7.678-1.464,10.607-4.394l149.999-150.004c2.814-2.813,4.394-6.628,4.394-10.606
                                                         C255,161.018,253.42,157.202,250.606,154.389z"
@@ -55,9 +56,9 @@
                                     <ul>
                                         <li><a href="#">Our History</a></li>
                                         <li><a href="#">About our MD</a></li>
-                                        <li><a href="meet-our-minds.html">Meet our Minds</a></li>
+                                        <li><a href="{{ route('frontend.meet-our-minds') }}">Meet our Minds</a></li>
                                         <li><a href="#">Our Brands</a></li>
-                                        <li><a href="group-policies.html">Group Policies</a></li>
+                                        <li><a href="{{ route('frontend.group-policies') }}">Group Policies</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -68,8 +69,11 @@
                                 <div class="list-item">
                                     <div class="megamenu_content">
                                         <h2>Market and Products</h2>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua.</p>
+                                        <p class="text-justify">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                                            sed do eiusmod tempor incididunt ut labore et dolore 
+                                            magna aliqua.
+                                        </p>
                                         <a href="#" type="button" class="btn2">
                                             <span class="button__text">Read More</span>
                                             <span class="button__icon">
