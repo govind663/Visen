@@ -58,12 +58,11 @@
                         <div class="footer-widgets">
                             <h3 class="footer-title">Markets and Products</h3>
                             <ul class="footer-links">
-                                <li><a href="#">Paints & Coatings</a></li>
-                                <li><a href="#">Construction Chemicals</a></li>
-                                <li><a href="#">Textile & Non-Wovens</a></li>
-                                <li><a href="#">Adhesives</a></li>
-                                <li><a href="#">Packaging</a></li>
-                                <li><a href="#">Additives</a></li>
+                                @if(!empty($industry))
+                                    @foreach($industry as $index => $value)
+                                        <li><a href="#">{{ $value->industries_name }}</a></li>
+                                    @endforeach
+                                @endif
                             </ul>
                         </div>
                     </div>

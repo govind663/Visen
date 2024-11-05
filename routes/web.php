@@ -182,4 +182,6 @@ Route::group(['prefix'=> '', 'middleware'=>[PreventBackHistoryMiddleware::class]
     // ==== Product Details Page With Slug
     Route::get('/product-details/{industry?}/{category?}', [FrontendHomeController::class, 'productDetails'])->name('frontend.product-details');
 
+    // ==== Find Product
+    
 });
