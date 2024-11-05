@@ -61,98 +61,48 @@
     <section class="product_details">
         <div class="container-fluid">
             <div class="row row_reverse">
+                
                 <div class="col-md-3">
                     <div class="product_sidebar">
                         <ul class="list-unstyled">
-                            <li class="active">
-                                <button class="course-accordion active">Paints & Coatings</button>
-                                <!-- This div holds the content to be displayed-->
-                                <div class="course-panel" style="max-height: 100%;">
-                                    <ul class="product_sidebar_listing">
-                                        <li><a href="#" class="active">Interior & Exterior paint</a></li>
-                                        <!-- <li><a href="#">Exterior paint</a></li> -->
-                                        <li><a href="#">High gloss</a></li>
-                                        <li><a href="#">Textured finishes</a></li>
-                                        <li><a href="#">Low VOC / low odour</a></li>
-                                        <li><a href="#">Penetrating primer</a></li>
-                                        <li><a href="#">Floor coat</a></li>
-                                        <li><a href="#">Direct To Metal (DTM)</a></li>
-                                        <li><a href="#">Elastomeric Coating</a></li>
-                                        <li><a href="#">Roof coating</a></li>
-                                        <li><a href="#">Wood Coating</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li>
-                                <button class="course-accordion">Construction Chemicals</button>
-                                <div class="course-panel">
-                                    <ul class="product_sidebar_listing">
-                                        <li><a href="#">Waterproofing</a></li>
-                                        <li><a href="#">Roof coating</a></li>
-                                        <li><a href="#">Penetrating primer</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li>
-                                <button class="course-accordion">Textile & Non-Wovens</button>
-                                <div class="course-panel">
-                                    <ul class="product_sidebar_listing">
-                                        <li><a href="#">Printing Binder</a></li>
-                                        <li><a href="#">Screen printing table gum</a></li>
-                                        <li><a href="#">Khadi printing</a></li>
-                                        <li><a href="#">Textile finishing</a></li>
-                                        <li><a href="#">Khadi binder</a></li>
-                                        <li><a href="#">Binder for Inter-lining</a></li>
-                                        <li><a href="#">Binder for Automobile</a></li>
-                                        <li><a href="#">Binder for Battery Separators</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li>
-                                <button class="course-accordion">Adhesives</button>
-                                <!-- This div holds the content to be displayed-->
-                                <div class="course-panel">
-                                    <ul class="product_sidebar_listing">
-                                        <li><a href="#">Wet Lamination</a></li>
-                                        <!-- <li><a href="#">Print lamination</a></li> -->
-                                        <li><a href="#">BOPP/lamination adhesive</a></li>
-                                        <!-- <li><a href="#">Dry/auto  adhesive</a></li> -->
-                                        <li><a href="#">PVC lamination adhesive</a></li>
-                                        <li><a href="#">Pencil & stationery adhesives</a></li>
-                                        <li><a href="#">Sticker adhesive for label stock & bindi</a></li>
-                                        <li><a href="#">Wood adhesive</a></li>
-                                        <li><a href="#">Textile adhesive & fabric glue</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li>
-                                <button class="course-accordion">Packaging</button>
-                                <div class="course-panel">
-                                    <ul class="product_sidebar_listing">
-                                        <li><a href="#">BOPP tape/PSA</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li>
-                                <button class="course-accordion">Additives</button>
-                                <div class="course-panel">
-                                    <ul class="product_sidebar_listing">
-                                        <li><a href="#">Acrylic Thickeners</a></li>
-                                        <li><a href="#">Acrylic Dispersing Agents</a></li>
-                                        <li><a href="#">Opaque Polymer</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
+                            @if(!empty($industry))
+                                @foreach($industry as $value)
+                                    <li>
+                                        <button class="course-accordion {{ $value->industries_name == $industryName ? 'active' : '' }}">
+                                            {{ $value->industries_name }}
+                                        </button>
+                                        <div class="course-panel" style="max-height: {{ $value->industries_name == $industryName ? '100%' : '0' }};">
+                                            <ul class="product_sidebar_listing">
+                                                @if(!empty($value->industry_category))
+                                                    @foreach($value->industry_category as $category)
+                                                        <li class="{{ $category == $categoryName ? 'active' : '' }}">
+                                                            <a href="{{ route('frontend.product-details', [
+                                                                'industry' => $value->industries_name,
+                                                                'category' => $category
+                                                            ]) }}">
+                                                                {{ $category }}
+                                                            </a>
+                                                        </li>
+                                                    @endforeach
+                                                @endif
+                                            </ul>
+                                        </div>
+                                    </li>
+                                @endforeach
+                            @endif
+                        </ul>                        
                     </div>
                 </div>
+
                 <div class="col-md-9">
                     <div class="product_discription">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        <p class="text-justify">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                             labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
                             laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
                             voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                            non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                            non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
                         <h4>Key Features:</h4>
                         <ul class="listing">
                             <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
@@ -161,11 +111,13 @@
                             <li>Excepteur sint occaecat cupidatat non proident.</li>
                             <li>Duis aute irure dolor in reprehenderit in voluptate.</li>
                         </ul>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        <p class="text-justify">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                             labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
                             laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
                             voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                            non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                            non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
                     </div>
                     <hr>
                     <div class="table_content" id="product_details_sec">
@@ -204,7 +156,7 @@
                                                     VISICRYL 7650
                                                 </td>
                                                 <td>50 ± 1</td>
-                                                <td>20 – 70 Ps</td>
+                                                <td>20 - 70 Ps</td>
                                                 <td>22⁰C</td>
                                                 <td>Suitable for interior / exterior paints & textured finishes</td>
                                                 <td class="pdf_link">
@@ -225,7 +177,7 @@
                                                     VISICRYL 7298
                                                 </td>
                                                 <td>50 ± 1</td>
-                                                <td>20 – 80 Ps</td>
+                                                <td>20 - 80 Ps</td>
                                                 <td>30⁰C</td>
                                                 <td>APEO & Formaldehyde free emulsion with good gloss and dirt pick up
                                                     resistance suitable for interior / exterior paints & textured finishes
@@ -248,7 +200,7 @@
                                                     VISICRYL 7296
                                                 </td>
                                                 <td>50 ± 1</td>
-                                                <td>40 – 100 Ps</td>
+                                                <td>40 - 100 Ps</td>
                                                 <td>21⁰C</td>
                                                 <td>APEO & Formaldehyde free emulsion offering excellent pigment binding and
                                                     stability to paint. Suitable for interior /exterior paints</td>
@@ -270,7 +222,7 @@
                                                     VISICRYL 7796 E
                                                 </td>
                                                 <td>50 ± 1</td>
-                                                <td>4 – 12 Ps</td>
+                                                <td>4 - 12 Ps</td>
                                                 <td>20⁰C</td>
                                                 <td>APEO, Formaldehyde & Ammonia free emulsion suitable for interior /
                                                     exterior paints and textured finishes with good sheen and exterior
@@ -293,7 +245,7 @@
                                                     VISICRYL 7501
                                                 </td>
                                                 <td>50 ± 1</td>
-                                                <td>40 – 80 Ps</td>
+                                                <td>40 - 80 Ps</td>
                                                 <td>17⁰C</td>
                                                 <td>APEO & Formaldehyde free emulsion suitable for Interior / exterior
                                                     paints & textured finishes</td>
@@ -313,7 +265,7 @@
                                                 </td>
                                                 <td> VISICRYL 7290</td>
                                                 <td>50 ± 1</td>
-                                                <td>35 – 70 Ps</td>
+                                                <td>35 - 70 Ps</td>
                                                 <td>20⁰C</td>
                                                 <td>High performance APEO & Formaldehyde free emulsion with excellent scrub
                                                     resistance for interior / exterior paints</td>
@@ -333,7 +285,7 @@
                                                 </td>
                                                 <td> VISICRYL 7669 E</td>
                                                 <td>50 ± 1</td>
-                                                <td>20 – 70 Ps</td>
+                                                <td>20 - 70 Ps</td>
                                                 <td>22⁰C</td>
                                                 <td>APEO & Formaldehyde free emulsion suitable for premium interior /
                                                     exterior paints & textured finishes</td>
@@ -353,7 +305,7 @@
                                                 </td>
                                                 <td> VISICRYL 7668</td>
                                                 <td>50 ± 1</td>
-                                                <td>20 – 70 Ps</td>
+                                                <td>20 - 70 Ps</td>
                                                 <td>22⁰C</td>
                                                 <td>Suitable for all types of coatings, textured finishes, adhesives &
                                                     surfacing compounds</td>
@@ -373,7 +325,7 @@
                                                 </td>
                                                 <td> VISICRYL 7748</td>
                                                 <td>48 ± 1</td>
-                                                <td>20 – 70 Ps</td>
+                                                <td>20 - 70 Ps</td>
                                                 <td>+20⁰C</td>
                                                 <td>APEO & Formaldehyde free emulsion with superior stability & high wet
                                                     scrub resistance suitable for interior / exterior paints</td>
@@ -393,7 +345,7 @@
                                                 </td>
                                                 <td> VISICRYL 7545 HV</td>
                                                 <td>45 ± 1</td>
-                                                <td>80 – 120 Ps</td>
+                                                <td>80 - 120 Ps</td>
                                                 <td>13⁰C</td>
                                                 <td>High viscosity emulsion for textured finishes & interior paints</td>
                                                 <td class="pdf_link">
@@ -412,7 +364,7 @@
                                                 </td>
                                                 <td> VISICRYL 7645</td>
                                                 <td>45 ± 1</td>
-                                                <td>5 – 15 Ps</td>
+                                                <td>5 - 15 Ps</td>
                                                 <td>+20⁰C</td>
                                                 <td>APEO & Formaldehyde free emulsion with better stability & high wet scrub
                                                     resistance suitable for interior / exterior paints</td>
@@ -447,7 +399,7 @@
                                                 </td>
                                                 <td>VISICRYL 8351 E</td>
                                                 <td>50 ± 1</td>
-                                                <td>100 – 500 Cps</td>
+                                                <td>100 - 500 Cps</td>
                                                 <td>13⁰C</td>
                                                 <td>APEO, Formaldehyde & Ammonia free emulsion suitable for premium quality
                                                     coatings with sheen offering excellent balance of overall paint
@@ -468,7 +420,7 @@
                                                 </td>
                                                 <td>VISICRYL 8354 GN</td>
                                                 <td>50 ± 1</td>
-                                                <td>50 – 500 Cps</td>
+                                                <td>50 - 500 Cps</td>
                                                 <td>13⁰C</td>
                                                 <td>APEO, Formaldehyde & Ammonia free emulsion suitable for low odour
                                                     premium quality coatings</td>
@@ -488,7 +440,7 @@
                                                 </td>
                                                 <td>VISICRYL 8054 E</td>
                                                 <td>50 ± 1</td>
-                                                <td>50 – 500 Cps</td>
+                                                <td>50 - 500 Cps</td>
                                                 <td>17⁰C</td>
                                                 <td>APEO, Formaldehyde & Ammonia free emulsion suitable for premium quality
                                                     interior / exterior paints with good wet adhesion</td>
@@ -508,7 +460,7 @@
                                                 </td>
                                                 <td>VISICRYL 8155 E 1</td>
                                                 <td>55 ± 1</td>
-                                                <td>300 – 1000 Cps</td>
+                                                <td>300 - 1000 Cps</td>
                                                 <td>23⁰C</td>
                                                 <td>High solids premium APEO, Formaldehyde & Ammonia free emulsion suitable
                                                     for high sheen interior / exterior paints & weather coats</td>
@@ -528,7 +480,7 @@
                                                 </td>
                                                 <td>VISICRYL 8055 E</td>
                                                 <td>50 ± 1</td>
-                                                <td>100 – 1000 Cps</td>
+                                                <td>100 - 1000 Cps</td>
                                                 <td>17⁰C</td>
                                                 <td>APEO, Formaldehyde & Ammonia free emulsion suitable for premium quality
                                                     interior / exterior paints with good wet adhesion</td>
@@ -548,7 +500,7 @@
                                                 </td>
                                                 <td>VISICRYL 8347</td>
                                                 <td>47 ± 1</td>
-                                                <td>100 – 1000 Cps</td>
+                                                <td>100 - 1000 Cps</td>
                                                 <td>+48⁰C</td>
                                                 <td>APEO, Formaldehyde & Ammonia Free Hard and robust emulsion with
                                                     Ultrafine particle size and excellent resistance to UV and dirt pick up.
@@ -571,7 +523,7 @@
                                                 </td>
                                                 <td>VISICRYL 8826</td>
                                                 <td>50 ± 1</td>
-                                                <td>10 – 20 Ps</td>
+                                                <td>10 - 20 Ps</td>
                                                 <td>+12⁰C</td>
                                                 <td>High Performance emulsion free from formaldehyde with excellent alkali
                                                     and weathering resistance. It has superior compatibility with variety of
@@ -805,7 +757,7 @@
                                                     VISICRYL 7650
                                                 </td>
                                                 <td>50 ± 1</td>
-                                                <td>20 – 70 Ps</td>
+                                                <td>20 - 70 Ps</td>
                                                 <td>22⁰C</td>
                                                 <td>Suitable for interior / exterior paints & textured finishes</td>
                                                 <td class="pdf_link">
@@ -826,7 +778,7 @@
                                                     VISICRYL 7298
                                                 </td>
                                                 <td>50 ± 1</td>
-                                                <td>20 – 80 Ps</td>
+                                                <td>20 - 80 Ps</td>
                                                 <td>30⁰C</td>
                                                 <td>APEO & Formaldehyde free emulsion with good gloss and dirt pick up
                                                     resistance suitable for interior / exterior paints & textured finishes
@@ -849,7 +801,7 @@
                                                     VISICRYL 7296
                                                 </td>
                                                 <td>50 ± 1</td>
-                                                <td>40 – 100 Ps</td>
+                                                <td>40 - 100 Ps</td>
                                                 <td>21⁰C</td>
                                                 <td>APEO & Formaldehyde free emulsion offering excellent pigment binding and
                                                     stability to paint. Suitable for interior /exterior paints</td>
@@ -871,7 +823,7 @@
                                                     VISICRYL 7796 E
                                                 </td>
                                                 <td>50 ± 1</td>
-                                                <td>4 – 12 Ps</td>
+                                                <td>4 - 12 Ps</td>
                                                 <td>20⁰C</td>
                                                 <td>APEO, Formaldehyde & Ammonia free emulsion suitable for interior /
                                                     exterior paints and textured finishes with good sheen and exterior
@@ -894,7 +846,7 @@
                                                     VISICRYL 7501
                                                 </td>
                                                 <td>50 ± 1</td>
-                                                <td>40 – 80 Ps</td>
+                                                <td>40 - 80 Ps</td>
                                                 <td>17⁰C</td>
                                                 <td>APEO & Formaldehyde free emulsion suitable for Interior / exterior
                                                     paints & textured finishes</td>
@@ -914,7 +866,7 @@
                                                 </td>
                                                 <td> VISICRYL 7290</td>
                                                 <td>50 ± 1</td>
-                                                <td>35 – 70 Ps</td>
+                                                <td>35 - 70 Ps</td>
                                                 <td>20⁰C</td>
                                                 <td>High performance APEO & Formaldehyde free emulsion with excellent scrub
                                                     resistance for interior / exterior paints</td>
@@ -934,7 +886,7 @@
                                                 </td>
                                                 <td> VISICRYL 7669 E</td>
                                                 <td>50 ± 1</td>
-                                                <td>20 – 70 Ps</td>
+                                                <td>20 - 70 Ps</td>
                                                 <td>22⁰C</td>
                                                 <td>APEO & Formaldehyde free emulsion suitable for premium interior /
                                                     exterior paints & textured finishes</td>
@@ -954,7 +906,7 @@
                                                 </td>
                                                 <td> VISICRYL 7668</td>
                                                 <td>50 ± 1</td>
-                                                <td>20 – 70 Ps</td>
+                                                <td>20 - 70 Ps</td>
                                                 <td>22⁰C</td>
                                                 <td>Suitable for all types of coatings, textured finishes, adhesives &
                                                     surfacing compounds</td>
@@ -974,7 +926,7 @@
                                                 </td>
                                                 <td> VISICRYL 7748</td>
                                                 <td>48 ± 1</td>
-                                                <td>20 – 70 Ps</td>
+                                                <td>20 - 70 Ps</td>
                                                 <td>+20⁰C</td>
                                                 <td>APEO & Formaldehyde free emulsion with superior stability & high wet
                                                     scrub resistance suitable for interior / exterior paints</td>
@@ -994,7 +946,7 @@
                                                 </td>
                                                 <td> VISICRYL 7545 HV</td>
                                                 <td>45 ± 1</td>
-                                                <td>80 – 120 Ps</td>
+                                                <td>80 - 120 Ps</td>
                                                 <td>13⁰C</td>
                                                 <td>High viscosity emulsion for textured finishes & interior paints</td>
                                                 <td class="pdf_link">
@@ -1013,7 +965,7 @@
                                                 </td>
                                                 <td> VISICRYL 7645</td>
                                                 <td>45 ± 1</td>
-                                                <td>5 – 15 Ps</td>
+                                                <td>5 - 15 Ps</td>
                                                 <td>+20⁰C</td>
                                                 <td>APEO & Formaldehyde free emulsion with better stability & high wet scrub
                                                     resistance suitable for interior / exterior paints</td>
@@ -1055,7 +1007,7 @@
                                                 </td>
                                                 <td>VISICRYL 8351 E</td>
                                                 <td>50 ± 1</td>
-                                                <td>100 – 500 Cps</td>
+                                                <td>100 - 500 Cps</td>
                                                 <td>13⁰C</td>
                                                 <td>APEO, Formaldehyde & Ammonia free emulsion suitable for premium quality
                                                     coatings with sheen offering excellent balance of overall paint
@@ -1076,7 +1028,7 @@
                                                 </td>
                                                 <td>VISICRYL 8354 GN</td>
                                                 <td>50 ± 1</td>
-                                                <td>50 – 500 Cps</td>
+                                                <td>50 - 500 Cps</td>
                                                 <td>13⁰C</td>
                                                 <td>APEO, Formaldehyde & Ammonia free emulsion suitable for low odour
                                                     premium quality coatings</td>
@@ -1096,7 +1048,7 @@
                                                 </td>
                                                 <td>VISICRYL 8054 E</td>
                                                 <td>50 ± 1</td>
-                                                <td>50 – 500 Cps</td>
+                                                <td>50 - 500 Cps</td>
                                                 <td>17⁰C</td>
                                                 <td>APEO, Formaldehyde & Ammonia free emulsion suitable for premium quality
                                                     interior / exterior paints with good wet adhesion</td>
@@ -1116,7 +1068,7 @@
                                                 </td>
                                                 <td>VISICRYL 8155 E 1</td>
                                                 <td>55 ± 1</td>
-                                                <td>300 – 1000 Cps</td>
+                                                <td>300 - 1000 Cps</td>
                                                 <td>23⁰C</td>
                                                 <td>High solids premium APEO, Formaldehyde & Ammonia free emulsion suitable
                                                     for high sheen interior / exterior paints & weather coats</td>
@@ -1136,7 +1088,7 @@
                                                 </td>
                                                 <td>VISICRYL 8055 E</td>
                                                 <td>50 ± 1</td>
-                                                <td>100 – 1000 Cps</td>
+                                                <td>100 - 1000 Cps</td>
                                                 <td>17⁰C</td>
                                                 <td>APEO, Formaldehyde & Ammonia free emulsion suitable for premium quality
                                                     interior / exterior paints with good wet adhesion</td>
@@ -1156,7 +1108,7 @@
                                                 </td>
                                                 <td>VISICRYL 8347</td>
                                                 <td>47 ± 1</td>
-                                                <td>100 – 1000 Cps</td>
+                                                <td>100 - 1000 Cps</td>
                                                 <td>+48⁰C</td>
                                                 <td>APEO, Formaldehyde & Ammonia Free Hard and robust emulsion with
                                                     Ultrafine particle size and excellent resistance to UV and dirt pick up.
@@ -1179,7 +1131,7 @@
                                                 </td>
                                                 <td>VISICRYL 8826</td>
                                                 <td>50 ± 1</td>
-                                                <td>10 – 20 Ps</td>
+                                                <td>10 - 20 Ps</td>
                                                 <td>+12⁰C</td>
                                                 <td>High Performance emulsion free from formaldehyde with excellent alkali
                                                     and weathering resistance. It has superior compatibility with variety of
@@ -1393,28 +1345,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="product_contact">
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="product_contact_info">
-                          <h2>Contact Us</h2>
-                          <p>We welcome your questions and comments. To make a general enquiry or to find out more about a specific Synthomer product, please get in touch.</p>
-                          <a type="button" class="btn2">
-                          <span class="button__text">Contact Us</span>
-                          <span class="button__icon">
-                            <svg fill="#fff" height="18" width="18" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                              viewBox="0 0 330 330" xml:space="preserve">
-                              <path id="XMLID_222_" d="M250.606,154.389l-150-149.996c-5.857-5.858-15.355-5.858-21.213,0.001
-                                c-5.857,5.858-5.857,15.355,0.001,21.213l139.393,139.39L79.393,304.394c-5.857,5.858-5.857,15.355,0.001,21.213
-                                C82.322,328.536,86.161,330,90,330s7.678-1.464,10.607-4.394l149.999-150.004c2.814-2.813,4.394-6.628,4.394-10.606
-                                C255,161.018,253.42,157.202,250.606,154.389z"/>
-                            </svg>
-                          </span>
-                        </a>
-                        </div>
-                      </div>
-                    </div>
-                    </div> -->
                 </div>
             </div>
         </div>
@@ -1428,8 +1358,11 @@
                 <div class="col-md-8 col-md-offset-2">
                     <div class="heading text-center">
                         <h2>Contact Us About Our Products</h2>
-                        <p>Looking for the ideal products that match your needs? Submit your contact information and we’ll
-                            connect with you to explore the best options together.</p>
+                        <p class="text-justify">
+                            Looking for the ideal products that match your needs?
+                            Submit your contact information and we’ll
+                            connect with you to explore the best options together.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -1589,7 +1522,179 @@
     </section>
     <!-- About Product Contact Form Section End -->
 
+    <!-- Request Sample -->
+    <div id="request_sample" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Request A Sample</h4>
+                    <p>Please fill the required fields</p>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <form class="product_form">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Enter Your Name">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Enter Email Address">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" id="mobile_code_one" class="form-control" placeholder="Phone Number"
+                                    name="name">
+                            </div>
+                            <div class="col-md-6">
+                                <select class="form-control">
+                                    <option value="">-- Select Country --</option>
+                                    <option value="India">India</option>
+                                    <option value="UAE">UAE</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-control">
+                                    <option value="">-- Select Quantity --</option>
+                                    <option value="1kg">1kg</option>
+                                    <option value="2kg">2kg</option>
+                                    <option value="3kg">3kg</option>
+                                    <option value="4kg">4kg</option>
+                                    <option value="5kg">5kg</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <textarea type="text" class="form-control" placeholder="Address"></textarea>
+                            </div>
+                            <div class="col-md-6">
+                                <textarea type="text" class="form-control" placeholder="Subject/Message"></textarea>
+                            </div>
+                            <div class="col-md-12">
+                                <center><button class="btn btn-lg" type="submit">Submit</button></center>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!--  <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Download TDS -->
+    <div id="download_tds" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Download TDS/SDS</h4>
+                    <p>Please fill the required fields</p>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <form class="product_form">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Enter Your Name">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Enter Email Address">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" id="mobile_code_two" class="form-control" placeholder="Phone Number"
+                                    name="name">
+                            </div>
+                            <div class="col-md-6">
+                                <select class="form-control">
+                                    <option value="">-- Select Country --</option>
+                                    <option value="India">India</option>
+                                    <option value="UAE">UAE</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <center><button class="btn btn-lg" type="submit">Submit</button></center>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Download SDS -->
+    <div id="download_sds" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Download SDS</h4>
+                    <p>Please fill the required fields</p>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <form class="product_form">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Enter Your Name">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Enter Email Address">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" id="mobile_code_two" class="form-control" placeholder="Phone Number"
+                                    name="name">
+                            </div>
+                            <div class="col-md-6">
+                                <select class="form-control">
+                                    <option value="">-- Select Country --</option>
+                                    <option value="India">India</option>
+                                    <option value="UAE">UAE</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <center><button class="btn btn-lg" type="submit">Submit</button></center>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div> -->
+            </div>
+        </div>
+    </div>
+
+    <a id="button"></a>
 @endsection
 
 @push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const accordions = document.querySelectorAll('.course-accordion');
+
+        accordions.forEach(button => {
+            button.addEventListener('click', function () {
+                // Close all panels
+                accordions.forEach(btn => {
+                    const panel = btn.nextElementSibling;
+                    btn.classList.remove('active');
+                    panel.style.maxHeight = '0';
+                });
+
+                // Open the clicked panel
+                const panel = this.nextElementSibling;
+                if (this.classList.contains('active')) {
+                    this.classList.remove('active');
+                    panel.style.maxHeight = '0';
+                } else {
+                    this.classList.add('active');
+                    panel.style.maxHeight = panel.scrollHeight + 'px'; // Set to the scrollHeight to expand
+                }
+            });
+        });
+    });
+</script>
 @endpush

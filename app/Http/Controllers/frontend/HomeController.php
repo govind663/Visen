@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Industry;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class HomeController extends Controller
 {
@@ -56,12 +58,26 @@ class HomeController extends Controller
     // ==== Product Details Page With Slug
     public function productDetails(Request $request, string $industry, string $category){
 
+        // Optionally, transform slugs back to readable names
         $industryName = $industry;
         $categoryName = $category;
+
+        // ==== Fetch Industry
+        $industry = Industry::orderBy("id","asc")->whereNull('deleted_at')->where('status', 1)->get([
+            'industries_name',
+            'industry_category',
+            'id'
+        ]);
+
+        // === Convert industry_category to array decode
+        $industry = $industry->map(function ($item) {
+            $item->industry_category = json_decode($item->industry_category);
+            return $item;
+        });
 
         return view("frontend.product-details", [
             'industryName' => $industryName,
             'categoryName' => $categoryName,
+            'industry' => $industry,
         ]);
-    }
-}
+    }}

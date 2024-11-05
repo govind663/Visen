@@ -3839,6 +3839,9 @@
     color: var(--color-one);
     background: #fff;
     text-decoration: none;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
   }
 
   .product_sidebar ul li .active:after {

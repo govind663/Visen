@@ -108,7 +108,10 @@
                                                     @if(!empty($value->industry_category))
                                                         @foreach($value->industry_category as $category)
                                                             <li>
-                                                                <a href="{{ route('frontend.product-details', ['industry' => urlencode($value->industries_name), 'category' => urlencode($category)]) }}">
+                                                                <a href="{{ route('frontend.product-details', [
+                                                                'industry' => $value->industries_name,
+                                                                'category' => $category,
+                                                                ]) }}">
                                                                     {{ $category }}
                                                                 </a>
                                                             </li>
