@@ -124,8 +124,8 @@ class FeaturesDetailsController extends Controller
                 $image->move(public_path('/visen/features_details/featureImage/'), $new_name);
 
                 // Update the media object with the new image path
-                $features_details->image = "/visen/features_details/featureImage/" . $new_name; // Update the path for the database
-                $features_details->image = $new_name;
+                // $features_details->featureImage = "/visen/features_details/featureImage/" . $new_name; // Update the path for the database
+                $features_details->featureImage = $new_name;
             }
 
             $features_details->features_id = $request->features_id;

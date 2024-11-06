@@ -29,7 +29,7 @@ class ProductCategoryRequest extends FormRequest
                 'solidContentInPercentage' => 'required|string|max:255',
                 'viscosity' => 'required|string|max:255',
                 'mfet' => 'required|string|max:255',
-                'description' => 'required|string|max:255',
+                'description' => 'required|string',
                 'resource_doc' => 'nullable|mimes:jpeg,png,jpg,pdf|max:2048',
             ];
         }else{
@@ -40,7 +40,7 @@ class ProductCategoryRequest extends FormRequest
                 'solidContentInPercentage' => 'required|string|max:255',
                 'viscosity' => 'required|string|max:255',
                 'mfet' => 'required|string|max:255',
-                'description' => 'required|string|max:255',
+                'description' => 'required|string',
                 'resource_doc' => 'nullable|mimes:jpeg,png,jpg,pdf|max:2048',
             ];
         }
