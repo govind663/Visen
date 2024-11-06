@@ -24,13 +24,13 @@ class GroupPoliciesRequest extends FormRequest
 
         if ($this->id){
             $rule = [
-                'policy_doc.*' => 'file|mimes:pdf|max:2048',
+                'policy_doc.*' => 'mimes:jpeg,jpg,png,pdf|max:2048',
                 'policy_name.*' => 'required|string|max:255',
                 'description' => 'required|string',
             ];
         }else{
             $rule = [
-                'policy_doc.*' => 'required|file|mimes:pdf|max:2048',
+                'policy_doc.*' => 'required|mimes:jpeg,jpg,png,pdf|max:2048',
                 'policy_name.*' => 'required|string|max:255',
                 'description' => 'required|string',
             ];
@@ -42,7 +42,7 @@ class GroupPoliciesRequest extends FormRequest
 
         return [
             'policy_doc.*.required' => __('Policy Document is required'),
-            'policy_doc.*.mimes' => __('Policy Document must be a file of type: pdf'),
+            'policy_doc.*.mimes' => __('Policy Document must be a file of type: jpeg, jpg, png, pdf'),
             'policy_doc.*.max' => __('Policy Document must not be greater than 2MB'),
 
             'policy_name.*.required' => __('Policy Name is required'),

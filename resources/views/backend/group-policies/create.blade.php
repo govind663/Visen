@@ -71,10 +71,10 @@ Visen | Add Policy
                                     <div id="overview-amenite-container-0">
                                         <div id="file-overview-amenite-0"></div>
                                     </div>
-                                    <input type="file" onchange="overviewPolicyPreviewFile(0)" accept=".pdf"  name="policy_doc[]" id="policy_doc_0" class="form-control @error('policy_doc.*') is-invalid @enderror">
+                                    <input type="file" onchange="overviewPolicyPreviewFile(0)" accept=".png, .jpg, .jpeg, .pdf"  name="policy_doc[]" id="policy_doc_0" class="form-control @error('policy_doc.*') is-invalid @enderror">
                                     <small class="text-secondary"><b>Note : The file size  should be less than 2MB .</b></small>
                                     <br>
-                                    <small class="text-secondary"><b>Note : Only files in .pdf format can be uploaded .</b></small>
+                                    <small class="text-secondary"><b>Note : Only files in .png, .jpg, .jpeg, .pdf format can be uploaded .</b></small>
                                     <br>
                                     @error('policy_doc.*')
                                         <span class="invalid-feedback" role="alert">
@@ -138,10 +138,10 @@ Visen | Add Policy
                             <div id="overview-amenite-container-${rowId}">
                                 <div id="file-overview-amenite-${rowId}"></div>
                             </div>
-                            <input type="file" onchange="overviewPolicyPreviewFile(${rowId})" accept=".pdf" name="policy_doc[]" id="policy_doc_${rowId}" class="form-control @error('policy_doc.*') is-invalid @enderror">
+                            <input type="file" onchange="overviewPolicyPreviewFile(${rowId})" accept=".png, .jpg, .jpeg, .pdf" name="policy_doc[]" id="policy_doc_${rowId}" class="form-control @error('policy_doc.*') is-invalid @enderror">
                             <small class="text-secondary"><b>Note : The file size should be less than 2MB.</b></small>
                             <br>
-                            <small class="text-secondary"><b>Note : Only files in .pdf format can be uploaded.</b></small>
+                            <small class="text-secondary"><b>Note : Only files in .png, .jpg, .jpeg, .pdf format can be uploaded.</b></small>
                             <br>
                             @error('policy_doc.*')
                                 <span class="invalid-feedback" role="alert">

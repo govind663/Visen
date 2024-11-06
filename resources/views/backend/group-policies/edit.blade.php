@@ -76,13 +76,13 @@ Visen | Edit Policy
                                     @if($doc)
                                         <embed src="{{ asset('/visen/group_policy/policy_doc/' . $doc) }}" type="application/pdf" width="100%" height="25%" />
                                     @endif
-                                    <input type="file" onchange="overviewPolicyPreviewFile({{ $index }})" accept=".pdf" name="policy_doc[]" id="policy_doc_{{ $index }}" class="form-control @error('policy_doc.*') is-invalid @enderror">
+                                    <input type="file" onchange="overviewPolicyPreviewFile({{ $index }})" accept=".png, .jpg, .jpeg, .pdf" name="policy_doc[]" id="policy_doc_{{ $index }}" class="form-control @error('policy_doc.*') is-invalid @enderror">
                                     <!-- Hidden field to store the existing file -->
                                     <input type="hidden" name="existing_policy_doc[]" value="{{ $doc }}">
 
                                     <small class="text-secondary"><b>Note: The file size should be less than 2MB.</b></small>
                                     <br>
-                                    <small class="text-secondary"><b>Note: Only files in .pdf format can be uploaded.</b></small>
+                                    <small class="text-secondary"><b>Note: Only files in .png, .jpg, .jpeg, .pdf format can be uploaded.</b></small>
                                     @error('policy_doc.*')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -144,10 +144,10 @@ Visen | Edit Policy
                 <tr>
                     <td>
                         <div class="col-sm-12 col-md-12">
-                            <input type="file" onchange="overviewPolicyPreviewFile(${rowId})" accept=".pdf" name="policy_doc[]" id="policy_doc_${rowId}" class="form-control">
+                            <input type="file" onchange="overviewPolicyPreviewFile(${rowId})" accept=".png, .jpg, .jpeg, .pdf" name="policy_doc[]" id="policy_doc_${rowId}" class="form-control">
                             <small class="text-secondary"><b>Note: The file size should be less than 2MB.</b></small>
                             <br>
-                            <small class="text-secondary"><b>Note: Only files in .pdf format can be uploaded.</b></small>
+                            <small class="text-secondary"><b>Note: Only files in .png, .jpg, .jpeg, .pdf format can be uploaded.</b></small>
                         </div>
                     </td>
                     <td>
