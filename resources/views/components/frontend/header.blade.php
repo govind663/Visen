@@ -71,7 +71,8 @@
                                     <div class="megamenu_content">
                                         <h2>Market and Products</h2>
                                         <p class="text-justify">
-                                            {!! $market_introduction->introduction !!}
+                                            {{-- Check Null Value --}}
+                                            {!! $market_introduction->introduction ?? '' !!}
                                         </p>
                                         <a href="#" type="button" class="btn2">
                                             <span class="button__text">Read More</span>

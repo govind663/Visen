@@ -77,30 +77,16 @@ Visen | Edit Industry
                 </div>
 
                 <div class="form-group row mt-3">
-                    <label class="col-sm-3"><b>Upload Industry Image : <span class="text-danger">*</span></b></b></label>
-                    <div class="col-sm-6 col-md-6">
-                        <input type="file" onchange="agentPreviewFile()" accept=".png, .jpg, .jpeg" name="industries_image" id="industries_image" class="form-control @error('industries_image') is-invalid @enderror" value="{{ $industries->industries_image }}" placeholder="Upload Industry Image.">
-                        <small class="text-secondary"><b>Note : The file size  should be less than 2MB .</b></small>
-                        <br>
-                        <small class="text-secondary"><b>Note : Only files in .jpg, .jpeg, .png format can be uploaded .</b></small>
-                        <br>
-                        @error('industries_image')
+                    <label class="col-sm-2"><b>Industry Title : <span class="text-danger">*</span></b></b></label>
+                    <div class="col-sm-10 col-md-10 mb-3">
+                        <input type="text" name="industryTitle" id="industryTitle" class="form-control @error('industryTitle') is-invalid @enderror" placeholder="Enter Industry Title" value="{{ $industries->industryTitle }}">
+                        @error('industryTitle')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
-                        <br>
-                        <div id="preview-industries-image-container">
-                            <div id="file-preview-industries-image"></div>
-                        </div>
-                        <br>
-                        @if (!empty($industries->industries_image))
-                            <img src="{{ asset('/visen/industries/industries_image/'.$industries->industries_image) }}" width="100%" height="50%">
-                        @endif
                     </div>
-                </div>
 
-                <div class="form-group row mt-3">
                     <label class="col-sm-2"><b>Industry Description : <span class="text-danger">*</span></b></b></label>
                     <div class="col-sm-10 col-md-10">
                         <textarea name="description" id="description" class="textarea_editor form-control border-radius-0 @error('description') is-invalid @enderror" placeholder="Enter Industry Description" value="{!! $industries->description !!}">{!! $industries->description !!}</textarea>
@@ -115,6 +101,7 @@ Visen | Edit Industry
                 <table class="table table-bordered p-3" id="dynamicIndustryTable">
                     <thead>
                         <tr>
+                            <th>Industry Image : <span class="text-danger">*</span></th>
                             <th>Industry Category : <span class="text-danger">*</span></th>
                             <th>Action</th>
                         </tr>
@@ -122,38 +109,80 @@ Visen | Edit Industry
                     <tbody>
                         @if (!empty($industryCategory))
                             @foreach ($industryCategory as $index => $category)
-                            <tr>
-                                <td>
-                                    <div class="col-sm-12 col-md-12">
-                                        <input type="text" name="industry_category[]" value="{{ old('industry_category.' . $index, $category) }}" class="form-control @error('industry_category.*') is-invalid @enderror" placeholder="Enter Industry Category">
-                                        @error('industry_category.*')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </td>
-                                <td>
-                                    @if($loop->first)
-                                        <button type="button" class="btn btn-primary" id="addIndustryRow">Add More</button>
-                                    @else
-                                        <button type="button" class="btn btn-danger removeIndustryRow">Remove</button>
-                                    @endif
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>
+                                        <div class="col-sm-12 col-md-12">
+                                            <!-- Image preview if exists -->
+                                            @if (!empty($industries_image[$index]))
+                                                <div id="overview-industry-container-{{ $index }}">
+                                                    <div id="file-overview-industry-{{ $index }}">
+                                                        <img src="{{ asset('visen/industries/industries_image/' . $industries_image[$index]) }}" alt="Industry Image" style="width:120px; height:100px;">
+                                                    </div>
+                                                </div>
+                                            @endif
+                                            <input type="file" onchange="overviewIndustryPreviewFiles({{ $index }})" accept=".png, .jpg, .jpeg, .pdf" name="industries_image[]" id="industries_image_{{ $index }}" class="form-control @error('industries_image.${index}') is-invalid @enderror" placeholder="Upload Industry Image">
+                                            <small class="text-secondary"><b>Note: The file size should be less than 2MB.</b></small>
+                                            <br>
+                                            <small class="text-secondary"><b>Note: Only files in .jpg, .jpeg, .png, .pdf format can be uploaded.</b></small>
+                                            @error('industries_image.${index}')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div class="col-sm-12 col-md-12">
+                                            <input type="text" name="industry_category[]" value="{{ old('industry_category.' . $index, $category) }}" class="form-control @error('industry_category.*') is-invalid @enderror" placeholder="Enter Industry Category">
+                                            @error('industry_category.*')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        @if($loop->first)
+                                            <button type="button" class="btn btn-primary" id="addIndustryRow">Add More</button>
+                                        @else
+                                            <button type="button" class="btn btn-danger removeIndustryRow">Remove</button>
+                                        @endif
+                                    </td>
+                                </tr>
                             @endforeach
                         @else
                             <tr>
                                 <td>
                                     <div class="col-sm-12 col-md-12">
-                                        <input type="text" name="industry_category[]" class="form-control @error('industry_category.*') is-invalid @enderror" value="{{ old('industry_category.0') }}" placeholder="Enter Industry Category">
-                                        @error('industry_category.*')
+                                        <div id="overview-industry-container-0">
+                                            <div id="file-overview-industry-0"></div>
+                                        </div>
+                                        <input type="file" onchange="overviewIndustryPreviewFiles(0)" accept=".png, .jpg, .jpeg" name="industries_image[]" id="industries_image_0" class="form-control @error('industries_image.0') is-invalid @enderror" value="{{ old('industries_image.0') }}" placeholder="Upload Industry Image">
+                                        <small class="text-secondary"><b>Note: The file size should be less than 2MB.</b></small>
+                                        <br>
+                                        <small class="text-secondary"><b>Note: Only files in .jpg, .jpeg, .png format can be uploaded.</b></small>
+                                        <br>
+                                        @error('industries_image.0')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
                                     </div>
                                 </td>
+
+                                <td>
+                                    <div class="col-sm-12 col-md-12">
+                                        <input type="text" name="industry_category[]" id="industry_category_0" class="form-control @error('industry_category.0') is-invalid @enderror" value="{{ old('industry_category.0') }}" placeholder="Enter Industry Category">
+                                        @error('industry_category.0')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </td>
+
                                 <td>
                                     <button type="button" class="btn btn-primary" id="addIndustryRow">Add More</button>
                                 </td>
@@ -282,21 +311,41 @@ Visen | Edit Industry
 {{-- Add More Industry Category --}}
 <script>
     $(document).ready(function () {
-        // Add new row
+        let rowId = {{ count($industryCategory) }}; // Start with the current count of rows
+
+        // Add a new row
         $('#addIndustryRow').click(function () {
-            var newRow = `<tr>
-                <td>
-                    <div class="col-sm-12 col-md-12">
-                        <input type="text" name="industry_category[]" class="form-control @error('industry_category.*') is-invalid @enderror" value="{{ old('industry_category.0') }}" placeholder="Enter Industry Category">
-                        @error('industry_category.*')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                </td>
-                <td><button type="button" class="btn btn-danger removeIndustryRow">Remove</button></td>
-            </tr>`;
+            rowId++;
+            const newRow = `
+                <tr>
+                    <td>
+                        <div class="col-sm-12 col-md-12">
+                            <div id="overview-industry-container-${rowId}">
+                                <div id="file-overview-industry-${rowId}"></div>
+                            </div>
+                            <input type="file" onchange="overviewIndustryPreviewFiles(${rowId})" accept=".png, .jpg, .jpeg, .pdf" name="industries_image[]" id="industries_image_${rowId}" class="form-control @error('industries_image.${rowId}') is-invalid @enderror" placeholder="Upload Industry Image">
+                            <small class="text-secondary"><b>Note : The file size should be less than 2MB.</b></small>
+                            <br>
+                            <small class="text-secondary"><b>Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded.</b></small>
+                            @error('industries_image.${rowId}')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-sm-12 col-md-12">
+                            <input type="text" name="industry_category[]" id="industry_category_${rowId}" class="form-control @error('industry_category.${rowId}') is-invalid @enderror" placeholder="Enter Industry Category">
+                            @error('industry_category.${rowId}')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </td>
+                    <td><button type="button" class="btn btn-danger removeIndustryRow">Remove</button></td>
+                </tr>`;
             $('#dynamicIndustryTable tbody').append(newRow);
         });
 
@@ -305,5 +354,41 @@ Visen | Edit Industry
             $(this).closest('tr').remove();
         });
     });
+
+    // Preview function for industry files
+    function overviewIndustryPreviewFiles(index) {
+        const fileInput = document.getElementById(`industries_image_${index}`);
+        const previewContainer = document.getElementById(`overview-industry-container-${index}`);
+        const filePreview = document.getElementById(`file-overview-industry-${index}`);
+        const file = fileInput.files[0];
+
+        if (!fileInput || !previewContainer || !filePreview) return;
+
+        if (file) {
+            const fileType = file.type;
+            const validImageTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+            const validPdfTypes = ['application/pdf'];
+
+            if (validImageTypes.includes(fileType)) {
+                // Image preview
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    filePreview.innerHTML = `<img src="${e.target.result}" alt="File Preview" style="width:120px; height:100px !important;">`;
+                };
+                reader.readAsDataURL(file);
+            } else if (validPdfTypes.includes(fileType)) {
+                // PDF preview
+                filePreview.innerHTML = `<embed src="${URL.createObjectURL(file)}" type="application/pdf" width="100%" height="100px" />`;
+            } else {
+                // Unsupported file type
+                filePreview.innerHTML = '<p>Unsupported file type</p>';
+            }
+
+            previewContainer.style.display = 'block';
+        } else {
+            // No file selected
+            previewContainer.style.display = 'none';
+        }
+    }
 </script>
 @endpush

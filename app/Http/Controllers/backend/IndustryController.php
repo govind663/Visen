@@ -48,18 +48,27 @@ class IndustryController extends Controller
             // Create a new Industry instance
             $industries = new Industry();
 
-            // ==== Store industries_image
             if ($request->hasFile('industries_image')) {
-                $image = $request->file('industries_image');
-                $extension = $image->getClientOriginalExtension();
-                $new_name = time() . rand(10, 999) . '.' . $extension;
-                $image->move(public_path('/visen/industries/industries_image'), $new_name);
+                $images = []; // Array to hold paths of each uploaded image
 
-                $image_path = "/visen/industries/industries_image/" . $new_name;
-                $industries->industries_image = $new_name;
+                foreach ($request->file('industries_image') as $image) {
+                    if ($image->isValid()) {
+                        $extension = $image->getClientOriginalExtension();
+                        $new_name = time() . rand(10, 999) . '.' . $extension;
+                        $image->move(public_path('/visen/industries/industries_image'), $new_name);
+
+                        $image_path = "/visen/industries/industries_image/" . $new_name;
+                        // Add the image name to the array
+                        $images[] = $new_name;
+                    }
+                }
+
+                // Convert the array to JSON format and store it in the database
+                $industries->industries_image = json_encode($images);
             }
 
             $industries->industries_name = $request->industries_name;
+            $industries->industryTitle = $request->industryTitle;
             $industries->description = $request->description;
             $industries->industry_category = json_encode($request->industry_category);
             $industries->status = $request->status;
@@ -88,11 +97,17 @@ class IndustryController extends Controller
     {
         $industries = Industry::findOrFail($id);
 
+        // Decode the industry_category JSON to get an array
         $industryCategory = json_decode($industries->industry_category, true);
+
+        // Decode the industries_image JSON to get an array
+        $industries_image = json_decode($industries->industries_image, true);
+        // dd($industries_image);
 
         return view('backend.industries.edit', [
             'industries' => $industries,
-            'industryCategory' => $industryCategory
+            'industryCategory' => $industryCategory,
+            'industries_image' => $industries_image,
         ]);
     }
 
@@ -108,26 +123,40 @@ class IndustryController extends Controller
 
             // Check if the request contains an industries_image file
             if ($request->hasFile('industries_image') && $request->file('industries_image')->isValid()) {
-                // Delete the old image if it exists
-                if ($industry->industries_image) {
-                    $oldImagePath = public_path($industry->industries_image);
-                    if (file_exists($oldImagePath)) {
-                        unlink($oldImagePath); // Delete the old image file
+                // Decode the current industries_image JSON to retrieve the existing images array
+                $existingImages = json_decode($industry->industries_image, true) ?? [];
+
+                // Delete the old image(s) if they exist
+                foreach ($existingImages as $oldImagePath) {
+                    $fullOldImagePath = public_path($oldImagePath);
+                    if (file_exists($fullOldImagePath)) {
+                        unlink($fullOldImagePath); // Delete each old image file
                     }
                 }
 
-                // Process the new image
-                $image = $request->file('industries_image');
-                $extension = $image->getClientOriginalExtension();
-                $new_name = time() . rand(10, 999) . '.' . $extension;
-                $image->move(public_path('/visen/industries/industries_image'), $new_name);
+                // Initialize an array to store the new image paths
+                $newImages = [];
 
-                // Update the industry object with the new image path
-                $industry->industries_image = "/visen/industries/industries_image/" . $new_name; // Store the new image path
+                // Process the new image file(s)
+                foreach ($request->file('industries_image') as $image) {
+                    if ($image->isValid()) {
+                        $extension = $image->getClientOriginalExtension();
+                        $new_name = time() . rand(10, 999) . '.' . $extension;
+                        $image->move(public_path('/visen/industries/industries_image'), $new_name);
+
+                        // Add the new image path to the array
+                        $newImages[] = $new_name; // Add the new image name to the array
+
+                    }
+                }
+
+                // Store the new images array in JSON format
+                $industry->industries_image = json_encode($newImages);
             }
 
             // Update other fields
             $industry->industries_name = $request->industries_name;
+            $industry->industryTitle = $request->industryTitle;
             $industry->description = $request->description;
             $industry->industry_category = json_encode($request->industry_category);
             $industry->status = $request->status;

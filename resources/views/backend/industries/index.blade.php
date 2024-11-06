@@ -50,12 +50,12 @@ Visen | Manaage Industry
                 <h4 class="text-blue h4">All Industry List</h4>
             </div>
             <div class="pb-20">
-                <table class="table hover multiple-select-row data-table-export1 nowrap p-3">
+                <table class="table data-table-export1 nowrap p-3">
                     <thead>
                         <tr>
                             <th>Sr. No.</th>
                             <th>Industry Name</th>
-                            <th>Industry Image</th>
+                            <th>Industry Title</th>
                             <th>Industry Description</th>
                             <th>Status</th>
                             <th class="no-export">Edit</th>
@@ -69,13 +69,9 @@ Visen | Manaage Industry
 
                             <td class="text-wrap text-justify">{{ $value->industries_name }}</td>
 
-                            <td>
-                                @if($value->industries_image)
-                                    <img src="{{ asset('/visen/industries/industries_image/' . $value->industries_image) }}" alt="Industry Image" style="width: 100px; height: auto;">
-                                @endif
-                            </td>
+                            <td class="text-wrap text-justify">{{ $value->industryTitle }}</td>
 
-                            <td class="text-wrap text-justify">{!! $value->description !!}</td>
+                            <td class="text-justify">{!! $value->description !!}</td>
 
                             <td class="text-wrap text-justify">
                                 @if ($value->status == 1)
