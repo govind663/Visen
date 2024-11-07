@@ -38,14 +38,7 @@ class EventsController extends Controller
         $request->validated();
 
         try {
-
-            $events = Events::where('title', $request->title)->first();
-
-            if ($events) {
-                return redirect()->back()->with('error', 'Events already exists.');
-            }
-
-            // Create a new Events instance
+            
             $events = new Events();
 
             if ($request->hasFile('image')) {

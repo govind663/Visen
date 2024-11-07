@@ -40,13 +40,6 @@ class MediaController extends Controller
 
         try {
 
-            $media = Media::where('title', $request->title)->first();
-
-            if ($media) {
-                return redirect()->back()->with('error', 'Media already exists.');
-            }
-
-            // Create a new Media instance
             $media = new Media();
 
             if ($request->hasFile('image')) {

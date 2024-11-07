@@ -38,14 +38,7 @@ class NewsController extends Controller
         $request->validated();
 
         try {
-
-            $news = News::where('title', $request->title)->first();
-
-            if ($news) {
-                return redirect()->back()->with('error', 'News already exists.');
-            }
-
-            // Create a new News instance
+            
             $news = new News();
 
             if ($request->hasFile('image')) {

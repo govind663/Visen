@@ -137,9 +137,6 @@
                             <a href="{{ route('sustainability.index') }}" class="{{ ($currentRoute === 'sustainability.index') || ($currentRoute === 'sustainability.create') || ($currentRoute === 'sustainability.edit') ? 'active' : '' }}">Sustainability</a>
                         </li>
                         <li>
-                            <a href="#" >Innovations</a>
-                        </li>
-                        <li>
                             <a href="{{ route('customer.index') }}" class="{{ ($currentRoute === 'customer.index') || ($currentRoute === 'customer.create') || ($currentRoute === 'customer.edit') ? 'active' : '' }}">Customer</a>
                         </li>
                     </ul>
