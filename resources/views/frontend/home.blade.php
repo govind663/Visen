@@ -13,8 +13,8 @@ Visen | Home
     <section class="bannr_video">
         @if (!empty($banners->banner_video))
             <video src="{{ asset('/visen/banner/banner_video/' . $banners->banner_video) }}" autoplay muted loop ></video>
-        @elseif (!empty($banners->banner_image)) 
-            <img src="{{ asset('/visen/banner/banner_image/' . $banners->banner_image) }}" alt="Banner Image">           
+        @elseif (!empty($banners->banner_image))
+            <img src="{{ asset('/visen/banner/banner_image/' . $banners->banner_image) }}" alt="Banner Image">
         @endif
         <!-- <h1>AMONG THE STARS</h1> -->
     </section>
@@ -100,19 +100,17 @@ Visen | Home
     <!-- Counter Area Start -->
     <section class="counter_wrap" id="counter-stats">
         <div class="container-fluid">
-            <div class="row counter_row">                
+            <div class="row counter_row">
+                @foreach ($counters as $counter)
                 <div class="counter_items">
                     <div class="counter">
-                        
                         <h2>
-                            @foreach ($counters as $counter)
                             <strong class="count-digit">{!! $counter->description !!}</strong><span>+</span><br>
                             {{ $counter->title }}
-                            @endforeach
                         </h2>
-                        
                     </div>
                 </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -272,7 +270,7 @@ Visen | Home
                                     <img src="{{ asset('/visen/customer/image/'.$customer->image) }}" alt="client" class="img-responsive">
                                 </div>
                             </div>
-                        @endforeach                        
+                        @endforeach
                     </div>
                 </div>
             </div>
