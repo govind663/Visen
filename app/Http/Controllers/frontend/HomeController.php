@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Banner;
+use App\Models\Counter;
+use App\Models\Customer;
 use App\Models\Industry;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -12,7 +15,24 @@ class HomeController extends Controller
     // === Home
     public function home(Request $request)
     {
-        return view("frontend.home");
+        // ==== Fetch Banner
+        $banners = Banner::orderBy("id","asc")->where('status', 1)->whereNull('deleted_at')->first();
+
+        // ==== Fetch Industry
+        $industries = Industry::orderBy("id","asc")->where('status', 1)->whereNull('deleted_at')->get();
+
+        // ==== Fetch Counter
+        $counters = Counter::orderBy("id","asc")->whereNull('deleted_at')->get();
+
+        // ==== Fetch Customer
+        $customers = Customer::orderBy("id","asc")->whereNull('deleted_at')->get();
+
+        return view("frontend.home", [
+            'banners' => $banners,
+            'industries' => $industries,
+            'counters' => $counters,
+            'customers' => $customers
+        ]);
     }
 
     // ==== Innovation

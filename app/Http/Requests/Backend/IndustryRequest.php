@@ -23,8 +23,9 @@ class IndustryRequest extends FormRequest
     {
         if ($this->id){
             $rule = [
-                'industries_image.*' => 'nullable|mimes:jpeg,png,jpg|max:2048',
+                'industries_image.*' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
                 'industries_name' => 'required|string|max:255',
+                'industryBannerImage' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
                 'industryTitle' => 'required|string|max:255',
                 'description' => 'required|string',
                 'industry_category.*' => 'required|string',
@@ -34,6 +35,7 @@ class IndustryRequest extends FormRequest
             $rule = [
                 'industries_image.*' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
                 'industries_name' => 'required|string|max:255',
+                'industryBannerImage' => 'required|image|mimes:jpeg,png,jpg|max:2048',
                 'industryTitle' => 'required|string|max:255',
                 'description' => 'required|string',
                 'industry_category.*' => 'required|string',
@@ -47,12 +49,18 @@ class IndustryRequest extends FormRequest
 
         return [
             'industries_image.*.required' => __('Industry Image is required'),
+            'industries_image.*.image' => __('Industry Image must be an image'),
             'industries_image.*.mimes' => __('Industry Image must be a file of type: jpeg, png, jpg'),
             'industries_image.*.max' => __('Industry Image must not be greater than 2MB'),
 
             'industries_name.required' => __('Industry Name is required'),
             'industries_name.string' => __('Industry Name must be a string'),
             'industries_name.max' => __('Industry Name must not be greater than 255 characters'),
+
+            'industryBannerImage.required' => __('Industry Banner Image is required'),
+            'industryBannerImage.image' => __('Industry Banner Image must be an image'),
+            'industryBannerImage.mimes' => __('Industry Banner Image must be a file of type: jpeg, png, jpg'),
+            'industryBannerImage.max' => __('Industry Banner Image must not be greater than 2MB'),
 
             'industryTitle.required' => __('Industry Title is required'),
             'industryTitle.string' => __('Industry Title must be a string'),

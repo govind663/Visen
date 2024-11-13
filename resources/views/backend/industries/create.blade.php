@@ -75,7 +75,7 @@ Visen | Add Industry
 
                 <div class="form-group row mt-3">
                     <label class="col-sm-2"><b>Industry Title : <span class="text-danger">*</span></b></b></label>
-                    <div class="col-sm-10 col-md-10 mb-3">
+                    <div class="col-sm-4 col-md-4 mb-3">
                         <input type="text" name="industryTitle" id="industryTitle" class="form-control @error('industryTitle') is-invalid @enderror" placeholder="Enter Industry Title" value="{{ old('industryTitle') }}">
                         @error('industryTitle')
                             <span class="invalid-feedback" role="alert">
@@ -84,6 +84,26 @@ Visen | Add Industry
                         @enderror
                     </div>
 
+                    <label class="col-sm-2"><b>Upload Industry Banner Image : <span class="text-danger">*</span></b></label>
+                    <div class="col-sm-4 col-md-4 mb-3">
+                        <input type="file" onchange="industryBannerImagePreviewFile()" accept=".png, .jpg, .jpeg" name="industryBannerImage" id="industryBannerImage" class="form-control @error('industryBannerImage') is-invalid @enderror" value="{{ old('industryBannerImage') }}" placeholder="Upload Industry Banner Image.">
+                        <small class="text-secondary"><b>Note : The file size  should be less than 2MB .</b></small>
+                        <br>
+                        <small class="text-secondary"><b>Note : Only files in .jpg, .jpeg, .png format can be uploaded .</b></small>
+                        <br>
+                        @error('industryBannerImage')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                        <br>
+                        <div id="preview-industryBannerImage-container">
+                            <div id="file-preview-industryBannerImage"></div>
+                        </div>
+                    </div>                    
+                </div>
+
+                <div class="form-group row mt-3">
                     <label class="col-sm-2"><b>Industry Description : <span class="text-danger">*</span></b></b></label>
                     <div class="col-sm-10 col-md-10">
                         <textarea name="description" id="description" class="textarea_editor form-control border-radius-0 @error('description') is-invalid @enderror" placeholder="Enter Industry Description" value="{{ old('description') }}">{{ old('description') }}</textarea>
@@ -164,10 +184,10 @@ Visen | Add Industry
 {{-- Industry both Image and PDF --}}
 <script>
     // Existing function for agent image/PDF preview (if needed)
-    function agentPreviewFile() {
-        const fileInput = document.getElementById('industries_image');
-        const previewContainer = document.getElementById('preview-industries-image-container');
-        const filePreview = document.getElementById('file-preview-industries-image');
+    function industryBannerImagePreviewFile() {
+        const fileInput = document.getElementById('industryBannerImage');
+        const previewContainer = document.getElementById('preview-industryBannerImage-container');
+        const filePreview = document.getElementById('file-preview-industryBannerImage');
         const file = fileInput.files[0];
 
         if (file) {

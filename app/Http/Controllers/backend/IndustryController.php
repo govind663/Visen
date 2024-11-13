@@ -67,6 +67,18 @@ class IndustryController extends Controller
                 $industries->industries_image = json_encode($images);
             }
 
+            // Check if the request contains an image file
+            if ($request->hasFile('industryBannerImage') && $request->file('industryBannerImage')->isValid()) {
+
+                $image = $request->file('industryBannerImage');
+                $extension = $image->getClientOriginalExtension();
+                $new_name = time() . rand(10, 999) . '.' . $extension;
+                $image->move(public_path('/visen/industries/industryBannerImage/'), $new_name);
+
+                $image_path = "/visen/industries/industryBannerImage/" . $new_name;
+                $industries->industryBannerImage = $new_name;
+            }
+
             $industries->industries_name = $request->industries_name;
             $industries->industryTitle = $request->industryTitle;
             $industries->description = $request->description;
@@ -152,6 +164,26 @@ class IndustryController extends Controller
 
                 // Store the new images array in JSON format
                 $industry->industries_image = json_encode($newImages);
+            }
+
+            // Check if the request contains an image file
+            if ($request->hasFile('industryBannerImage') && $request->file('industryBannerImage')->isValid()) {
+                // Delete the old image if it exists
+                if ($industry->industryBannerImage) {
+                    $oldImagePath = public_path($industry->industryBannerImage);
+                    if (file_exists($oldImagePath)) {
+                        unlink($oldImagePath); // Delete the old image file
+                    }
+                }
+
+                $image = $request->file('industryBannerImage');
+                $extension = $image->getClientOriginalExtension();
+                $new_name = time() . rand(10, 999) . '.' . $extension;
+                $image->move(public_path('/visen/industries/industryBannerImage/'), $new_name);
+
+                // Update the media object with the new image path
+                // $industry->industryBannerImage = "/visen/industries/industryBannerImage/" . $new_name; // Update the path for the database
+                $industry->industryBannerImage = $new_name;
             }
 
             // Update other fields

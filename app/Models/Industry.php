@@ -14,6 +14,7 @@ class Industry extends Model
         'id',
         'industries_image',
         'industries_name',
+        'industryBannerImage',
         'industryTitle',
         'description',
         'industry_category',

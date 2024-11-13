@@ -11,7 +11,11 @@ Visen | Home
 
     <!-- banner start here -->
     <section class="bannr_video">
-        <video src="{{ asset('assets/frontend/img/video/3.mp4') }}" autoplay muted loop></video>
+        @if (!empty($banners->banner_video))
+            <video src="{{ asset('/visen/banner/banner_video/' . $banners->banner_video) }}" autoplay muted loop ></video>
+        @elseif (!empty($banners->banner_image)) 
+            <img src="{{ asset('/visen/banner/banner_image/' . $banners->banner_image) }}" alt="Banner Image">           
+        @endif
         <!-- <h1>AMONG THE STARS</h1> -->
     </section>
     <!-- banner end here -->
@@ -28,91 +32,26 @@ Visen | Home
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4">
-                    <div class="industries-box">
-                        <div class="thumb">
-                            <img src="{{ asset('assets/frontend/img/industries/paint-coating-1.jpg') }}" alt="img"
-                                class="overflow-hidden w-100">
-                        </div>
-                        <div class="content">
-                            <h5 class=""><a href="#" class="black-clr">Paints and Coatings </a></h5>
-                            <p>Premium emulsions, designed for durability, vibrant color, and effortless application,
-                                providing buildings an aesthetic appeal with strong chemistry at its core.</p>
-                            <!-- <a href="#" class="view-all">Read More</a> -->
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="industries-box">
-                        <div class="thumb">
-                            <img src="{{ asset('assets/frontend/img/industries/construction-chemicals-1.jpg') }}" alt="img"
-                                class="overflow-hidden w-100">
-                        </div>
-                        <div class="content">
-                            <h5 class=""><a href="#" class="black-clr">Construction Chemicals</a></h5>
-                            <p>Achieve long-lasting and leak proof buildings, bridges, and structures with superior
-                                <!-- structural --> integrity and optimal bonding for projects that stand the test of
-                                time. <!-- with our emulsions --></p>
-                            <!-- <a href="#" class="view-all">Read More</a> -->
+                @foreach ($industries as $industry)
+                    <div class="col-md-4  p-3">
+                        <div class="industries-box">
+                            <div class="thumb">
+                                @if (!empty($industry->industryBannerImage))
+                                <img src="{{ asset('/visen/industries/industryBannerImage/' . $industry->industryBannerImage) }}" alt="img" class="overflow-hidden w-100">
+                                @endif
+                            </div>
+                            <div class="content">
+                                <h5 class="">
+                                    <a href="#" class="black-clr">{{ $industry->industries_name }}</a>
+                                </h5>
+                                {{-- Apply Word Limit --}}
+                                <p class="text-justify">
+                                    {!! \Illuminate\Support\Str::words($industry->description, 50, '') !!}
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="industries-box">
-                        <div class="thumb">
-                            <img src="{{ asset('assets/frontend/img/industries/textile-and-non-wovens-1.jpg') }}" alt="img"
-                                class="overflow-hidden w-100">
-                        </div>
-                        <div class="content">
-                            <h5 class=""><a href="#" class="black-clr">Textile and Non-Wovens</a></h5>
-                            <p>Beautiful clothing that makes you look and feel good, thanks to our GOTS and OEKO-TEX
-                                certified emulsions, ensuring sustainability and advanced functionality for natural and
-                                synthetic fibres.</p>
-                            <!-- <a href="#" class="view-all">Read More</a> -->
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="industries-box">
-                        <div class="thumb">
-                            <img src="{{ asset('assets/frontend/img/industries/adhesives-lamination-1.jpg') }}" alt="img"
-                                class="overflow-hidden w-100">
-                        </div>
-                        <div class="content">
-                            <h5 class=""><a href="#" class="black-clr">Adhesives</a></h5>
-                            <p>Experience unparalleled bond, exceptional strength, and reliability with our adhesives,
-                                designed to ensure longevity and precision for all your projects while bringing your
-                                ideas to life.</p>
-                            <!-- <a href="#" class="view-all">Read More</a> -->
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="industries-box">
-                        <div class="thumb">
-                            <img src="{{ asset('assets/frontend/img/industries/packaging-1.jpg') }}" alt="img" class="overflow-hidden w-100">
-                        </div>
-                        <div class="content">
-                            <h5 class=""><a href="#" class="black-clr">Packaging</a></h5>
-                            <p>Visen helps protect packaging with emulsions offering maximum strength and adhesion to
-                                tapes, ensuring secure sealing, moisture resistance, and enhanced durability.</p>
-                            <!-- <a href="#" class="view-all">Read More</a> -->
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="industries-box">
-                        <div class="thumb">
-                            <img src="{{ asset('assets/frontend/img/industries/additives-2.jpg') }}" alt="img" class="overflow-hidden w-100">
-                        </div>
-                        <div class="content">
-                            <h5 class=""><a href="#" class="black-clr">Additives</a></h5>
-                            <p>Enhance your formulations with our premium acrylic thickeners, dispersing agents, and
-                                opaque polymers, providing superior consistency, stability, and performance.</p>
-                            <!-- <a href="#" class="view-all">Read More</a> -->
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -161,30 +100,17 @@ Visen | Home
     <!-- Counter Area Start -->
     <section class="counter_wrap" id="counter-stats">
         <div class="container-fluid">
-            <div class="row counter_row">
+            <div class="row counter_row">                
                 <div class="counter_items">
                     <div class="counter">
-                        <h2><strong class="count-digit">39</strong><span>+</span><br> Years of Experience</h2>
-                    </div>
-                </div>
-                <div class="counter_items">
-                    <div class="counter">
-                        <h2><strong class="count-digit">50</strong><span>+</span><br> Countries Served</h2>
-                    </div>
-                </div>
-                <div class="counter_items">
-                    <div class="counter">
-                        <h2><strong class="count-digit">250</strong><span>+</span><br> Innovative Products</h2>
-                    </div>
-                </div>
-                <div class="counter_items">
-                    <div class="counter">
-                        <h2><strong class="count-digit">5</strong><br> Manufacturing Units</h2>
-                    </div>
-                </div>
-                <div class="counter_items">
-                    <div class="counter">
-                        <h2><strong class="count-digit">450</strong><span>+</span><br> Team Strength</h2>
+                        
+                        <h2>
+                            @foreach ($counters as $counter)
+                            <strong class="count-digit">{!! $counter->description !!}</strong><span>+</span><br>
+                            {{ $counter->title }}
+                            @endforeach
+                        </h2>
+                        
                     </div>
                 </div>
             </div>
@@ -340,61 +266,13 @@ Visen | Home
             <div class="row">
                 <div class="col-md-12">
                     <div class="owl-carousel owl-theme" id="client">
-                        <div class="items">
-                            <div class="clients-wrap">
-                                <img src="{{ asset('assets/frontend/img/client/jotun-paints.png') }}">
+                        @foreach ($customers as $customer)
+                            <div class="items">
+                                <div class="clients-wrap">
+                                    <img src="{{ asset('/visen/customer/image/'.$customer->image) }}" alt="client" class="img-responsive">
+                                </div>
                             </div>
-                        </div>
-                        <div class="items">
-                            <div class="clients-wrap">
-                                <img src="{{ asset('assets/frontend/img/client/asianpaints.png') }}">
-                            </div>
-                        </div>
-                        <div class="items">
-                            <div class="clients-wrap">
-                                <img src="{{ asset('assets/frontend/img/client/berger-paints.png') }}">
-                            </div>
-                        </div>
-                        <div class="items">
-                            <div class="clients-wrap">
-                                <img src="{{ asset('assets/frontend/img/client/jsw-paints.png') }}">
-                            </div>
-                        </div>
-                        <div class="items">
-                            <div class="clients-wrap">
-                                <img src="{{ asset('assets/frontend/img/client/indigo.png') }}">
-                            </div>
-                        </div>
-                        <div class="items">
-                            <div class="clients-wrap">
-                                <img src="{{ asset('assets/frontend/img/client/nippon-paints.png') }}">
-                            </div>
-                        </div>
-                        <div class="items">
-                            <div class="clients-wrap">
-                                <img src="{{ asset('assets/frontend/img/client/fosroc.png') }}">
-                            </div>
-                        </div>
-                        <div class="items">
-                            <div class="clients-wrap">
-                                <img src="{{ asset('assets/frontend/img/client/ultratech.png') }}">
-                            </div>
-                        </div>
-                        <div class="items">
-                            <div class="clients-wrap">
-                                <img src="{{ asset('assets/frontend/img/client/terraco.png') }}">
-                            </div>
-                        </div>
-                        <div class="items">
-                            <div class="clients-wrap">
-                                <img src="{{ asset('assets/frontend/img/client/caparol.png') }}">
-                            </div>
-                        </div>
-                        <div class="items">
-                            <div class="clients-wrap">
-                                <img src="{{ asset('assets/frontend/img/client/akzonobel.png') }}">
-                            </div>
-                        </div>
+                        @endforeach                        
                     </div>
                 </div>
             </div>

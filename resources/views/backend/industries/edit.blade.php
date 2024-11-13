@@ -78,7 +78,7 @@ Visen | Edit Industry
 
                 <div class="form-group row mt-3">
                     <label class="col-sm-2"><b>Industry Title : <span class="text-danger">*</span></b></b></label>
-                    <div class="col-sm-10 col-md-10 mb-3">
+                    <div class="col-sm-4 col-md-4 mb-3">
                         <input type="text" name="industryTitle" id="industryTitle" class="form-control @error('industryTitle') is-invalid @enderror" placeholder="Enter Industry Title" value="{{ $industries->industryTitle }}">
                         @error('industryTitle')
                             <span class="invalid-feedback" role="alert">
@@ -87,6 +87,30 @@ Visen | Edit Industry
                         @enderror
                     </div>
 
+                    <label class="col-sm-2"><b>Upload Industry Banner Image : <span class="text-danger">*</span></b></label>
+                    <div class="col-sm-4 col-md-4 mb-3">
+                        <input type="file" onchange="industryBannerImagePreviewFile()" accept=".png, .jpg, .jpeg" name="industryBannerImage" id="industryBannerImage" class="form-control @error('industryBannerImage') is-invalid @enderror" value="{{ old('industryBannerImage') }}" placeholder="Upload Industry Banner Image.">
+                        <small class="text-secondary"><b>Note : The file size  should be less than 2MB .</b></small>
+                        <br>
+                        <small class="text-secondary"><b>Note : Only files in .jpg, .jpeg, .png format can be uploaded .</b></small>
+                        <br>
+                        @error('industryBannerImage')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                        <br>
+                        <div id="preview-industryBannerImage-container">
+                            <div id="file-preview-industryBannerImage"></div>
+                        </div>
+                        <br>
+                        @if (!empty($industries->industryBannerImage))
+                            <img src="{{ asset('/visen/industries/industryBannerImage/' . $industries->industryBannerImage) }}" alt="{{ $industries->industryBannerImage }}" style="width: 30%; height: 30%;">
+                        @endif
+                    </div>
+                </div>
+
+                <div class="form-group row mt-3">
                     <label class="col-sm-2"><b>Industry Description : <span class="text-danger">*</span></b></b></label>
                     <div class="col-sm-10 col-md-10">
                         <textarea name="description" id="description" class="textarea_editor form-control border-radius-0 @error('description') is-invalid @enderror" placeholder="Enter Industry Description" value="{!! $industries->description !!}">{!! $industries->description !!}</textarea>
@@ -212,72 +236,14 @@ Visen | Edit Industry
 @endsection
 
 @push('scripts')
-{{-- Add More Industry or View both Image and PDF --}}
+{{-- Industry both Image and PDF --}}
 <script>
-    $(document).ready(function () {
-        let rowId = 0;
-
-        // Add a new row
-        $('#addIndustriesRow').click(function () {
-            rowId++;
-            const newRow = `
-                <tr>
-                    <td>
-                        <div class="col-sm-12 col-md-12">
-                            <div id="overview-amenite-container-${rowId}">
-                                <div id="file-overview-amenite-${rowId}"></div>
-                            </div>
-                            <input type="file" onchange="overviewIndustriePreviewFiles(${rowId})" accept=".png, .jpg, .jpeg" name="industries_image[]" id="industries_image_${rowId}" class="form-control @error('industries_image.${rowId}') is-invalid @enderror">
-                            <small class="text-secondary"><b>Note : The file size should be less than 2MB.</b></small>
-                            <br>
-                            <small class="text-secondary"><b>Note : Only files in .jpg, .jpeg, .png format can be uploaded.</b></small>
-                            <br>
-                            @error('industries_image.${rowId}')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </td>
-                    <td>
-                        <div class="col-sm-12 col-md-12">
-                            <input type="text" name="industries_name[]" id="industries_name_${rowId}" class="form-control @error('industries_name.${rowId}') is-invalid @enderror" placeholder="Enter Industry Name" value="{{ old('industries_name.${rowId}') }}">
-                            @error('industries_name.${rowId}')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </td>
-                    <td>
-                        <textarea name="description[]" id="description_${rowId}" class="form-control @error('description.${rowId}') is-invalid @enderror" placeholder="Enter Description">{{ old('description.${rowId}') }}</textarea>
-                        @error('description.${rowId}')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </td>
-                    <td>
-                        <button type="button" class="btn btn-danger removeIndustriesRow">Remove</button>
-                    </td>
-                </tr>`;
-            $('#dynamicIndustriesTable tbody').append(newRow);
-        });
-
-        // Remove a row
-        $(document).on('click', '.removeIndustriesRow', function () {
-            $(this).closest('tr').remove();
-        });
-    });
-
-    // Preview file
-    function overviewIndustriePreviewFiles(rowId) {
-        const fileInput = document.getElementById(`industries_image_${rowId}`);
-        const previewContainer = document.getElementById(`preview-industries-image-container-${rowId}`);
-        const filePreview = document.getElementById(`file-preview-industries-image-${rowId}`);
+    // Existing function for agent image/PDF preview (if needed)
+    function industryBannerImagePreviewFile() {
+        const fileInput = document.getElementById('industryBannerImage');
+        const previewContainer = document.getElementById('preview-industryBannerImage-container');
+        const filePreview = document.getElementById('file-preview-industryBannerImage');
         const file = fileInput.files[0];
-
-        if (!fileInput || !previewContainer || !filePreview) return; // Guard clause
 
         if (file) {
             const fileType = file.type;
@@ -287,17 +253,17 @@ Visen | Edit Industry
             if (validImageTypes.includes(fileType)) {
                 // Image preview
                 const reader = new FileReader();
-                reader.onload = function (e) {
-                    filePreview.innerHTML = `<img src="${e.target.result}" alt="File Preview" style="width:120px; height:100px !important;">`;
+                reader.onload = function(e) {
+                    filePreview.innerHTML = `<img src="${e.target.result}" alt="File Preview" style="height: 50%; width: 100%;">`;
                 };
                 reader.readAsDataURL(file);
             } else if (validPdfTypes.includes(fileType)) {
-                // PDF preview
-                filePreview.innerHTML = `<embed src="${URL.createObjectURL(file)}" type="application/pdf" width="100%" height="25%" />`;
+                // PDF preview using an embed element
+                filePreview.innerHTML =
+                    `<embed src="${URL.createObjectURL(file)}" type="application/pdf" width="100%" height="150px" />`;
             } else {
                 // Unsupported file type
                 filePreview.innerHTML = '<p>Unsupported file type</p>';
-                filePreview.innerHTML += `<p>Please select a valid image or PDF file.</p>`;
             }
 
             previewContainer.style.display = 'block';
