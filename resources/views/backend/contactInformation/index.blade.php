@@ -70,7 +70,7 @@ Visen | Manaage Contact Information
 
                             <td class="text-wrap text-justify">
                                 @if($value->contactUsImage)
-                                    <img src="{{ asset('/visen/contact_information/contactUsImage/' . $value->contactUsImage) }}" alt="{{ $value->contactUsImage }}" style="width: 100px; height: 100px;">
+                                    <img src="{{ asset('/visen/contact_information/contactUsImage/' . $value->contactUsImage) }}" alt="{{ $value->contactUsImage }}" style="width: 100%; height: 100px;">
                                 @endif
                             </td>
 

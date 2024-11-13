@@ -50,14 +50,14 @@ Visen | Manaages Product Details
                 <h4 class="text-blue h4">All Product Details List</h4>
             </div>
             <div class="pb-20">
-                <table class="table hover multiple-select-row data-table-export1 nowrap p-3">
+                <table class="table data-table-export1 nowrap p-3">
                     <thead>
                         <tr>
                             <th>Sr. No.</th>
                             <th>Industry Name</th>
                             <th>Category Name</th>
-                            <th>Description</th>
                             <th>Banner Image</th>
+                            <th>Description</th>
                             <th class="no-export">Edit</th>
                             <th class="no-export">Delete</th>
                         </tr>
